@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useTransition } from 'react';
@@ -15,7 +16,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { pricingPlans } from '@/lib/plans';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -214,15 +214,7 @@ export function PurchaseForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {pricingPlans.map((plan) => (
-                    <SelectItem key={plan.id} value={plan.id}>
-                      {plan.category}: {plan.name} ($
-                      {billingCycle === 'annually'
-                        ? plan.annualPrice
-                        : plan.monthlyPrice}
-                      /mo)
-                    </SelectItem>
-                  ))}
+                  
                 </SelectContent>
               </Select>
               <FormMessage />
