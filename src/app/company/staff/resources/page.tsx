@@ -69,16 +69,24 @@ function CreateHyperlinkDialog() {
       return;
     }
 
-    startTransition(() => {
-      // The createHyperlink function is now non-blocking on the UI thread
-      // but will emit a detailed error via the errorEmitter if it fails.
-      createHyperlink(userProfile.uid, title, url);
-
-      toast({
-        title: 'Success!',
-        description: `Hyperlink "${title}" has been submitted for creation.`,
-      });
-      resetAndClose();
+    startTransition(async () => {
+      try {
+        await createHyperlink(userProfile.uid, title, url);
+        toast({
+          title: 'Success!',
+          description: `Hyperlink "${title}" has been created.`,
+        });
+        resetAndClose();
+      } catch (error) {
+        // The detailed error is now being thrown by the `createHyperlink` function
+        // and emitted globally. We can show a generic toast here, but the developer
+        // will see the detailed error in the Next.js overlay.
+        toast({
+          variant: 'destructive',
+          title: 'Permission Denied',
+          description: 'You do not have permission to create a hyperlink. Check the console for details.',
+        });
+      }
     });
   };
 

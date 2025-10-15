@@ -102,7 +102,7 @@ export async function deleteUserProfile(userId: string): Promise<void> {
 // =================================================================
 // Hyperlink Functions
 // =================================================================
-export function createHyperlink(creatorId: string, title: string, url: string): void {
+export async function createHyperlink(creatorId: string, title: string, url: string): Promise<void> {
     if (!creatorId || !title || !url) {
         throw new Error('Creator ID, title, and URL are required.');
     }
@@ -114,12 +114,16 @@ export function createHyperlink(creatorId: string, title: string, url: string): 
         createdAt: serverTimestamp(),
     };
     
-    addDoc(hyperlinksRef, newLinkData).catch(serverError => {
+    try {
+      await addDoc(hyperlinksRef, newLinkData);
+    } catch(serverError) {
         const permissionError = new FirestorePermissionError({
             path: hyperlinksRef.path,
             operation: 'create',
             requestResourceData: newLinkData,
         });
         errorEmitter.emit('permission-error', permissionError);
-    });
+        // Re-throw the original error if needed, or a new one
+        throw permissionError;
+    }
 }
