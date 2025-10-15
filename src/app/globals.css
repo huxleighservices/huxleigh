@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 180 82% 35%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 210 40% 9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 222.2 47.4% 45.1%;
+    --accent: 45 68% 52%;
+    --accent-foreground: 45 68% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 180 82% 35%;
+  }
+  .dark {
+    --background: 210 8% 10%;
+    --foreground: 210 40% 98%;
+    --card: 210 8% 13%;
+    --card-foreground: 210 40% 98%;
+    --popover: 210 8% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 180 82% 35%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 8% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 8% 18%;
+    --muted-foreground: 210 40% 60%;
+    --accent: 45 68% 52%;
+    --accent-foreground: 45 68% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 8% 20%;
+    --input: 210 8% 20%;
+    --ring: 180 82% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)); }
+    50% { box-shadow: 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary)); }
+  }
+  .animated-glow {
+    position: relative;
+    animation: glow 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes gold-glow-text {
+    0%, 100% { text-shadow: 0 0 5px hsl(var(--accent)), 0 0 10px hsl(var(--accent)); }
+    50% { text-shadow: 0 0 20px hsl(var(--accent)), 0 0 30px hsl(var(--accent)); }
+  }
+  .gold-glow {
+    animation: gold-glow-text 2.5s ease-in-out infinite;
+  }
+
+  .circuit-board-animation {
+    position: absolute;
+    inset: -20%;
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.15) 1px, transparent 1px);
+    background-size: 3rem 3rem;
+    animation: pan-circuit 15s linear infinite;
+    opacity: 0;
+    animation-name: pan-circuit, fade-in-circuit;
+    animation-duration: 15s, 1s;
+    animation-delay: 0s, 0.5s;
+    animation-timing-function: linear, ease-out;
+    animation-iteration-count: infinite, 1;
+    animation-fill-mode: forwards, forwards;
+  }
+
+  .circuit-board-animation::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1.5px);
+    background-size: 3rem 3rem;
+    animation: flicker-dots 4s linear infinite;
+  }
+
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes pan-circuit {
+    0% { background-position: 0 0; }
+    100% { background-position: 3rem 3rem; }
+  }
+  @keyframes fade-in-circuit {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes flicker-dots {
+    0%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+    40%, 60% { opacity: 0.5; }
+  }
+}

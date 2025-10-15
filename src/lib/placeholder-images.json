@@ -1,0 +1,106 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "People working together in a modern office",
+      "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "collaboration office"
+    },
+    {
+      "id": "blog-ai-ethics",
+      "description": "A balanced scale with a brain on one side and a heart on the other",
+      "imageUrl": "https://images.unsplash.com/photo-1590099543482-3b3d3083a474?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxldGhpY3MlMjBiYWxhbmNlfGVufDB8fHx8MTc1ODg1ODg1NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ethics balance"
+    },
+    {
+      "id": "blog-future-of-work",
+      "description": "A modern office with robots and humans working together",
+      "imageUrl": "https://images.unsplash.com/photo-1559077450-67c4f2c59cfe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZnV0dXJlJTIwb2ZmaWNlfGVufDB8fHx8MTc1ODkwMTM2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "future office"
+    },
+    {
+      "id": "blog-quantum-computing",
+      "description": "Glowing qubits and quantum circuit diagram",
+      "imageUrl": "https://images.unsplash.com/photo-1617839625591-e5a789593135?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxxdWFudHVtJTIwY29tcHV0aW5nfGVufDB8fHx8MTc1ODg4MzcyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "quantum computing"
+    },
+    {
+      "id": "solution-analytics",
+      "description": "A dashboard with complex charts and graphs",
+      "imageUrl": "https://images.unsplash.com/photo-1545987796-200677ee1011?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxkYXRhJTIwYW5hbHl0aWNzfGVufDB8fHx8MTc1ODgwNjEyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data analytics"
+    },
+    {
+      "id": "solution-nlp",
+      "description": "Abstract representation of text and language processing",
+      "imageUrl": "https://images.unsplash.com/photo-1673515334717-da4d85aaf38b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsYW5ndWFnZSUyMHByb2Nlc3Npbmd8ZW58MHx8fHwxNzU4ODg4NjIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "language processing"
+    },
+    {
+      "id": "solution-vision",
+      "description": "A robotic eye scanning a futuristic city",
+      "imageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wdXRlciUyMHZpc2lvbnxlbnwwfHx8fDE3NTg5MDEzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "computer vision"
+    },
+    {
+      "id": "solution-custom",
+      "description": "Interlocking gears and puzzle pieces forming a brain",
+      "imageUrl": "https://images.unsplash.com/photo-1752421418197-316654990dea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjdXN0b20lMjBzb2x1dGlvbnxlbnwwfHx8fDE3NTg5MDEzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "custom solution"
+    },
+    {
+      "id": "platform-how-it-works",
+      "description": "A flowchart showing a seamless integration process",
+      "imageUrl": "https://images.unsplash.com/photo-1685839061205-a3ea35b7b804?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwcm9jZXNzJTIwZGlhZ3JhbXxlbnwwfHx8fDE3NTg5MDEzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "process diagram"
+    },
+    {
+      "id": "about-us-story",
+      "description": "Person working on a computer",
+      "imageUrl": "https://images.unsplash.com/photo-1622542390045-e812a83e59d1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fGNvbXB1dGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D",
+      "imageHint": "computer work"
+    },
+    {
+      "id": "team-jane-doe",
+      "description": "Portrait of Jane Doe",
+      "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9mZXNzaW9uYWwlMjB3b21hbnxlbnwwfHx8fDE3NTg3OTE1MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional woman"
+    },
+    {
+      "id": "team-john-smith",
+      "description": "Portrait of John Smith",
+      "imageUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBtYW58ZW58MHx8fHwxNzU4Nzk4MTE4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional man"
+    },
+    {
+      "id": "team-emily-white",
+      "description": "Portrait of Emily White",
+      "imageUrl": "https://images.unsplash.com/photo-1598625873873-52f9aefd7d9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzU4ODg0MjUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "team-michael-brown",
+      "description": "Portrait of Michael Brown",
+      "imageUrl": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYW4lMjBzbWlsaW5nfGVufDB8fHx8fDE3NTg4MDgwODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man smiling"
+    },
+    {
+      "id": "story-fintech",
+      "description": "A secure digital vault with glowing data streams",
+      "imageUrl": "https://images.unsplash.com/photo-1516245834210-c4c142787335?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmaW5hbmNpYWwlMjB0ZWNobm9sb2d5fGVufDB8fHx8fDE3NTg5MDEzNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "financial technology"
+    },
+    {
+      "id": "story-healthtech",
+      "description": "A doctor analyzing a 3D model of a human organ on a holographic display",
+      "imageUrl": "https://images.unsplash.com/photo-15997277643-b0c9cfb7705d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtZWRpY2FsJTIwdGVjaG5vbG9neXxlbnwwfHx8fDE3NTg4MTU0NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medical technology"
+    },
+    {
+      "id": "story-ecommerce",
+      "description": "A personalized online shopping experience on a tablet",
+      "imageUrl": "https://images.unsplash.com/photo-1605902711834-8b11c3e3ef2f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvbmxpbmUlMjBzaG9wcGluZ3xlbnwwfHx8fDE3NTg4MjM5OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "online shopping"
+    }
+  ]
+}

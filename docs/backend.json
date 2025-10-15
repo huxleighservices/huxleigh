@@ -1,0 +1,409 @@
+
+{
+  "entities": {
+    "BlogPost": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BlogPost",
+      "type": "object",
+      "description": "Represents a blog post on the Huxleigh AI website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the blog post."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the blog post."
+        },
+        "content": {
+          "type": "string",
+          "description": "The main text content of the blog post. May contain HTML or Markdown."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "Reference to the Author of the blog post. (Relationship: Author 1:N BlogPost)"
+        },
+        "publicationDate": {
+          "type": "string",
+          "description": "Date and time when the blog post was published.",
+          "format": "date-time"
+        },
+        "tagIds": {
+          "type": "array",
+          "description": "References to Tags associated with the blog post. (Relationship: Tag N:N BlogPost)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "summary": {
+          "type": "string",
+          "description": "AI-generated summary of a trending tech article, used to enrich the blog post commentary."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content",
+        "authorId",
+        "publicationDate"
+      ]
+    },
+    "Author": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Author",
+      "type": "object",
+      "description": "Represents an author of a blog post.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the author."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the author."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the author.",
+          "format": "email"
+        },
+        "bio": {
+          "type": "string",
+          "description": "A short biography of the author."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email"
+      ]
+    },
+    "Tag": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Tag",
+      "type": "object",
+      "description": "Represents a tag associated with blog posts.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the tag."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the tag."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "ClientSuccessStory": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ClientSuccessStory",
+      "type": "object",
+      "description": "Represents a client success story.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the client success story."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the client success story."
+        },
+        "content": {
+          "type": "string",
+          "description": "The detailed content of the success story."
+        },
+        "clientId": {
+          "type": "string",
+          "description": "Reference to the Client associated with the success story. (Relationship: Client 1:N ClientSuccessStory)"
+        },
+        "publicationDate": {
+          "type": "string",
+          "description": "Date the success story was published.",
+          "format": "date-time"
+        },
+        "testimonial": {
+          "type": "string",
+          "description": "Quote from the client about their experience."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content",
+        "clientId",
+        "publicationDate"
+      ]
+    },
+    "Client": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Client",
+      "type": "object",
+      "description": "Represents a client of Huxleigh AI.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the client."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the client."
+        },
+        "logoUrl": {
+          "type": "string",
+          "description": "URL of the client's logo.",
+          "format": "uri"
+        },
+        "websiteUrl": {
+          "type": "string",
+          "description": "URL of the client's website.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "Inquiry": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Inquiry",
+      "type": "object",
+      "description": "Represents a customer inquiry received through the contact form or chatbot.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the inquiry."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person submitting the inquiry."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person submitting the inquiry.",
+          "format": "email"
+        },
+        "message": {
+          "type": "string",
+          "description": "The content of the inquiry."
+        },
+        "submissionDate": {
+          "type": "string",
+          "description": "Date and time when the inquiry was submitted.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "message",
+        "submissionDate"
+      ]
+    },
+    "AIArticleSummary": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AIArticleSummary",
+      "type": "object",
+      "description": "Represents a summary of a trending AI article, used to enrich blog posts.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the article summary."
+        },
+        "articleUrl": {
+          "type": "string",
+          "description": "URL of the original AI article.",
+          "format": "uri"
+        },
+        "summaryText": {
+          "type": "string",
+          "description": "AI-generated summary of the article."
+        },
+        "dateCreated": {
+          "type": "string",
+          "description": "Date and time when the summary was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "articleUrl",
+        "summaryText",
+        "dateCreated"
+      ]
+    },
+     "Hyperlink": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Hyperlink",
+      "type": "object",
+      "description": "Represents a hyperlink resource created by staff.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the hyperlink."
+        },
+        "title": {
+          "type": "string",
+          "description": "The display text for the hyperlink button."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The destination URL of the hyperlink."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the hyperlink was created."
+        },
+        "creatorId": {
+          "type": "string",
+          "description": "The UID of the user who created the hyperlink."
+        }
+      },
+      "required": ["id", "title", "url", "createdAt", "creatorId"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/blog_posts/{blogPostId}",
+        "definition": {
+          "entityName": "BlogPost",
+          "schema": {
+            "$ref": "#/backend/entities/BlogPost"
+          },
+          "description": "Represents a blog post. Includes 'authorId' for linking to the Author.",
+          "params": [
+            {
+              "name": "blogPostId",
+              "description": "Unique identifier for the blog post."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/authors/{authorId}",
+        "definition": {
+          "entityName": "Author",
+          "schema": {
+            "$ref": "#/backend/entities/Author"
+          },
+          "description": "Represents an author of blog posts.",
+          "params": [
+            {
+              "name": "authorId",
+              "description": "Unique identifier for the author."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/tags/{tagId}",
+        "definition": {
+          "entityName": "Tag",
+          "schema": {
+            "$ref": "#/backend/entities/Tag"
+          },
+          "description": "Represents a tag associated with blog posts.",
+          "params": [
+            {
+              "name": "tagId",
+              "description": "Unique identifier for the tag."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/client_success_stories/{clientSuccessStoryId}",
+        "definition": {
+          "entityName": "ClientSuccessStory",
+          "schema": {
+            "$ref": "#/backend/entities/ClientSuccessStory"
+          },
+          "description": "Represents a client success story. Includes 'clientId' for linking to the Client.",
+          "params": [
+            {
+              "name": "clientSuccessStoryId",
+              "description": "Unique identifier for the client success story."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/clients/{clientId}",
+        "definition": {
+          "entityName": "Client",
+          "schema": {
+            "$ref": "#/backend/entities/Client"
+          },
+          "description": "Represents a client of Huxleigh AI.",
+          "params": [
+            {
+              "name": "clientId",
+              "description": "Unique identifier for the client."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/inquiries/{inquiryId}",
+        "definition": {
+          "entityName": "Inquiry",
+          "schema": {
+            "$ref": "#/backend/entities/Inquiry"
+          },
+          "description": "Represents a customer inquiry.",
+          "params": [
+            {
+              "name": "inquiryId",
+              "description": "Unique identifier for the inquiry."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/ai_article_summaries/{aiArticleSummaryId}",
+        "definition": {
+          "entityName": "AIArticleSummary",
+          "schema": {
+            "$ref": "#/backend/entities/AIArticleSummary"
+          },
+          "description": "Represents a summary of an AI article.",
+          "params": [
+            {
+              "name": "aiArticleSummaryId",
+              "description": "Unique identifier for the AI article summary."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/hyperlinks/{hyperlinkId}",
+        "definition": {
+          "entityName": "Hyperlink",
+          "schema": { "$ref": "#/backend/entities/Hyperlink" },
+          "description": "Stores hyperlink resources created by staff.",
+           "params": [
+            {
+              "name": "hyperlinkId",
+              "description": "Unique identifier for the hyperlink."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to support Huxleigh AI's website, including blog posts, client success stories, inquiries, and AI article summaries. The structure prioritizes authorization independence, clarity, and scalability. It uses path-based ownership for Authors and their BlogPosts, and segregates data based on access requirements. No collaborative data structures are used.\n\n*   **Blog Posts:** Blog posts are stored under `/blog_posts/{blogPostId}`. The `authorId` field links to the author. Given the Author 1:N BlogPost relationship, the system assumes that the blogs will need to be pulled in a way that can list blogs based on author. \n*   **Authors:** Authors are stored under `/authors/{authorId}`.\n*   **Tags:** Tags are stored in `/tags/{tagId}`. Blog posts link to tags via the `tagIds` array. Given the Tag N:N BlogPost relationship, denormalizing the blog id to the tag would give the query capability that may be requested. \n*   **Client Success Stories:** Stored under `/client_success_stories/{clientSuccessStoryId}`. The `clientId` field links to the Client.\n*   **Clients:** Stored under `/clients/{clientId}`.\n*   **Inquiries:** Stored under `/inquiries/{inquiryId}`. This allows for easy listing and management of inquiries.\n*   **AI Article Summaries:** Stored under `/ai_article_summaries/{aiArticleSummaryId}`. These summaries are referenced within blog posts. There are no permissions associated with this entity.\n*   **Hyperlinks:** Stores hyperlink resources in `/hyperlinks/{hyperlinkId}`. This collection is for staff-created links.\n\n**Authorization Independence:** No `get()` calls are needed for authorization rules because there are no role-based or team-based schemas used. The only schema that has a 1:N relationship is Author and BlogPost, but the BlogPosts aren't private. \n\n**QAPs Support:** Secure `list` operations are supported by segregating data based on access needs. Public data (blog posts, success stories) is stored in root-level collections. Private data (inquiries) could be secured with appropriate rules if needed, although they are presumed to be viewable by admins."
+  }
+}
