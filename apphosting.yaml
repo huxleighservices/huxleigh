@@ -4,3 +4,7 @@ runConfig:
   concurrency: 100
   cpu: 1
   memoryMiB: 512
+  
+env:
+  - variable: NODE_ENV
+    value: production
