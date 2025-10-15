@@ -23,19 +23,23 @@ export const navLinks = [
       {
         label: 'About',
         href: '/about',
+        description: 'Our mission, values, and the team behind our success.',
       },
       {
         label: 'News',
         href: '/company/news',
+        description: 'The latest announcements and updates from Huxleigh.',
       },
       {
         label: 'Careers',
         href: '/company/careers',
+        description: 'Join our team and help shape the future of AI.',
       },
       {
         label: 'My Huxleigh',
         href: '/company/staff',
-      }
+        description: 'Access exclusive resources and tools for staff members.',
+      },
     ],
   },
   {
@@ -44,6 +48,7 @@ export const navLinks = [
       {
         label: 'Trainer Software',
         href: '/business-solutions/trainer-software',
+        description: 'AI-powered sales training and onboarding solutions.',
       },
     ],
   },
@@ -53,10 +58,12 @@ export const navLinks = [
       {
         label: 'Delture',
         href: '/marketing-products/delture',
+        description: 'AI-powered social media management for Greek Life.',
       },
       {
         label: 'Stratavue',
         href: '/marketing-products/stratavue',
+        description: 'The premiere AI-assisted music marketing suite.',
       },
     ],
   },
@@ -354,3 +361,5 @@ export const jobPostings: JobPosting[] = [
     ]
   },
 ];
+
+    
