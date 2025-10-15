@@ -1,0 +1,19 @@
+# Specifies the version of the App Hosting schema.
+version: 1
+
+# Defines the build and runtime configuration for the backend.
+runConfig:
+  # Specifies the minimum and maximum number of instances for scaling.
+  minInstances: 0
+  maxInstances: 4
+
+# Defines environment variables for the build and runtime.
+env:
+  - variable: NODE_ENV
+    value: production
+
+# Specifies the build configuration.
+build:
+  # Uses the Node.js buildpack to build the application.
+  buildpacks:
+    - nodejs
