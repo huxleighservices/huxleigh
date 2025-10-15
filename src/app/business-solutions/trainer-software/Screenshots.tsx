@@ -3,7 +3,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { DMSimulator, ColdCallSimulator, KnowledgeQuiz, TrainingReport } from '@/lib/placeholders/screenshots.tsx';
+import { DMSimulator, ColdCallSimulator, KnowledgeQuiz, TrainingReport } from '@/lib/placeholders/screenshots';
 
 export function Screenshots() {
   const targetRef = useRef<HTMLDivElement | null>(null);
