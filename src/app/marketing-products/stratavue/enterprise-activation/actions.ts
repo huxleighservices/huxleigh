@@ -53,7 +53,7 @@ export async function submitEnterpriseForm(prevState: any, formData: FormData) {
 
     return {
       success: true,
-      message: 'Your activation request has been sent successfully!',
+      message: 'Your account will be activated within 24 hours and you will be contacted by email.',
     };
   } catch (error) {
     console.error('Error sending email:', error);
