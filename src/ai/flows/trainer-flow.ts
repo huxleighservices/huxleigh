@@ -6,10 +6,10 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 import { TrainingFeedbackSchema, TrainingMessageSchema } from '@/types/schemas';
 
-export const TrainerFlowInputSchema = z.object({
+const TrainerFlowInputSchema = z.object({
   phase: z.enum([
     'prospecting',
     'qualification',
@@ -24,7 +24,7 @@ export const TrainerFlowInputSchema = z.object({
 });
 export type TrainerFlowInput = z.infer<typeof TrainerFlowInputSchema>;
 
-export const TrainerFlowOutputSchema = z.object({
+const TrainerFlowOutputSchema = z.object({
   aiResponse: z.string().describe('The AI\'s response in the conversation.'),
   feedback: TrainingFeedbackSchema.optional().describe('Feedback on the user\'s performance if the conversation has concluded.'),
 });
@@ -81,4 +81,3 @@ export async function runTrainerFlow(
 ): Promise<TrainerFlowOutput> {
   return trainerFlow(input);
 }
-
