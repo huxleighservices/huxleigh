@@ -1,7 +1,8 @@
+
 import { z } from 'zod';
 
 const CallPersonaSchema = z.object({
-  role: z.enum(['Recruitment Chair', 'President', 'New Member', 'Treasurer']),
+  role: z.enum(['C-Suite Executive', 'Receptionist', 'Technology Purchaser', 'New Hire', 'Middle Management']),
   gender: z.enum(['Male', 'Female']),
   attitude: z.enum(['Friendly', 'Skeptical', 'Busy', 'Hostile']),
   qualification: z.enum(['Good Fit', 'Bad Fit', 'Unsure']),

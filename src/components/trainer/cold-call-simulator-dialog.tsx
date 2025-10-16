@@ -30,7 +30,7 @@ type Persona = CallSimulationInput['persona'];
 type ConversationMessage = { role: 'user' | 'assistant'; text: string; audioUrl?: string };
 
 const personaOptions = {
-    role: ['Recruitment Chair', 'President', 'New Member', 'Treasurer'],
+    role: ['C-Suite Executive', 'Receptionist', 'Technology Purchaser', 'New Hire', 'Middle Management'],
     attitude: ['Friendly', 'Skeptical', 'Busy', 'Hostile'],
     qualification: ['Good Fit', 'Bad Fit', 'Unsure'],
 };
@@ -43,7 +43,7 @@ export function ColdCallSimulatorDialog({ open, onOpenChange, activeSessionId }:
   // Simulation State
   const [isStarted, setIsStarted] = useState(false);
   const [persona, setPersona] = useState<Persona>({
-    role: 'President',
+    role: 'Middle Management',
     gender: 'Male',
     attitude: 'Busy',
     qualification: 'Unsure',
@@ -57,7 +57,7 @@ export function ColdCallSimulatorDialog({ open, onOpenChange, activeSessionId }:
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollAreaRef = useRef<HTMLDivElement | null>(null);
 
   const resetState = useCallback(() => {
     setIsStarted(false);
