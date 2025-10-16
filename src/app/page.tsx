@@ -77,27 +77,17 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden bg-black">
-        <svg
-          className="absolute inset-0 w-full h-full opacity-20"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1000 1000"
-          preserveAspectRatio="none"
-        >
-          <path
-            className="animated-trace"
-            stroke="hsl(var(--primary))"
-            strokeWidth="2"
-            fill="none"
-            d="M 500 0 V 1000 M 0 500 H 1000 M 100 100 L 900 900 M 100 900 L 900 100 M 300 100 L 700 900 M 100 300 L 900 700 M 100 700 L 900 300 M 300 900 L 700 100"
-          />
-        </svg>
+        <div className="absolute inset-0 bg-grid-red-500/10 bg-grid-14 [mask-image:linear-gradient(to_bottom,white_0%,white_75%,transparent_100%)]"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
           <div className="relative">
-            <div className="circuit-board-animation" />
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
               Powerful AI Software for Powerful People
             </h1>
           </div>
+          <p className="mt-6 max-w-xl text-lg text-white/80">
+            Huxleigh is a premier software conglomerate specializing in
+            AI-software services and white-label distribution.
+          </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="font-bold animated-glow">
               <Link href="/marketing-products/delture">Explore Marketing Products</Link>

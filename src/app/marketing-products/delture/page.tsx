@@ -77,6 +77,20 @@ export default function DelturePage() {
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           src="https://packaged-media.redd.it/bthbsvrugwsf1/pb/m2-res_1080p.mp4?m=DASHPlaylist.mpd&v=1&e=1759957200&s=1052bb59674b9d574eadc5cd647b345e7547ac6e"
         />
+        <svg
+          className="absolute inset-0 w-full h-full opacity-20"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="none"
+        >
+          <path
+            className="animated-trace"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            fill="none"
+            d="M 500 0 V 1000 M 0 500 H 1000 M 100 100 L 900 900 M 100 900 L 900 100 M 300 100 L 700 900 M 100 300 L 900 700 M 100 700 L 900 300 M 300 900 L 700 100"
+          />
+        </svg>
         <div className="absolute top-0 left-0 w-full h-full bg-white opacity-50 z-10"></div>
         <div className="relative z-20 container py-12 flex flex-col items-center text-center">
           <div className="relative p-12 bg-white/30 backdrop-blur-sm rounded-[calc(var(--radius)+10px)] border-4 border-white/50">
