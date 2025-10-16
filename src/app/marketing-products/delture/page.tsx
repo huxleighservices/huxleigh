@@ -69,14 +69,6 @@ export default function DelturePage() {
   return (
     <div className="flex flex-col">
       <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          src="https://packaged-media.redd.it/bthbsvrugwsf1/pb/m2-res_1080p.mp4?m=DASHPlaylist.mpd&v=1&e=1759957200&s=1052bb59674b9d574eadc5cd647b345e7547ac6e"
-        />
         <svg
           className="absolute inset-0 w-full h-full opacity-20"
           xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +293,7 @@ export default function DelturePage() {
             </div>
           </div>
         </div>
-      </section>
+      section>
     </div>
   );
 }
