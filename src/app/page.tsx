@@ -81,7 +81,7 @@ export default function Home() {
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
           <div className="relative">
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
-              Powerful AI Software for Powerful People
+              Powerful AI Software <br /> for Powerful People
             </h1>
           </div>
           <p className="mt-6 max-w-xl text-lg text-white/80">
@@ -91,6 +91,9 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="font-bold animated-glow">
               <Link href="/marketing-products/delture">Explore Marketing Products</Link>
+            </Button>
+            <Button asChild size="lg" className="font-bold animated-glow">
+              <Link href="/business-solutions/trainer-software">Explore our B2B Solutions</Link>
             </Button>
             <Button asChild size="lg" variant="secondary" className="font-bold">
               <Link href="/about">Our Vision</Link>
