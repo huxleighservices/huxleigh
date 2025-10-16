@@ -85,7 +85,7 @@ export default function DelturePage() {
         </svg>
         <div className="absolute top-0 left-0 w-full h-full bg-background z-10"></div>
         <div className="relative z-20 container py-12 flex flex-col items-center text-center">
-          <div className="relative p-12 bg-background/30 backdrop-blur-sm rounded-[calc(var(--radius)+10px)] border-4 border-foreground/10">
+          <div className="relative p-12 bg-white rounded-[calc(var(--radius)+10px)] border-4 border-gray-200">
             <div className="relative z-10 p-8 flex flex-col items-center">
               <Image
                 src="https://delture.com/delture-logo-3.png"
@@ -95,7 +95,7 @@ export default function DelturePage() {
                 className="mb-4"
                 priority
               />
-              <p className="mt-4 text-lg text-muted-foreground max-w-md">
+              <p className="mt-4 text-lg text-black max-w-md">
                 The all-in-one AI-powered social media software solution built
                 for Greek Life
               </p>
@@ -297,3 +297,5 @@ export default function DelturePage() {
     </div>
   );
 }
+
+    
