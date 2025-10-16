@@ -16,6 +16,7 @@ import {
   arrayUnion,
   arrayRemove,
   writeBatch,
+  orderBy,
 } from 'firebase/firestore';
 import { initializeFirebase } from '@/firebase';
 import type { UserProfile, TrainingSession, TrainingResult } from '@/types/auth';
