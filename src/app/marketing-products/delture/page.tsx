@@ -113,7 +113,7 @@ export default function DelturePage() {
             <Button
               asChild
               size="lg"
-              className="bg-red-600 text-white hover:bg-red-700 font-bold"
+              className="bg-turquoise-500 text-white hover:bg-turquoise-600 font-bold"
             >
               <Link href="https://delture.com" target="_blank">
                 Launch Delture Social Suite
@@ -160,7 +160,7 @@ export default function DelturePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-red-600">
+      <section className="py-16 md:py-24 bg-turquoise-500">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
             <h2 className="font-headline text-4xl font-bold text-white md:text-5xl">
@@ -179,7 +179,7 @@ export default function DelturePage() {
                 onCheckedChange={(checked) => {
                   setBillingCycle(checked ? 'annually' : 'monthly');
                 }}
-                className="data-[state=checked]:bg-white data-[state=unchecked]:bg-white/50 [&>span]:bg-red-600"
+                className="data-[state=checked]:bg-white data-[state=unchecked]:bg-white/50 [&>span]:bg-turquoise-500"
               />
               <Label
                 htmlFor="billing-cycle-switch"
@@ -202,7 +202,7 @@ export default function DelturePage() {
                 <CardHeader className="text-center p-8">
                   {tier.isPopular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <div className="bg-white text-red-600 font-bold text-sm uppercase px-4 py-1 rounded-full">
+                      <div className="bg-white text-turquoise-600 font-bold text-sm uppercase px-4 py-1 rounded-full">
                         Premium
                       </div>
                     </div>
@@ -234,7 +234,7 @@ export default function DelturePage() {
                     variant={tier.isPopular ? 'default' : 'outline'}
                     className={`${
                       tier.isPopular
-                        ? 'bg-white text-red-600 hover:bg-gray-200'
+                        ? 'bg-white text-turquoise-600 hover:bg-gray-200'
                         : 'border-white text-white hover:bg-white/20'
                     } w-full font-bold py-6 text-lg`}
                   >
@@ -252,7 +252,7 @@ export default function DelturePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-red-700">
+      <section className="py-16 md:py-24 bg-turquoise-600">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
             <h2 className="font-headline text-4xl font-bold text-white md:text-5xl">
