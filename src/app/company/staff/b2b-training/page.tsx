@@ -2,7 +2,7 @@
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
-import { Lock, BrainCircuit, Search, UserCheck, Microscope, FileText, MessageCircleQuestion, Goal, PlusCircle, Trash2, Mail, ChevronsRight, Loader2 } from 'lucide-react';
+import { Lock, BrainCircuit, Search, UserCheck, Microscope, FileText, MessageCircleQuestion, Goal, PlusCircle, Trash2, Mail, ChevronsRight, Loader2, PhoneCall } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
@@ -12,6 +12,7 @@ import { DiscoverySimulatorDialog } from '@/components/trainer/discovery-simulat
 import { ProposalSimulatorDialog } from '@/components/trainer/proposal-simulator-dialog';
 import { ObjectionHandlingDialog } from '@/components/trainer/objection-handling-dialog';
 import { ClosingSimulatorDialog } from '@/components/trainer/closing-simulator-dialog';
+import { ColdCallSimulatorDialog } from '@/components/trainer/cold-call-simulator-dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import {
   Dialog,
@@ -79,6 +80,13 @@ const trainingPhases = [
     description: "Master the art of closing the deal.",
     icon: Goal,
     status: "Active"
+  },
+  {
+    id: "cold-call",
+    title: "Cold Call Simulator",
+    description: "Practice making unsolicited calls to prospective clients.",
+    icon: PhoneCall,
+    status: "Coming Soon"
   }
 ];
 
@@ -369,6 +377,11 @@ export default function TrainerPage() {
       />
       <ClosingSimulatorDialog
         open={openDialog === 'closing'}
+        onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
+        activeSessionId={selectedSessionId}
+      />
+       <ColdCallSimulatorDialog
+        open={openDialog === 'cold-call'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
         activeSessionId={selectedSessionId}
       />

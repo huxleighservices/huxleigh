@@ -17,6 +17,7 @@ const TrainerFlowInputSchema = z.object({
     'proposal',
     'objection-handling',
     'closing',
+    'cold-call',
   ]),
   difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
   conversationHistory: z.array(TrainingMessageSchema).optional(),
@@ -37,6 +38,7 @@ const prompts = {
     proposal: `You are an AI sales trainer. The user is presenting a proposal. You have already gone through discovery and are now reviewing their offer. Scrutinize the details of the proposal, ask about pricing, ROI, and implementation details.`,
     'objection-handling': `You are an AI sales trainer. The user is facing objections. You are a prospect with common objections like "It's too expensive," "We don't have time for training," or "We're happy with our current solution." The user must overcome these.`,
     closing: `You are an AI sales trainer. The user is trying to close the deal. You are a prospect who is on the fence. You are looking for a final nudge or a compelling reason to sign the contract. The user's goal is to get you to commit.`,
+    'cold-call': `You are an AI sales trainer. The user is practicing a cold call. You are a busy executive who was not expecting their call. Be slightly annoyed but willing to listen for a few moments if they are compelling. The user is selling AI training software.`
 };
 
 const trainerFlow = ai.defineFlow(
