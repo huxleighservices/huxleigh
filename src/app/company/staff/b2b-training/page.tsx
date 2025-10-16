@@ -86,7 +86,7 @@ const trainingPhases = [
     title: "Cold Call Simulator",
     description: "Practice making unsolicited calls to prospective clients.",
     icon: PhoneCall,
-    status: "Coming Soon"
+    status: "Active"
   }
 ];
 
