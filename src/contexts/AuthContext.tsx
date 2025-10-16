@@ -41,6 +41,18 @@ const { auth } = initializeFirebase();
 // The user with this email will be designated as an admin.
 const ADMIN_EMAIL = 'z1mmerman@yahoo.com';
 
+// Helper function to create an AuthError-like object
+const createAuthError = (code: string, message: string): AuthError => {
+  const error = new Error(message) as AuthError;
+  Object.defineProperty(error, 'code', {
+    value: code,
+    writable: false,
+    enumerable: true,
+    configurable: true
+  });
+  return error;
+};
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -142,9 +154,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const deleteUserAccount = async (): Promise<void | AuthError> => {
     const userToDelete = auth.currentUser;
     if (!userToDelete) {
-        const err = new Error("User not authenticated for deletion.") as AuthError;
-        err.code = "auth/no-current-user";
-        return err;
+        return createAuthError("auth/no-current-user", "User not authenticated for deletion.");
     }
     setLoading(true);
     try {
@@ -169,9 +179,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   
   const updateUserProfile = async (authData: AuthProfileUpdateData, profileData: Partial<Omit<UserProfile, 'uid' | 'createdAt'>>): Promise<void | AuthError> => {
     if (!currentUser) {
-      const err = new Error("User not authenticated for profile update.") as AuthError;
-      err.code = "auth/no-current-user";
-      return err;
+      return createAuthError("auth/no-current-user", "User not authenticated for profile update.");
     }
     setLoading(true);
     try {

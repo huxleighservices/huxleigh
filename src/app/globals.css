@@ -10,7 +10,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 180 82% 35%;
+    --primary: 0 84.2% 60.2%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 210 40% 9%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 180 82% 35%;
+    --ring: 0 84.2% 60.2%;
   }
   .dark {
     --background: 210 8% 10%;
@@ -31,7 +31,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 210 8% 10%;
     --popover-foreground: 210 40% 98%;
-    --primary: 180 82% 35%;
+    --primary: 0 72% 51%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 8% 18%;
     --secondary-foreground: 210 40% 98%;
@@ -43,7 +43,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 210 8% 20%;
     --input: 210 8% 20%;
-    --ring: 180 82% 35%;
+    --ring: 0 72% 51%;
   }
 }
 
@@ -119,5 +119,19 @@
     0%, 100% { opacity: 0; }
     20%, 80% { opacity: 1; }
     40%, 60% { opacity: 0.5; }
+  }
+
+  @keyframes trace-red-line {
+    0% {
+      stroke-dashoffset: 2500;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animated-trace {
+    stroke-dasharray: 2500;
+    animation: trace-red-line 5s linear infinite;
   }
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useActionState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -14,48 +14,44 @@ import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { submitEnterpriseForm } from './actions';
 import { useToast } from '@/hooks/use-toast';
-import { useFormStatus } from 'react-dom';
-
-const initialState = {
-  success: false,
-  message: '',
-};
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button
-      type="submit"
-      disabled={pending}
-      className="w-full bg-violet-600 hover:bg-violet-700 font-bold"
-    >
-      {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-      Submit
-    </Button>
-  );
-}
 
 export function EnterpriseActivationForm() {
   const [selectedOrganization, setSelectedOrganization] = useState('');
-  const [state, formAction] = useActionState(submitEnterpriseForm, initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  useEffect(() => {
-    if (state?.message) {
-      if (state.success) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const result = await submitEnterpriseForm(null, formData);
+
+      if (result.success) {
         toast({
           title: 'Success!',
-          description: state.message,
+          description: result.message,
         });
+        e.currentTarget.reset();
+        setSelectedOrganization('');
       } else {
         toast({
           title: 'Error',
-          description: state.message,
+          description: result.message,
           variant: 'destructive',
         });
       }
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-  }, [state, toast]);
+  }
 
   return (
     <div className="w-full max-w-md">
@@ -77,8 +73,8 @@ export function EnterpriseActivationForm() {
       </div>
 
       {selectedOrganization && (
-        <form action={formAction} className="space-y-6 text-left">
-           <input type="hidden" name="enterpriseOrganization" value={selectedOrganization} />
+        <form onSubmit={handleSubmit} className="space-y-6 text-left">
+          <input type="hidden" name="enterpriseOrganization" value={selectedOrganization} />
           <div className="space-y-2">
             <Label htmlFor="legalName">Legal Name</Label>
             <Input id="legalName" name="legalName" required />
@@ -91,7 +87,14 @@ export function EnterpriseActivationForm() {
             <Label htmlFor="email">E-mail Address</Label>
             <Input id="email" name="email" type="email" required />
           </div>
-          <SubmitButton />
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-violet-600 hover:bg-violet-700 font-bold"
+          >
+            {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+            Submit
+          </Button>
         </form>
       )}
     </div>

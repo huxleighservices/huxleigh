@@ -76,16 +76,21 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[80vh] min-h-[600px] w-full">
-          <Image
-            src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="People working together in a modern office"
-            fill
-            className="object-cover"
-            data-ai-hint="collaboration office"
-            priority
+      <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden bg-black">
+        <svg
+          className="absolute inset-0 w-full h-full opacity-20"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="none"
+        >
+          <path
+            className="animated-trace"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            fill="none"
+            d="M 500 0 V 1000 M 0 500 H 1000 M 100 100 L 900 900 M 100 900 L 900 100 M 300 100 L 700 900 M 100 300 L 900 700 M 100 700 L 900 300 M 300 900 L 700 100"
           />
-        <div className="absolute inset-0 bg-black/60" />
+        </svg>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
           <div className="relative">
             <div className="circuit-board-animation" />

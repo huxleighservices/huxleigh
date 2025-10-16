@@ -24,19 +24,24 @@ const signInSchema = z.object({
   password: z.string().min(1, 'Password is required.'),
 });
 
+type SignInFormData = z.infer<typeof signInSchema>;
+
 export function SignInForm() {
   const { signInWithEmail } = useAuth();
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof signInSchema>>({
+  const form = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),
     defaultValues: { email: '', password: '' },
   });
 
-  const handleSignIn = (values: z.infer<typeof signInSchema>) => {
+  const handleSignIn = (values: SignInFormData) => {
     startTransition(async () => {
-        const result = await signInWithEmail(values);
+        const result = await signInWithEmail({
+          email: values.email,
+          password: values.password
+        });
         if ('code' in result) { // It's an AuthError
             let errorMessage = 'An unknown error occurred.';
             switch ((result as AuthError).code) {
