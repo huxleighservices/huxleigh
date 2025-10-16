@@ -185,16 +185,16 @@ export default function DelturePage() {
             {pricingTiers.map((tier) => (
               <Card
                 key={tier.name}
-                className={`flex flex-col ${
+                className={`flex flex-col rounded-xl bg-white text-black ${
                   tier.isPopular
-                    ? 'border-destructive-foreground border-4 shadow-2xl scale-105'
-                    : 'bg-destructive-foreground/10 border-destructive-foreground/30'
-                } bg-destructive-foreground/10 text-destructive-foreground rounded-xl`}
+                    ? 'border-red-500 border-4 shadow-2xl scale-105'
+                    : 'border-gray-300'
+                }`}
               >
                 <CardHeader className="text-center p-8">
                   {tier.isPopular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <div className="bg-destructive-foreground text-destructive font-bold text-sm uppercase px-4 py-1 rounded-full">
+                      <div className="bg-red-500 text-white font-bold text-sm uppercase px-4 py-1 rounded-full">
                         Premium
                       </div>
                     </div>
@@ -211,12 +211,12 @@ export default function DelturePage() {
                         ? tier.annualPrice
                         : tier.monthlyPrice}
                     </span>
-                    <span className="text-sm text-destructive-foreground/70">/mo</span>
+                    <span className="text-sm text-gray-500">/mo</span>
                   </div>
                   <ul className="space-y-4 mb-8 flex-1">
                     {tier.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-destructive-foreground" />
+                        <Check className="h-5 w-5 text-red-500" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -226,8 +226,8 @@ export default function DelturePage() {
                     variant={tier.isPopular ? 'default' : 'outline'}
                     className={`${
                       tier.isPopular
-                        ? 'bg-destructive-foreground text-destructive hover:bg-gray-200'
-                        : 'border-destructive-foreground text-destructive-foreground hover:bg-destructive-foreground/20'
+                        ? 'bg-red-500 text-white hover:bg-red-600'
+                        : 'border-red-500 text-red-500 hover:bg-red-500/10'
                     } w-full font-bold py-6 text-lg`}
                   >
                     <Link
