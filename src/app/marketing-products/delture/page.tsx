@@ -77,15 +77,15 @@ export default function DelturePage() {
         >
           <path
             className="animated-trace"
-            stroke="hsl(var(--primary))"
+            stroke="hsl(var(--destructive))"
             strokeWidth="2"
             fill="none"
             d="M 500 0 V 1000 M 0 500 H 1000 M 100 100 L 900 900 M 100 900 L 900 100 M 300 100 L 700 900 M 100 300 L 900 700 M 100 700 L 900 300 M 300 900 L 700 100"
           />
         </svg>
-        <div className="absolute top-0 left-0 w-full h-full bg-white opacity-50 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-background z-10"></div>
         <div className="relative z-20 container py-12 flex flex-col items-center text-center">
-          <div className="relative p-12 bg-white/30 backdrop-blur-sm rounded-[calc(var(--radius)+10px)] border-4 border-white/50">
+          <div className="relative p-12 bg-background/30 backdrop-blur-sm rounded-[calc(var(--radius)+10px)] border-4 border-foreground/10">
             <div className="relative z-10 p-8 flex flex-col items-center">
               <Image
                 src="https://delture.com/delture-logo-3.png"
@@ -95,7 +95,7 @@ export default function DelturePage() {
                 className="mb-4"
                 priority
               />
-              <p className="mt-4 text-lg text-gray-600 max-w-md">
+              <p className="mt-4 text-lg text-muted-foreground max-w-md">
                 The all-in-one AI-powered social media software solution built
                 for Greek Life
               </p>
@@ -105,7 +105,7 @@ export default function DelturePage() {
             <Button
               asChild
               size="lg"
-              className="bg-turquoise-500 text-white hover:bg-turquoise-600 font-bold"
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 font-bold"
             >
               <Link href="https://delture.com" target="_blank">
                 Launch Delture Social Suite
@@ -115,13 +115,13 @@ export default function DelturePage() {
         </div>
       </div>
 
-      <section className="bg-gray-900 py-16 md:py-24">
+      <section className="bg-card py-16 md:py-24">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
-            <h2 className="font-headline text-4xl font-bold text-white md:text-5xl">
+            <h2 className="font-headline text-4xl font-bold md:text-5xl">
               Beautifully Crafted, Intuitively Designed
             </h2>
-            <p className="mt-4 text-lg text-white/80">
+            <p className="mt-4 text-lg text-muted-foreground">
               Manage your social presence from anywhere, on any device.
             </p>
           </div>
@@ -152,13 +152,13 @@ export default function DelturePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-turquoise-500">
+      <section className="py-16 md:py-24 bg-destructive">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
-            <h2 className="font-headline text-4xl font-bold text-white md:text-5xl">
+            <h2 className="font-headline text-4xl font-bold text-destructive-foreground md:text-5xl">
               Choose Your Plan
             </h2>
-            <div className="flex items-center justify-center gap-4 mt-8 text-white">
+            <div className="flex items-center justify-center gap-4 mt-8 text-destructive-foreground">
               <Label
                 htmlFor="billing-cycle-switch"
                 className={billingCycle === 'monthly' ? 'font-bold' : ''}
@@ -171,7 +171,7 @@ export default function DelturePage() {
                 onCheckedChange={(checked) => {
                   setBillingCycle(checked ? 'annually' : 'monthly');
                 }}
-                className="data-[state=checked]:bg-white data-[state=unchecked]:bg-white/50 [&>span]:bg-turquoise-500"
+                className="data-[state=checked]:bg-destructive-foreground data-[state=unchecked]:bg-destructive-foreground/50 [&>span]:bg-destructive"
               />
               <Label
                 htmlFor="billing-cycle-switch"
@@ -187,14 +187,14 @@ export default function DelturePage() {
                 key={tier.name}
                 className={`flex flex-col ${
                   tier.isPopular
-                    ? 'border-white border-4 shadow-2xl scale-105'
-                    : 'bg-white/10 border-white/30'
-                } bg-white/10 text-white rounded-xl`}
+                    ? 'border-destructive-foreground border-4 shadow-2xl scale-105'
+                    : 'bg-destructive-foreground/10 border-destructive-foreground/30'
+                } bg-destructive-foreground/10 text-destructive-foreground rounded-xl`}
               >
                 <CardHeader className="text-center p-8">
                   {tier.isPopular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <div className="bg-white text-turquoise-600 font-bold text-sm uppercase px-4 py-1 rounded-full">
+                      <div className="bg-destructive-foreground text-destructive font-bold text-sm uppercase px-4 py-1 rounded-full">
                         Premium
                       </div>
                     </div>
@@ -211,12 +211,12 @@ export default function DelturePage() {
                         ? tier.annualPrice
                         : tier.monthlyPrice}
                     </span>
-                    <span className="text-sm text-white/70">/mo</span>
+                    <span className="text-sm text-destructive-foreground/70">/mo</span>
                   </div>
                   <ul className="space-y-4 mb-8 flex-1">
                     {tier.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-white" />
+                        <Check className="h-5 w-5 text-destructive-foreground" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -226,8 +226,8 @@ export default function DelturePage() {
                     variant={tier.isPopular ? 'default' : 'outline'}
                     className={`${
                       tier.isPopular
-                        ? 'bg-white text-turquoise-600 hover:bg-gray-200'
-                        : 'border-white text-white hover:bg-white/20'
+                        ? 'bg-destructive-foreground text-destructive hover:bg-gray-200'
+                        : 'border-destructive-foreground text-destructive-foreground hover:bg-destructive-foreground/20'
                     } w-full font-bold py-6 text-lg`}
                   >
                     <Link
@@ -244,16 +244,16 @@ export default function DelturePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-turquoise-600">
+      <section className="py-16 md:py-24 bg-card">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
-            <h2 className="font-headline text-4xl font-bold text-white md:text-5xl">
+            <h2 className="font-headline text-4xl font-bold md:text-5xl">
               What Our Chapters Are Saying
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, i) => (
-              <Card key={i} className="bg-white/10 text-white border-0">
+              <Card key={i} className="bg-background border-border">
                 <CardContent className="p-8 flex flex-col h-full">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -266,14 +266,14 @@ export default function DelturePage() {
                   <blockquote className="text-lg italic flex-1">
                     "{testimonial.quote}"
                   </blockquote>
-                  <footer className="mt-4 text-right text-white/80">
+                  <footer className="mt-4 text-right text-muted-foreground">
                     - {testimonial.author}
                   </footer>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <div className="mt-16 text-center text-white">
+          <div className="mt-16 text-center">
             <h3 className="text-2xl font-bold">
               Have a question for us? Reach us here:
             </h3>
@@ -293,7 +293,7 @@ export default function DelturePage() {
             </div>
           </div>
         </div>
-      section>
+      </section>
     </div>
   );
 }
