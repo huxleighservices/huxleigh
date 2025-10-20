@@ -374,5 +374,4 @@ export default function TrainerPage() {
       />
     </div>
   );
-
-    
+}
