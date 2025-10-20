@@ -23,12 +23,6 @@ const SummarizeTrendingTechArticleOutputSchema = z.object({
 });
 export type SummarizeTrendingTechArticleOutput = z.infer<typeof SummarizeTrendingTechArticleOutputSchema>;
 
-export async function summarizeTrendingTechArticle(
-  input: SummarizeTrendingTechArticleInput
-): Promise<SummarizeTrendingTechArticleOutput> {
-  return summarizeTrendingTechArticleFlow(input);
-}
-
 const summarizeTrendingTechArticlePrompt = ai.definePrompt({
   name: 'summarizeTrendingTechArticlePrompt',
   input: {schema: SummarizeTrendingTechArticleInputSchema},
@@ -50,6 +44,23 @@ const summarizeTrendingTechArticleFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await summarizeTrendingTechArticlePrompt(input);
-    return output!;
+    
+    if (!output?.summary || !output?.commentary) {
+      throw new Error('Failed to generate article summary and commentary');
+    }
+    
+    return output;
   }
 );
+
+export async function summarizeTrendingTechArticle(
+  input: SummarizeTrendingTechArticleInput
+): Promise<SummarizeTrendingTechArticleOutput> {
+  const result = await summarizeTrendingTechArticleFlow(input);
+  
+  if (!result.summary || !result.commentary) {
+    throw new Error('Failed to generate article summary and commentary');
+  }
+  
+  return result;
+}

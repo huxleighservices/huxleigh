@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useTransition, useRef, useEffect, useCallback } from "react";
@@ -151,12 +150,35 @@ export function ColdCallSimulatorDialog({ open, onOpenChange, activeSessionId }:
           if (result.isComplete && result.feedback) {
               setIsComplete(true);
               setFeedback(result.feedback);
+              
               if (currentUser && activeSessionId) {
+                  // Validate that feedback has all required properties
+                  if (!result.feedback.overallAssessment || 
+                      !result.feedback.positivePoints || 
+                      !result.feedback.areasForImprovement) {
+                      throw new Error('Incomplete feedback received');
+                  }
+
+                  // Map attitude to difficulty for consistency with TrainingResult type
+                  const difficultyMap: Record<Persona['attitude'], 'Beginner' | 'Intermediate' | 'Advanced'> = {
+                      'Friendly': 'Beginner',
+                      'Skeptical': 'Intermediate',
+                      'Busy': 'Intermediate',
+                      'Hostile': 'Advanced'
+                  };
+
                   const resultToSave = {
-                      phase: 'Cold Call',
-                      difficulty: persona.attitude, // or derive from multiple factors
-                      conversation: updatedConversation.map(m => ({role: m.role, content: m.text})),
-                      feedback: result.feedback,
+                      phase: 'cold-call' as const,
+                      difficulty: difficultyMap[persona.attitude],
+                      conversation: updatedConversation.map(m => ({
+                          role: m.role === 'assistant' ? 'ai' as const : 'user' as const, 
+                          content: m.text
+                      })),
+                      feedback: {
+                          overallAssessment: result.feedback.overallAssessment,
+                          positivePoints: result.feedback.positivePoints,
+                          areasForImprovement: result.feedback.areasForImprovement
+                      }
                   };
                   await addResultToSession(currentUser.uid, activeSessionId, resultToSave);
                   toast({

@@ -104,7 +104,12 @@ const callSimulationFlow = ai.defineFlow(
         isFinalTurn,
     });
     
-    if (output?.response) {
+    if (!output) {
+      throw new Error('Failed to generate call simulation output');
+    }
+    
+    // If we have a response, generate speech for it
+    if (output.response) {
       const speechResult = await generateSpeechFlow({
         text: output.response,
         gender: input.persona.gender,
@@ -112,10 +117,17 @@ const callSimulationFlow = ai.defineFlow(
       return { ...output, audioUrl: speechResult.audioUrl };
     }
 
-    return output!;
+    // For feedback mode (no response), just return the output
+    return output;
   }
 );
 
 export async function runCallSimulation(input: CallSimulationInput): Promise<SimulationOutput> {
-  return callSimulationFlow(input);
+  const result = await callSimulationFlow(input);
+  
+  if (result.isComplete === undefined) {
+    throw new Error('Failed to generate valid call simulation result');
+  }
+  
+  return result;
 }

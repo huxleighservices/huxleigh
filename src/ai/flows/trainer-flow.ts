@@ -9,6 +9,8 @@ import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 import { TrainingFeedbackSchema, TrainingMessageSchema } from '@/types/schemas';
 
+const USER_TURN_LIMIT = 5;
+
 const TrainerFlowInputSchema = z.object({
   phase: z.enum([
     'prospecting',
@@ -20,7 +22,7 @@ const TrainerFlowInputSchema = z.object({
     'cold-call',
   ]),
   difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
-  conversationHistory: z.array(TrainingMessageSchema).optional(),
+  conversationHistory: z.array(TrainingMessageSchema),
   userMessage: z.string(),
 });
 export type TrainerFlowInput = z.infer<typeof TrainerFlowInputSchema>;
@@ -49,31 +51,57 @@ const trainerFlow = ai.defineFlow(
   },
   async (input) => {
     const { phase, difficulty, conversationHistory, userMessage } = input;
+    
+    // Check if this is the final turn
+    const isFinalTurn = conversationHistory.filter(m => m.role === 'user').length >= USER_TURN_LIMIT;
+
     const systemPrompt = `
       ${prompts[phase]}
       Your difficulty is ${difficulty}. For Beginner, be more forgiving. For Advanced, be very challenging.
       The conversation history is provided below.
-      Your task is to generate the next AI response in the conversation.
-      If the user's message indicates they are concluding the sale or giving up, you should also provide constructive feedback on their performance based on the entire conversation.
+      
+      {{#if isFinalTurn}}
+      This is the final turn of the simulation. Your next response MUST be the final one.
+      - DO NOT generate a conversational 'aiResponse'.
+      - Instead, act as an expert sales coach and provide detailed, constructive feedback on the user's performance throughout the entire conversation.
+      - Populate the 'feedback' object with 'overallAssessment', 'positivePoints', and 'areasForImprovement'.
+      - Your feedback should be insightful and help the user improve.
+      {{else}}
+      This is a conversational turn. Your task is to generate the next AI response in the conversation.
+      - Your response should be a single, natural-sounding reply.
+      - DO NOT provide feedback yet.
+      {{/if}}
     `;
-
-    const isLastMessage = userMessage.toLowerCase().includes("thanks for your time") || userMessage.toLowerCase().includes("end simulation");
     
     const generateInput = {
         history: conversationHistory?.map(m => ({role: m.role, content: [{text: m.content}]})),
         prompt: userMessage,
         system: systemPrompt,
+        custom: { isFinalTurn }, // Pass isFinalTurn to the prompt context
         output: {
             schema: z.object({
-                aiResponse: z.string(),
-                feedback: isLastMessage ? TrainingFeedbackSchema : z.undefined(),
+                aiResponse: isFinalTurn ? z.string().optional() : z.string(),
+                feedback: isFinalTurn ? TrainingFeedbackSchema : TrainingFeedbackSchema.optional(),
             }),
         }
     };
     
     const { output } = await ai.generate(generateInput);
     
-    return output || { aiResponse: "I'm sorry, I encountered an error. Please try again." };
+    if (!output) {
+        throw new Error('Failed to generate AI response');
+    }
+    
+    // In the final turn, aiResponse might be empty, but feedback should exist.
+    if (isFinalTurn && !output.feedback) {
+        throw new Error('Failed to generate feedback on the final turn.');
+    }
+
+    if (!isFinalTurn && !output.aiResponse) {
+        throw new Error('Failed to generate AI response for a conversational turn.');
+    }
+    
+    return output;
   }
 );
 
@@ -81,5 +109,11 @@ const trainerFlow = ai.defineFlow(
 export async function runTrainerFlow(
   input: TrainerFlowInput
 ): Promise<TrainerFlowOutput> {
-  return trainerFlow(input);
+  const result = await trainerFlow(input);
+  
+  if (!result.aiResponse && !result.feedback) {
+    throw new Error('Failed to generate a valid trainer response or feedback.');
+  }
+  
+  return result;
 }

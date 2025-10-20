@@ -34,5 +34,11 @@ const transcribeAudioFlow = ai.defineFlow(
 );
 
 export async function transcribeAudio(audioDataUri: string): Promise<{text: string}> {
-  return transcribeAudioFlow(audioDataUri);
+  const result = await transcribeAudioFlow(audioDataUri);
+  
+  if (!result.text) {
+    throw new Error('Failed to transcribe audio');
+  }
+  
+  return { text: result.text };
 }

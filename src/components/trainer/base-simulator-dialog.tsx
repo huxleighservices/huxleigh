@@ -1,4 +1,3 @@
-
 'use client';
 import { useState, useTransition, useRef, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
@@ -16,7 +15,7 @@ import { addResultToSession } from "@/lib/firebase/firestore";
 interface BaseSimulatorDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  phase: 'prospecting' | 'qualification' | 'discovery' | 'proposal' | 'objection-handling' | 'closing';
+  phase: 'prospecting' | 'qualification' | 'discovery' | 'proposal' | 'objection-handling' | 'closing' | 'cold-call';
   title: string;
   description: string;
   activeSessionId: string | null;
@@ -53,16 +52,36 @@ export function BaseSimulatorDialog({ open, onOpenChange, phase, title, descript
           conversationHistory: updatedConversation,
           userMessage: userInput
         });
+        
+        // Handle conversational turn
+        if (result.aiResponse) {
+          const aiMessage: TrainingMessage = { role: 'ai', content: result.aiResponse };
+          setConversation(prev => [...prev, aiMessage]);
+        }
 
-        const aiMessage: TrainingMessage = { role: 'ai', content: result.aiResponse };
-        setConversation(prev => [...prev, aiMessage]);
-
+        // Handle final turn with feedback
         if (result.feedback && currentUser && activeSessionId) {
+            // Validate that feedback has all required properties
+            if (!result.feedback.overallAssessment || 
+                !result.feedback.positivePoints || 
+                !result.feedback.areasForImprovement) {
+                throw new Error('Incomplete feedback received');
+            }
+            
+            // Add AI's final feedback message to conversation if it exists
+            const finalConversation = result.aiResponse 
+              ? [...updatedConversation, { role: 'ai' as const, content: result.aiResponse }]
+              : updatedConversation;
+
             const trainingResult: Omit<TrainingResult, 'id' | 'completedAt'> = {
                 phase,
                 difficulty,
-                conversation: [...updatedConversation, aiMessage],
-                feedback: result.feedback
+                conversation: finalConversation,
+                feedback: {
+                    overallAssessment: result.feedback.overallAssessment,
+                    positivePoints: result.feedback.positivePoints,
+                    areasForImprovement: result.feedback.areasForImprovement
+                }
             };
             await addResultToSession(currentUser.uid, activeSessionId, trainingResult);
             toast({
@@ -78,6 +97,9 @@ export function BaseSimulatorDialog({ open, onOpenChange, phase, title, descript
           description: error.message || "The AI is not available right now. Please try again later.",
           variant: "destructive",
         });
+        // Restore user input if AI fails
+        setUserInput(userInput);
+        setConversation(conversation);
       }
     });
   };

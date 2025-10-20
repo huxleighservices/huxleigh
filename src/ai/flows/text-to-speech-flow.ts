@@ -92,5 +92,11 @@ export const generateSpeechFlow = ai.defineFlow(
 
 // Keep an exported wrapper for type safety if needed elsewhere
 export async function generateSpeech(input: {text: string, gender: 'Male' | 'Female'}): Promise<{ audioUrl: string }> {
-    return generateSpeechFlow(input);
+    const result = await generateSpeechFlow(input);
+    
+    if (!result.audioUrl) {
+        throw new Error('Failed to generate audio URL');
+    }
+    
+    return { audioUrl: result.audioUrl };
 }
