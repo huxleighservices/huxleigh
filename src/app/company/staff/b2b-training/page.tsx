@@ -169,19 +169,6 @@ export default function TrainerPage() {
 
   const selectedSession = sessions.find(s => s.id === selectedSessionId);
 
-  // This check is a placeholder. You would implement role-based access control.
-  const canAccessTrainer = userProfile?.role === 'admin';
-
-  if (!canAccessTrainer) {
-    return (
-        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] gap-4 text-center">
-            <Lock className="h-16 w-16 text-muted-foreground"/>
-            <h1 className="text-3xl font-headline">Permission Denied</h1>
-            <p className="text-muted-foreground max-w-md">You do not have permission to access the Tr/AI/ner feature. Please contact an administrator if you believe this is an error.</p>
-        </div>
-    )
-  }
-
   const handleCardClick = (phaseId: string) => {
     if (sessions.length === 0) {
         toast({ title: "No Session Selected", description: "Please create a session before starting a training module.", variant: "destructive"});
@@ -387,4 +374,5 @@ export default function TrainerPage() {
       />
     </div>
   );
-}
+
+    
