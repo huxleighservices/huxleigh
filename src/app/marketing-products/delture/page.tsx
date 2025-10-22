@@ -121,7 +121,7 @@ export default function DelturePage() {
             <h2 className="font-headline text-4xl font-bold md:text-5xl">
               Beautifully Crafted, Intuitively Designed
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-lg text-destructive">
               Manage your social presence from anywhere, on any device.
             </p>
           </div>
@@ -266,7 +266,7 @@ export default function DelturePage() {
                   <blockquote className="text-lg italic flex-1">
                     "{testimonial.quote}"
                   </blockquote>
-                  <footer className="mt-4 text-right text-muted-foreground">
+                  <footer className="mt-4 text-right text-destructive">
                     - {testimonial.author}
                   </footer>
                 </CardContent>
