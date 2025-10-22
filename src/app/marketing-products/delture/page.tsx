@@ -36,10 +36,10 @@ const pricingTiers = [
       '1-on-1 Content Agent',
       '30 Designs/mo. Quota',
       'Bi-weekly Planning Sessions',
-      'Calendar Scheduler',
+      'Calendar Scheduler*',
       'Caption Bot',
       'Camp/AI/gn Tool',
-      'Insight Assistant',
+      'Insight Assistant*',
       'Storage Connector',
     ],
     isPopular: true,
@@ -186,7 +186,7 @@ export default function DelturePage() {
               <Card
                 key={tier.name}
                 className={`flex flex-col rounded-xl bg-white text-black border border-black ${
-                  tier.isPopular ? 'shadow-2xl scale-105' : ''
+                  tier.isPopular ? 'scale-105 shadow-2xl' : ''
                 }`}
               >
                 <CardHeader className="text-center p-8">
@@ -226,6 +226,9 @@ export default function DelturePage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+          <div className="text-center mt-8 text-white text-sm">
+            *Features are in testing and are not fully functional
           </div>
         </div>
       </section>
