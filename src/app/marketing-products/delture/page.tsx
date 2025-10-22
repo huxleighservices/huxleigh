@@ -77,7 +77,7 @@ export default function DelturePage() {
         >
           <path
             className="animated-trace"
-            stroke="hsl(var(--destructive))"
+            stroke="#ff0033"
             strokeWidth="2"
             fill="none"
             d="M 500 0 V 1000 M 0 500 H 1000 M 100 100 L 900 900 M 100 900 L 900 100 M 300 100 L 700 900 M 100 300 L 900 700 M 100 700 L 900 300 M 300 900 L 700 100"
@@ -105,7 +105,7 @@ export default function DelturePage() {
             <Button
               asChild
               size="lg"
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 font-bold"
+              className="bg-[#ff0033] text-white hover:bg-red-500/90 font-bold"
             >
               <Link href="https://delture.com" target="_blank">
                 Launch Delture Social Suite
@@ -121,7 +121,7 @@ export default function DelturePage() {
             <h2 className="font-headline text-4xl font-bold md:text-5xl">
               Beautifully Crafted, Intuitively Designed
             </h2>
-            <p className="mt-4 text-lg text-destructive">
+            <p className="mt-4 text-lg" style={{ color: '#ff0033' }}>
               Manage your social presence from anywhere, on any device.
             </p>
           </div>
@@ -152,13 +152,13 @@ export default function DelturePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-destructive">
+      <section className="py-16 md:py-24 bg-[#ff0033]">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
-            <h2 className="font-headline text-4xl font-bold text-destructive-foreground md:text-5xl">
+            <h2 className="font-headline text-4xl font-bold text-white md:text-5xl">
               Choose Your Plan
             </h2>
-            <div className="flex items-center justify-center gap-4 mt-8 text-destructive-foreground">
+            <div className="flex items-center justify-center gap-4 mt-8 text-white">
               <Label
                 htmlFor="billing-cycle-switch"
                 className={billingCycle === 'monthly' ? 'font-bold' : ''}
@@ -266,7 +266,7 @@ export default function DelturePage() {
                   <blockquote className="text-lg italic flex-1">
                     "{testimonial.quote}"
                   </blockquote>
-                  <footer className="mt-4 text-right text-destructive">
+                  <footer className="mt-4 text-right" style={{ color: '#ff0033' }}>
                     - {testimonial.author}
                   </footer>
                 </CardContent>
@@ -280,13 +280,13 @@ export default function DelturePage() {
             <div className="mt-4 flex justify-center items-center gap-8">
               <div className="flex items-center gap-2">
                 <Phone className="h-5 w-5" />
-                <a href="tel:412-444-5041" className="hover:underline text-destructive">
+                <a href="tel:412-444-5041" className="hover:underline" style={{ color: '#ff0033' }}>
                   412-444-5041
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-5 w-5" />
-                <a href="mailto:delture@huxleigh.com" className="hover:underline text-destructive">
+                <a href="mailto:delture@huxleigh.com" className="hover:underline" style={{ color: '#ff0033' }}>
                   delture@huxleigh.com
                 </a>
               </div>
