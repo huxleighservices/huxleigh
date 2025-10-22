@@ -21,7 +21,6 @@ const pricingTiers = [
       'Monthly Planning Sessions',
       'Calendar Planner',
     ],
-    isPopular: false,
     paymentLinks: {
       monthly: 'https://buy.stripe.com/bJeaEZgIOe4V8bY6Oo3ZK03',
       annually: 'https://buy.stripe.com/7sYaEZ2RY3qh1NA4Gg3ZK01',
@@ -42,7 +41,6 @@ const pricingTiers = [
       'Insight Assistant*',
       'Storage Connector',
     ],
-    isPopular: true,
     paymentLinks: {
       monthly: 'https://buy.stripe.com/7sYbJ3dwCf8Zcse1u43ZK04',
       annually: 'https://buy.stripe.com/fZu4gB0JQgd30Jwc8I3ZK02',
@@ -68,22 +66,15 @@ export default function DelturePage() {
 
   return (
     <div className="flex flex-col">
-      <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-        <svg
-          className="absolute inset-0 w-full h-full opacity-20"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1000 1000"
-          preserveAspectRatio="none"
-        >
-          <path
-            className="animated-trace"
-            stroke="#ff0033"
-            strokeWidth="2"
-            fill="none"
-            d="M 500 0 V 1000 M 0 500 H 1000 M 100 100 L 900 900 M 100 900 L 900 100 M 300 100 L 700 900 M 100 300 L 900 700 M 100 700 L 900 300 M 300 900 L 700 100"
-          />
-        </svg>
-        <div className="absolute top-0 left-0 w-full h-full bg-background z-10"></div>
+      <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden text-white">
+        <Image
+          src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1738"
+          alt="A party scene"
+          fill
+          className="object-cover"
+          data-ai-hint="party social"
+        />
+        <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-20 container py-12 flex flex-col items-center text-center">
           <div className="relative p-12 bg-white rounded-[calc(var(--radius)+10px)] border-4 border-gray-200">
             <div className="relative z-10 p-8 flex flex-col items-center">
@@ -185,9 +176,7 @@ export default function DelturePage() {
             {pricingTiers.map((tier) => (
               <Card
                 key={tier.name}
-                className={`flex flex-col rounded-xl bg-white text-black border border-black ${
-                  tier.isPopular ? 'scale-105 shadow-2xl' : ''
-                }`}
+                className="flex flex-col rounded-xl bg-white text-black border border-black"
               >
                 <CardHeader className="text-center p-8">
                   <CardTitle className="text-3xl font-extrabold uppercase tracking-widest">
