@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Users, Lightbulb, RefreshCw } from 'lucide-react';
 
@@ -187,8 +188,8 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="bg-background py-16 md:py-24">
-          <div className="container grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-lg text-muted-foreground">
+          <div className="container grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-center">
+            <div className="text-lg text-muted-foreground md:order-1 order-2 text-center md:text-left">
               <p>
                 We are glad you asked. With our proprietary{' '}
                 <span className="font-bold text-foreground">
@@ -198,7 +199,7 @@ export default function AboutPage() {
                 AI-integrated marketing tools.
               </p>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center md:order-2 order-1">
               <h3 className="font-headline text-6xl md:text-8xl font-bold text-foreground relative">
                 Camp
                 <span className="text-primary">/</span>
