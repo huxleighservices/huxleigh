@@ -280,13 +280,13 @@ export default function DelturePage() {
             <div className="mt-4 flex justify-center items-center gap-8">
               <div className="flex items-center gap-2">
                 <Phone className="h-5 w-5" />
-                <a href="tel:412-444-5041" className="hover:underline">
+                <a href="tel:412-444-5041" className="hover:underline text-destructive">
                   412-444-5041
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-5 w-5" />
-                <a href="mailto:delture@huxleigh.com" className="hover:underline">
+                <a href="mailto:delture@huxleigh.com" className="hover:underline text-destructive">
                   delture@huxleigh.com
                 </a>
               </div>
@@ -297,5 +297,7 @@ export default function DelturePage() {
     </div>
   );
 }
+
+    
 
     
