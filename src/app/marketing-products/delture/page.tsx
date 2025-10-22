@@ -185,20 +185,11 @@ export default function DelturePage() {
             {pricingTiers.map((tier) => (
               <Card
                 key={tier.name}
-                className={`flex flex-col rounded-xl bg-white text-black ${
-                  tier.isPopular
-                    ? 'shadow-2xl scale-105'
-                    : 'border-gray-300'
+                className={`flex flex-col rounded-xl bg-white text-black border border-black ${
+                  tier.isPopular ? 'shadow-2xl scale-105' : ''
                 }`}
               >
                 <CardHeader className="text-center p-8">
-                  {tier.isPopular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <div className="bg-red-500 text-white font-bold text-sm uppercase px-4 py-1 rounded-full">
-                        Premium
-                      </div>
-                    </div>
-                  )}
                   <CardTitle className="text-3xl font-extrabold uppercase tracking-widest">
                     {tier.name}
                   </CardTitle>
