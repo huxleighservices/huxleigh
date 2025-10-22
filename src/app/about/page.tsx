@@ -19,7 +19,7 @@ const values = [
 const leadershipTeam = [
   {
     name: 'David Zimmerman',
-    roles: ['Founder, President', 'Director: Delture, Stratavue'],
+    roles: ['Founder, President', 'Developer: Delture, Stratavue'],
   },
   {
     name: 'Patrick McCollum',
@@ -40,7 +40,7 @@ const leadershipTeam = [
 const deltureTeam = [
   {
     name: 'Justin Liu',
-    role: 'Outreach Executive',
+    role: 'Growth Executive',
   },
   {
     name: 'Hudson Bowers',
