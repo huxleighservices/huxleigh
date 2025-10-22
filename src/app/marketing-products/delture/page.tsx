@@ -187,7 +187,7 @@ export default function DelturePage() {
                 key={tier.name}
                 className={`flex flex-col rounded-xl bg-white text-black ${
                   tier.isPopular
-                    ? 'border-red-500 border-4 shadow-2xl scale-105'
+                    ? 'shadow-2xl scale-105'
                     : 'border-gray-300'
                 }`}
               >
@@ -223,12 +223,7 @@ export default function DelturePage() {
                   </ul>
                   <Button
                     asChild
-                    variant={tier.isPopular ? 'default' : 'outline'}
-                    className={`${
-                      tier.isPopular
-                        ? 'bg-red-500 text-white hover:bg-red-600'
-                        : 'border-red-500 text-red-500 hover:bg-red-500/10'
-                    } w-full font-bold py-6 text-lg`}
+                    className='bg-[#ff0033] text-white hover:bg-red-500/90 w-full font-bold py-6 text-lg'
                   >
                     <Link
                       href={tier.paymentLinks[billingCycle]}
