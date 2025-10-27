@@ -11,40 +11,42 @@ import { Label } from '@/components/ui/label';
 
 const pricingTiers = [
   {
-    name: 'Basic',
-    monthlyPrice: '16.99',
-    annualPrice: '9.99',
+    name: 'FREE',
+    monthlyPrice: '0',
+    annualPrice: '0',
     features: [
       '1 Account',
-      '1-on-1 Content Agent',
-      '10 Designs/mo. Quota',
-      'Monthly Planning Sessions',
-      'Calendar Planner',
+      'Planning Calendar',
+      'Caption Bot',
+      'Camp/ai/gn Lite',
+      '1 GB of file storage',
     ],
-    paymentLinks: {
-      monthly: 'https://buy.stripe.com/bJeaEZgIOe4V8bY6Oo3ZK03',
-      annually: 'https://buy.stripe.com/7sYaEZ2RY3qh1NA4Gg3ZK01',
-    },
   },
   {
-    name: 'Premium',
-    monthlyPrice: '28.99',
-    annualPrice: '19.99',
+    name: 'PRO',
+    monthlyPrice: '19.99',
+    annualPrice: '12.99',
     features: [
-      'Up to 5 Accounts',
-      '1-on-1 Content Agent',
-      '30 Designs/mo. Quota',
-      'Bi-weekly Planning Sessions',
-      'Calendar Scheduler*',
+      '2 Accounts',
+      'Planning Calendar',
       'Caption Bot',
-      'Camp/AI/gn Tool',
-      'Insight Assistant*',
-      'Storage Connector',
+      'Camp/ai/gn Pro',
+      '10 GB of file storage',
     ],
-    paymentLinks: {
-      monthly: 'https://buy.stripe.com/7sYbJ3dwCf8Zcse1u43ZK04',
-      annually: 'https://buy.stripe.com/fZu4gB0JQgd30Jwc8I3ZK02',
-    },
+  },
+  {
+    name: 'PRO+ AGENT',
+    monthlyPrice: '34.99',
+    annualPrice: '26.99',
+    features: [
+      '5 Accounts',
+      'Planning Calendar',
+      '1-on-1 content agent',
+      'Bi-weekly agent planning sessions',
+      'Caption Bot',
+      'Camp/ai/gn Pro',
+      '50 GB of file storage',
+    ],
   },
 ];
 
@@ -171,28 +173,37 @@ export default function DelturePage() {
               </Label>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <Card
-                key={pricingTiers[0].name}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            {pricingTiers.map((tier) => (
+                <Card
+                key={tier.name}
                 className="flex flex-col rounded-xl bg-white text-black border border-black"
               >
                 <CardHeader className="text-center p-8">
                   <CardTitle className="text-3xl font-extrabold uppercase tracking-widest">
-                    {pricingTiers[0].name}
+                    {tier.name}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col p-8 pt-0">
                   <div className="text-center mb-6">
-                    <span className="text-5xl font-bold">
-                      $
-                      {billingCycle === 'annually'
-                        ? pricingTiers[0].annualPrice
-                        : pricingTiers[0].monthlyPrice}
-                    </span>
-                    <span className="text-sm text-gray-500">/mo</span>
+                    {tier.name === 'FREE' ? (
+                       <span className="text-5xl font-bold">
+                        FREE
+                       </span>
+                    ) : (
+                      <>
+                        <span className="text-5xl font-bold">
+                          $
+                          {billingCycle === 'annually'
+                            ? tier.annualPrice
+                            : tier.monthlyPrice}
+                        </span>
+                        <span className="text-sm text-gray-500">/mo</span>
+                      </>
+                    )}
                   </div>
                   <ul className="space-y-4 mb-8 flex-1">
-                    {pricingTiers[0].features.map((feature, i) => (
+                    {tier.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-red-500" />
                         <span>{feature}</span>
@@ -200,58 +211,14 @@ export default function DelturePage() {
                     ))}
                   </ul>
                   <Button
-                    asChild
-                    className='bg-[#ff0033] text-white hover:bg-red-500/90 w-full font-bold py-6 text-lg'
+                    disabled
+                    className='bg-gray-400 text-white w-full font-bold py-6 text-lg cursor-not-allowed'
                   >
-                    <Link
-                      href={pricingTiers[0].paymentLinks[billingCycle]}
-                      target="_blank"
-                    >
-                      Buy Now
-                    </Link>
+                    Coming Soon
                   </Button>
                 </CardContent>
               </Card>
-               <Card
-                key={pricingTiers[1].name}
-                className="flex flex-col rounded-xl bg-white text-black transform scale-105 shadow-2xl relative border border-black"
-              >
-                <CardHeader className="text-center p-8">
-                  <CardTitle className="text-3xl font-extrabold uppercase tracking-widest">
-                    {pricingTiers[1].name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col p-8 pt-0">
-                  <div className="text-center mb-6">
-                    <span className="text-5xl font-bold">
-                      $
-                      {billingCycle === 'annually'
-                        ? pricingTiers[1].annualPrice
-                        : pricingTiers[1].monthlyPrice}
-                    </span>
-                    <span className="text-sm text-gray-500">/mo</span>
-                  </div>
-                  <ul className="space-y-4 mb-8 flex-1">
-                    {pricingTiers[1].features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-red-500" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    asChild
-                    className='bg-[#ff0033] text-white hover:bg-red-500/90 w-full font-bold py-6 text-lg'
-                  >
-                    <Link
-                      href={pricingTiers[1].paymentLinks[billingCycle]}
-                      target="_blank"
-                    >
-                      Buy Now
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+            ))}
           </div>
           <div className="text-center mt-8 text-white text-sm">
             *Features are in testing and are not fully functional
@@ -312,5 +279,3 @@ export default function DelturePage() {
     </div>
   );
 }
-
-    
