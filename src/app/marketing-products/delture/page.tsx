@@ -87,8 +87,7 @@ export default function DelturePage() {
                 priority
               />
               <p className="mt-4 text-lg text-black max-w-md">
-                The all-in-one AI-powered social media software solution built
-                for Greek Life
+                The all-in-one Ai-powered social media software solution for student organizations
               </p>
             </div>
           </div>
@@ -172,15 +171,14 @@ export default function DelturePage() {
               </Label>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            {pricingTiers.map((tier) => (
-              <Card
-                key={tier.name}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <Card
+                key={pricingTiers[0].name}
                 className="flex flex-col rounded-xl bg-white text-black border border-black"
               >
                 <CardHeader className="text-center p-8">
                   <CardTitle className="text-3xl font-extrabold uppercase tracking-widest">
-                    {tier.name}
+                    {pricingTiers[0].name}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col p-8 pt-0">
@@ -188,13 +186,13 @@ export default function DelturePage() {
                     <span className="text-5xl font-bold">
                       $
                       {billingCycle === 'annually'
-                        ? tier.annualPrice
-                        : tier.monthlyPrice}
+                        ? pricingTiers[0].annualPrice
+                        : pricingTiers[0].monthlyPrice}
                     </span>
                     <span className="text-sm text-gray-500">/mo</span>
                   </div>
                   <ul className="space-y-4 mb-8 flex-1">
-                    {tier.features.map((feature, i) => (
+                    {pricingTiers[0].features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-red-500" />
                         <span>{feature}</span>
@@ -206,7 +204,7 @@ export default function DelturePage() {
                     className='bg-[#ff0033] text-white hover:bg-red-500/90 w-full font-bold py-6 text-lg'
                   >
                     <Link
-                      href={tier.paymentLinks[billingCycle]}
+                      href={pricingTiers[0].paymentLinks[billingCycle]}
                       target="_blank"
                     >
                       Buy Now
@@ -214,7 +212,46 @@ export default function DelturePage() {
                   </Button>
                 </CardContent>
               </Card>
-            ))}
+               <Card
+                key={pricingTiers[1].name}
+                className="flex flex-col rounded-xl bg-white text-black transform scale-105 shadow-2xl relative border border-black"
+              >
+                <CardHeader className="text-center p-8">
+                  <CardTitle className="text-3xl font-extrabold uppercase tracking-widest">
+                    {pricingTiers[1].name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1 flex flex-col p-8 pt-0">
+                  <div className="text-center mb-6">
+                    <span className="text-5xl font-bold">
+                      $
+                      {billingCycle === 'annually'
+                        ? pricingTiers[1].annualPrice
+                        : pricingTiers[1].monthlyPrice}
+                    </span>
+                    <span className="text-sm text-gray-500">/mo</span>
+                  </div>
+                  <ul className="space-y-4 mb-8 flex-1">
+                    {pricingTiers[1].features.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <Check className="h-5 w-5 text-red-500" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    asChild
+                    className='bg-[#ff0033] text-white hover:bg-red-500/90 w-full font-bold py-6 text-lg'
+                  >
+                    <Link
+                      href={pricingTiers[1].paymentLinks[billingCycle]}
+                      target="_blank"
+                    >
+                      Buy Now
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
           </div>
           <div className="text-center mt-8 text-white text-sm">
             *Features are in testing and are not fully functional
@@ -275,3 +312,5 @@ export default function DelturePage() {
     </div>
   );
 }
+
+    
