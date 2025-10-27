@@ -13,6 +13,7 @@ import {
   Layers,
   Briefcase,
   UserPlus,
+  Award,
 } from 'lucide-react';
 
 export const navLinks = [
@@ -296,6 +297,13 @@ type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
+    title: 'Delture Places 4th in OWU Pitch Competition',
+    date: '2025-10-25',
+    content:
+      "The Delture team pitched their business at Ohio Wesleyan University's USEC program and placed as a finalist in 4th place.",
+    icon: Award,
+  },
+  {
     title: 'File storage is live on all Huxleigh Marketing Products.',
     date: '2025-09-22',
     content:
@@ -361,5 +369,3 @@ export const jobPostings: JobPosting[] = [
     ]
   },
 ];
-
-    
