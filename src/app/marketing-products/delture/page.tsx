@@ -220,9 +220,6 @@ export default function DelturePage() {
               </Card>
             ))}
           </div>
-          <div className="text-center mt-8 text-white text-sm">
-            *Features are in testing and are not fully functional
-          </div>
         </div>
       </section>
 
