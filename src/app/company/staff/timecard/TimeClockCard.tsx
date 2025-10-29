@@ -1,7 +1,5 @@
-
 'use client';
 import { useTransition } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { createTimePunch } from '@/lib/firebase/firestore';
 import {
@@ -14,22 +12,23 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Loader2, LogIn, LogOut, Clock } from 'lucide-react';
-import type { TimePunch } from '@/types/auth';
+import type { TimePunch, UserProfile } from '@/types/auth';
+import type { User } from 'firebase/auth';
 
 interface TimeClockCardProps {
   lastPunch: TimePunch | null;
+  currentUser: User | null;
 }
 
-export function TimeClockCard({ lastPunch }: TimeClockCardProps) {
-  const { currentUser } = useAuth();
+export function TimeClockCard({ lastPunch, currentUser }: TimeClockCardProps) {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
-  
+
   const isPunchedIn = lastPunch?.type === 'in';
 
   const handlePunch = (type: 'in' | 'out') => {
     if (!currentUser) {
-       toast({
+      toast({
         variant: 'destructive',
         title: 'Error',
         description: 'You must be signed in to punch the clock.',
@@ -52,7 +51,6 @@ export function TimeClockCard({ lastPunch }: TimeClockCardProps) {
       }
     });
   };
-
 
   return (
     <Card>

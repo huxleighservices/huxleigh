@@ -10,7 +10,7 @@ import { TimeCardList } from './TimeCardList';
 import type { TimePunch } from '@/types/auth';
 
 export default function TimecardPage() {
-  const { currentUser } = useAuth();
+  const { currentUser, loading: isAuthLoading } = useAuth();
   const firestore = useFirestore();
 
   const timePunchesQuery = useMemoFirebase(() => {
@@ -23,16 +23,11 @@ export default function TimecardPage() {
 
   const {
     data: timePunches,
-    isLoading,
+    isLoading: isPunchesLoading,
     error,
   } = useCollection<TimePunch>(timePunchesQuery);
 
-  // Moved the conditional return after all hooks are called.
-  if (!currentUser) {
-      return null;
-  }
-
-  const lastPunch = timePunches && timePunches.length > 0 ? timePunches[0] : null;
+  const isLoading = isAuthLoading || isPunchesLoading;
 
   if (isLoading) {
     return (
@@ -40,6 +35,10 @@ export default function TimecardPage() {
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
       </div>
     );
+  }
+
+  if (!currentUser) {
+      return null;
   }
 
   if (error) {
@@ -50,6 +49,8 @@ export default function TimecardPage() {
     );
   }
   
+  const lastPunch = timePunches && timePunches.length > 0 ? timePunches[0] : null;
+
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="mb-8">
@@ -57,7 +58,7 @@ export default function TimecardPage() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full overflow-hidden">
         <div className="lg:col-span-1">
-          <TimeClockCard lastPunch={lastPunch} />
+          <TimeClockCard lastPunch={lastPunch} currentUser={currentUser} />
         </div>
         <div className="lg:col-span-2 h-full overflow-y-auto pr-2">
             <TimeCardList timePunches={timePunches ?? []} />
