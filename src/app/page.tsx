@@ -18,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import Logo from '@/components/Logo';
 
 const serviceHighlights = [
   {
@@ -74,10 +75,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
           <div className="relative p-8 md:p-12 border border-white/20 rounded-lg bg-black/20 backdrop-blur-md">
+            <Logo className="h-auto w-1/3 mx-auto mb-6" />
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
               Powerful AI Software <br /> for Powerful People
             </h1>
-             <p className="mt-6 max-w-xl mx-auto text-lg text-white/80">
+            <p className="mt-6 max-w-xl mx-auto text-lg text-white/80">
               Huxleigh is a premier software conglomerate specializing in
               AI-software services and white-label distribution.
             </p>
