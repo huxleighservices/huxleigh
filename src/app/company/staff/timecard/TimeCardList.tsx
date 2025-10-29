@@ -1,9 +1,8 @@
-
 'use client';
 
 import React, { useMemo, useState, useTransition } from 'react';
-import { format, formatDistance, getDay, getISOWeek, getYear, parseISO, startOfWeek } from 'date-fns';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { format, startOfWeek } from 'date-fns';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -60,7 +59,12 @@ const calculateHours = (punches: TimePunch[]) => {
   return totalMillis / (1000 * 60 * 60);
 };
 
-export function TimeCardList({ timePunches }: { timePunches: TimePunch[] }) {
+interface TimeCardListProps {
+  timePunches: TimePunch[];
+  isLoading?: boolean;
+}
+
+export function TimeCardList({ timePunches, isLoading }: TimeCardListProps) {
   const { currentUser, userProfile } = useAuth();
   const { toast } = useToast();
   const [selectedWeeks, setSelectedWeeks] = useState<Set<string>>(new Set());
@@ -153,6 +157,14 @@ export function TimeCardList({ timePunches }: { timePunches: TimePunch[] }) {
     });
   };
 
+  // ✅ Handle loading state AFTER all hooks
+  if (isLoading) {
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (weeklyTimeCards.length === 0) {
     return <p className="text-muted-foreground text-center py-8">No time punches recorded yet.</p>;

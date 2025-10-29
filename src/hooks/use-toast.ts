@@ -182,7 +182,7 @@ function useToast() {
         listeners.splice(index, 1)
       }
     }
-  }, [state])
+  }, []) // ✅ FIXED: Empty dependency array - only run on mount/unmount
 
   return {
     ...state,
