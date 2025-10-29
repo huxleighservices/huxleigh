@@ -52,7 +52,7 @@ export async function sendSessionByEmail(data: { session: TrainingSession; recip
         <h2>Results</h2>
         ${session.results.map((result: any) => `
             <div>
-                <h3>${result.phase} - ${result.difficulty} (${format(result.completedAt.toDate(), 'PP p')})</h3>
+                <h3>${result.phase} - ${result.difficulty} (${result.completedAt.toDate ? format(result.completedAt.toDate(), 'PP p') : 'Just now'})</h3>
                 <h4>Feedback:</h4>
                 <ul>
                     <li><strong>Assessment:</strong> ${result.feedback.overallAssessment}</li>

@@ -91,18 +91,6 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === '/company/staff/b2b-training'}
-                  tooltip={{ children: 'B2B Training' }}
-                >
-                  <Link href="/company/staff/b2b-training">
-                    <Briefcase />
-                    <span>B2B Training</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter>

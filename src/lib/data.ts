@@ -68,6 +68,7 @@ export const navLinks = [
       },
     ],
   },
+  { href: '/b2b-training', label: 'Tr/AI/ner' },
   { href: '/contact', label: 'Contact' },
 ];
 

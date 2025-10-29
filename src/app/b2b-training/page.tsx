@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
@@ -37,6 +36,7 @@ import { onSessionsUpdate, addTrainingSession, deleteTrainingSession, deleteResu
 import { sendSessionByEmail } from './actions';
 import type { TrainingSession } from '@/types/auth';
 import { format } from 'date-fns';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 const trainingPhases = [
   {
@@ -92,7 +92,7 @@ const trainingPhases = [
 
 
 export default function TrainerPage() {
-  const { currentUser, userProfile } = useAuth();
+  const { currentUser, userProfile, loading } = useAuth();
   const { toast } = useToast();
   const [openDialog, setOpenDialog] = useState<string | null>(null);
   
@@ -170,19 +170,29 @@ export default function TrainerPage() {
   const selectedSession = sessions.find(s => s.id === selectedSessionId);
 
   const handleCardClick = (phaseId: string) => {
-    if (sessions.length === 0) {
+    // For logged-out users, they can start a simulation, but progress won't be saved.
+    // The activeSessionId will be null for them.
+    if (currentUser && sessions.length === 0) {
         toast({ title: "No Session Selected", description: "Please create a session before starting a training module.", variant: "destructive"});
         return;
     }
-    if (!selectedSessionId) {
+    if (currentUser && !selectedSessionId) {
         toast({ title: "No Session Selected", description: "Please select a session to save your results to.", variant: "destructive"});
         return;
     }
     setOpenDialog(phaseId);
   };
+  
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-8 h-full overflow-y-auto pr-4">
+    <div className="container py-8 space-y-8 h-full overflow-y-auto pr-4">
       <div className="text-center">
         <h1 className="text-4xl font-headline flex items-center justify-center gap-3">
           <BrainCircuit className="h-10 w-10 text-primary"/>
@@ -220,6 +230,15 @@ export default function TrainerPage() {
         })}
       </div>
 
+      {!currentUser ? (
+         <Alert>
+          <Lock className="h-4 w-4" />
+          <AlertTitle>You are not signed in!</AlertTitle>
+          <AlertDescription>
+            Your training progress will not be saved. Sign in or create an account to save and track your sessions.
+          </AlertDescription>
+        </Alert>
+      ) : (
        <Card className="bg-card/50">
         <CardHeader>
           <CardTitle>Your Training Sessions</CardTitle>
@@ -294,7 +313,7 @@ export default function TrainerPage() {
                                             {result.phase} - {result.difficulty}
                                         </span>
                                         <span className="text-xs text-muted-foreground mr-4">
-                                            {format(result.completedAt.toDate(), 'MMM d, yyyy - p')}
+                                            {result.completedAt.toDate ? format(result.completedAt.toDate(), 'MMM d, yyyy - p') : 'Just now'}
                                         </span>
                                     </div>
                                 </AccordionTrigger>
@@ -335,42 +354,43 @@ export default function TrainerPage() {
           )}
         </CardContent>
       </Card>
+      )}
 
 
       <ProspectingSimulatorDialog
         open={openDialog === 'prospecting'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
-        activeSessionId={selectedSessionId}
+        activeSessionId={currentUser ? selectedSessionId : null}
       />
       <QualificationSimulatorDialog
         open={openDialog === 'qualification'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
-        activeSessionId={selectedSessionId}
+        activeSessionId={currentUser ? selectedSessionId : null}
       />
       <DiscoverySimulatorDialog
         open={openDialog === 'discovery'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
-        activeSessionId={selectedSessionId}
+        activeSessionId={currentUser ? selectedSessionId : null}
       />
       <ProposalSimulatorDialog
         open={openDialog === 'proposal'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
-        activeSessionId={selectedSessionId}
+        activeSessionId={currentUser ? selectedSessionId : null}
       />
       <ObjectionHandlingDialog
         open={openDialog === 'objection-handling'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
-        activeSessionId={selectedSessionId}
+        activeSessionId={currentUser ? selectedSessionId : null}
       />
       <ClosingSimulatorDialog
         open={openDialog === 'closing'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
-        activeSessionId={selectedSessionId}
+        activeSessionId={currentUser ? selectedSessionId : null}
       />
        <ColdCallSimulatorDialog
         open={openDialog === 'cold-call'}
         onOpenChange={(isOpen) => !isOpen && setOpenDialog(null)}
-        activeSessionId={selectedSessionId}
+        activeSessionId={currentUser ? selectedSessionId : null}
       />
     </div>
   );
