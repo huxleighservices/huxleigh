@@ -1,4 +1,3 @@
-
 'use client';
 import { BaseSimulatorDialog } from './base-simulator-dialog';
 
