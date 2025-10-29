@@ -27,6 +27,11 @@ export default function TimecardPage() {
     error,
   } = useCollection<TimePunch>(timePunchesQuery);
 
+  // Moved the conditional return after all hooks are called.
+  if (!currentUser) {
+      return null;
+  }
+
   const lastPunch = timePunches && timePunches.length > 0 ? timePunches[0] : null;
 
   if (isLoading) {
@@ -45,10 +50,6 @@ export default function TimecardPage() {
     );
   }
   
-  if (!currentUser) {
-      return null;
-  }
-
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="mb-8">
