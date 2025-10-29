@@ -29,15 +29,7 @@ export default function TimecardPage() {
 
   const isLoading = isAuthLoading || isPunchesLoading;
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <Loader2 className="h-12 w-12 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (!currentUser) {
+  if (!currentUser && !isAuthLoading) {
       return null;
   }
 
@@ -58,10 +50,16 @@ export default function TimecardPage() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full overflow-hidden">
         <div className="lg:col-span-1">
-          <TimeClockCard lastPunch={lastPunch} currentUser={currentUser} />
+          <TimeClockCard lastPunch={lastPunch} currentUser={currentUser} isLoading={isLoading} />
         </div>
         <div className="lg:col-span-2 h-full overflow-y-auto pr-2">
-            <TimeCardList timePunches={timePunches ?? []} />
+            {isLoading ? (
+                 <div className="flex flex-1 items-center justify-center">
+                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                 </div>
+            ) : (
+                <TimeCardList timePunches={timePunches ?? []} />
+            )}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+
 'use client';
 import { useTransition } from 'react';
 import { useToast } from '@/hooks/use-toast';
@@ -12,15 +13,18 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Loader2, LogIn, LogOut, Clock } from 'lucide-react';
-import type { TimePunch, UserProfile } from '@/types/auth';
+import type { TimePunch } from '@/types/auth';
 import type { User } from 'firebase/auth';
+import { Skeleton } from '@/components/ui/skeleton';
+
 
 interface TimeClockCardProps {
   lastPunch: TimePunch | null;
   currentUser: User | null;
+  isLoading: boolean;
 }
 
-export function TimeClockCard({ lastPunch, currentUser }: TimeClockCardProps) {
+export function TimeClockCard({ lastPunch, currentUser, isLoading }: TimeClockCardProps) {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
@@ -51,6 +55,28 @@ export function TimeClockCard({ lastPunch, currentUser }: TimeClockCardProps) {
       }
     });
   };
+
+  if (isLoading) {
+    return (
+        <Card>
+            <CardHeader>
+                <Skeleton className="h-6 w-3/4" />
+                <Skeleton className="h-4 w-1/2" />
+            </CardHeader>
+            <CardContent className="flex flex-col items-center justify-center gap-4">
+                 <Skeleton className="h-24 w-24 rounded-full" />
+                 <div className="text-center w-full flex flex-col items-center gap-2">
+                    <Skeleton className="h-6 w-1/3" />
+                    <Skeleton className="h-4 w-2/3" />
+                 </div>
+            </CardContent>
+            <CardFooter className="grid grid-cols-2 gap-4">
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-full" />
+            </CardFooter>
+        </Card>
+    )
+  }
 
   return (
     <Card>
