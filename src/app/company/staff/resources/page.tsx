@@ -10,7 +10,6 @@ import {
 import { Button } from '@/components/ui/button';
 import {
   BookOpen,
-  Plus,
   Link as LinkIcon,
   ExternalLink,
   MoreVertical,
@@ -19,7 +18,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query, orderBy } from 'firebase/firestore';
+import { collection, query, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import { NewHyperlinkDialog } from './NewHyperlinkDialog';
 import {
   DropdownMenu,
@@ -27,7 +26,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { deleteHyperlink } from './actions';
 import { useToast } from '@/hooks/use-toast';
 
 type Hyperlink = {
@@ -58,8 +56,13 @@ export default function ResourcesPage() {
   } = useCollection<Hyperlink>(hyperlinksQuery);
 
   const handleDelete = async (id: string) => {
+    if (!firestore) {
+      toast({ title: 'Error', description: 'Firestore not available.', variant: 'destructive' });
+      return;
+    }
     try {
-      await deleteHyperlink(id);
+      const linkDoc = doc(firestore, 'hyperlinks', id);
+      await deleteDoc(linkDoc);
       toast({
         title: 'Success',
         description: 'Hyperlink deleted.',

@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -16,47 +15,62 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2, Plus } from 'lucide-react';
-import { createHyperlink } from './actions';
 import { useToast } from '@/hooks/use-toast';
-
-const initialState = {
-  success: false,
-  message: '',
-  errors: null,
-};
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending}>
-      {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      Create Hyperlink
-    </Button>
-  );
-}
+import { useFirestore } from '@/firebase';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 export function NewHyperlinkDialog() {
   const [isOpen, setIsOpen] = useState(false);
-  const [state, formAction] = useFormState(createHyperlink, initialState);
+  const [name, setName] = useState('');
+  const [url, setUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const firestore = useFirestore();
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.success) {
-        toast({
-          title: 'Success',
-          description: state.message,
-        });
-        setIsOpen(false);
-      } else {
-        toast({
-          title: 'Error',
-          description: state.message,
-          variant: 'destructive',
-        });
-      }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!firestore) {
+      toast({ title: 'Error', description: 'Firestore not available.', variant: 'destructive' });
+      return;
     }
-  }, [state, toast]);
+    if (name.length < 2) {
+      toast({ title: 'Error', description: 'Name must be at least 2 characters.', variant: 'destructive' });
+      return;
+    }
+    try {
+      new URL(url);
+    } catch (_) {
+      toast({ title: 'Error', description: 'Please enter a valid URL.', variant: 'destructive' });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const hyperlinksRef = collection(firestore, 'hyperlinks');
+      await addDoc(hyperlinksRef, {
+        name,
+        url,
+        createdAt: serverTimestamp(),
+      });
+      toast({
+        title: 'Success',
+        description: 'Hyperlink created successfully!',
+      });
+      setIsOpen(false);
+      setName('');
+      setUrl('');
+    } catch (error: any) {
+      console.error('Error creating hyperlink:', error);
+      toast({
+        title: 'Error',
+        description: error.message || 'An unexpected error occurred.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -73,7 +87,7 @@ export function NewHyperlinkDialog() {
             This link will be visible to all staff members.
           </DialogDescription>
         </DialogHeader>
-        <form action={formAction} className="grid gap-4 py-4">
+        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name
@@ -81,16 +95,13 @@ export function NewHyperlinkDialog() {
             <Input
               id="name"
               name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Welcome Booklet"
               className="col-span-3"
               required
             />
           </div>
-          {state.errors?.name && (
-            <p className="text-sm text-destructive col-start-2 col-span-3">
-              {state.errors.name[0]}
-            </p>
-          )}
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="url" className="text-right">
               URL
@@ -99,23 +110,23 @@ export function NewHyperlinkDialog() {
               id="url"
               name="url"
               type="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               placeholder="https://..."
               className="col-span-3"
               required
             />
           </div>
-          {state.errors?.url && (
-            <p className="text-sm text-destructive col-start-2 col-span-3">
-              {state.errors.url[0]}
-            </p>
-          )}
           <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="secondary">
                 Cancel
               </Button>
             </DialogClose>
-            <SubmitButton />
+            <Button type="submit" disabled={isLoading}>
+              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              Create Hyperlink
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
