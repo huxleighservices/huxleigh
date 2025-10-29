@@ -4,15 +4,10 @@ import Link from 'next/link';
 import {
   ArrowRight,
   BrainCircuit,
-  Share2,
-  TrendingUp,
   Award,
   Users,
   MessageCircle,
   Newspaper,
-  Rocket,
-  ShieldCheck,
-  DollarSign,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -23,15 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
-import { blogPosts, successStories } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const serviceHighlights = [
   {
@@ -72,22 +58,30 @@ const companyPillars = [
 ];
 
 export default function Home() {
-  const latestPosts = blogPosts.slice(0, 3);
-
   return (
     <div className="flex flex-col">
       <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden bg-black">
-        <div className="absolute inset-0 bg-grid-red-500/10 bg-grid-14 [mask-image:linear-gradient(to_bottom,white_0%,white_75%,transparent_100%)]"></div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
-          <div className="relative">
+          <div className="relative p-8 md:p-12 border border-white/20 rounded-lg bg-black/20 backdrop-blur-md">
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
               Powerful AI Software <br /> for Powerful People
             </h1>
+             <p className="mt-6 max-w-xl text-lg text-white/80">
+              Huxleigh is a premier software conglomerate specializing in
+              AI-software services and white-label distribution.
+            </p>
           </div>
-          <p className="mt-6 max-w-xl text-lg text-white/80">
-            Huxleigh is a premier software conglomerate specializing in
-            AI-software services and white-label distribution.
-          </p>
         </div>
       </section>
 
