@@ -1,4 +1,3 @@
-
 'use server';
 
 /**
@@ -56,49 +55,68 @@ const trainerFlow = ai.defineFlow(
     const isFinalTurn = conversationHistory.filter(m => m.role === 'user').length >= USER_TURN_LIMIT;
 
     const systemPrompt = `
-      ${prompts[phase]}
-      Your difficulty is ${difficulty}. For Beginner, be more forgiving. For Advanced, be very challenging.
-      The conversation history is provided below.
-      
+      You are an AI sales trainer simulating a B2B sales conversation.
+      PHASE: ${prompts[phase]}
+      DIFFICULTY: ${difficulty}. For Beginner, be more forgiving. For Advanced, be very challenging.
+      CONVERSATION HISTORY is provided below.
+
       {{#if isFinalTurn}}
-      This is the final turn of the simulation. Your next response MUST be the final one.
+      This is the final turn. The simulation is over. Your task is to provide feedback.
       - DO NOT generate a conversational 'aiResponse'.
-      - Instead, act as an expert sales coach and provide detailed, constructive feedback on the user's performance throughout the entire conversation.
-      - Populate the 'feedback' object with 'overallAssessment', 'positivePoints', and 'areasForImprovement'.
-      - Your feedback should be insightful and help the user improve.
+      - Act as an expert sales coach and provide a detailed, constructive performance review based on the entire conversation.
+      - Populate the 'feedback' object with:
+        - 'overallAssessment': A summary of the user's performance.
+        - 'positivePoints': A list of their strengths (what they did well).
+        - 'areasForImprovement': A list of their weaknesses (what they could do better).
+      - Your feedback must be insightful and help the user improve.
       {{else}}
-      This is a conversational turn. Your task is to generate the next AI response in the conversation.
+      This is a conversational turn. Your task is to generate the next AI response.
+      - Stay in character based on the phase and difficulty.
       - Your response should be a single, natural-sounding reply.
-      - DO NOT provide feedback yet.
+      - DO NOT provide feedback yet. Only generate the 'aiResponse' field.
       {{/if}}
     `;
-    
-    const generateInput = {
-        history: conversationHistory?.map(m => ({role: m.role, content: [{text: m.content}]})),
-        prompt: userMessage,
-        system: systemPrompt,
-        custom: { isFinalTurn }, // Pass isFinalTurn to the prompt context
+
+    const model = ai.getModel('googleai/gemini-2.5-flash');
+
+    const result = await model.generate({
+        prompt: `
+            SYSTEM PROMPT: ${systemPrompt}
+            
+            CONVERSATION HISTORY:
+            ${conversationHistory.map(m => `${m.role}: ${m.content}`).join('\n')}
+            user: ${userMessage}
+        `,
+        custom: { isFinalTurn },
         output: {
             schema: z.object({
-                aiResponse: isFinalTurn ? z.string().optional() : z.string(),
-                feedback: isFinalTurn ? TrainingFeedbackSchema : TrainingFeedbackSchema.optional(),
+                aiResponse: isFinalTurn ? z.string().optional().describe("This should be empty in the final turn.") : z.string().describe("The AI's conversational response."),
+                feedback: isFinalTurn ? TrainingFeedbackSchema : TrainingFeedbackSchema.optional().describe("This should only be populated in the final turn."),
             }),
         }
-    };
-    
-    const { output } = await ai.generate(generateInput);
+    });
+
+    const output = result.output;
     
     if (!output) {
         throw new Error('Failed to generate AI response');
     }
     
-    // In the final turn, aiResponse might be empty, but feedback should exist.
     if (isFinalTurn && !output.feedback) {
-        throw new Error('Failed to generate feedback on the final turn.');
+        // AI failed to provide feedback. Let's try to generate it again, forcefully.
+        const feedbackPrompt = `The sales simulation is over. Based on the following conversation, provide a performance review. Conversation: ${[...conversationHistory, {role: 'user', content: userMessage}].map(m => `${m.role}: ${m.content}`).join('\n')}`;
+
+        const feedbackResult = await model.generate({
+          prompt: feedbackPrompt,
+          output: { schema: TrainingFeedbackSchema }
+        });
+        if (!feedbackResult.output) throw new Error('Failed to generate feedback on the final turn.');
+        return { aiResponse: '', feedback: feedbackResult.output };
     }
 
     if (!isFinalTurn && !output.aiResponse) {
-        throw new Error('Failed to generate AI response for a conversational turn.');
+        // AI failed to provide a response.
+        return { aiResponse: "I'm not sure how to respond to that. Could you try rephrasing?", feedback: undefined };
     }
     
     return output;

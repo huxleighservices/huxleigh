@@ -49,7 +49,7 @@ export function BaseSimulatorDialog({ open, onOpenChange, phase, title, descript
         const result = await runTrainerFlow({
           phase,
           difficulty,
-          conversationHistory: updatedConversation,
+          conversationHistory: conversation, // Pass the conversation before the user's new message
           userMessage: userInput
         });
         
@@ -68,15 +68,10 @@ export function BaseSimulatorDialog({ open, onOpenChange, phase, title, descript
                 throw new Error('Incomplete feedback received');
             }
             
-            // Add AI's final feedback message to conversation if it exists
-            const finalConversation = result.aiResponse 
-              ? [...updatedConversation, { role: 'ai' as const, content: result.aiResponse }]
-              : updatedConversation;
-
             const trainingResult: Omit<TrainingResult, 'id' | 'completedAt'> = {
                 phase,
                 difficulty,
-                conversation: finalConversation,
+                conversation: updatedConversation,
                 feedback: {
                     overallAssessment: result.feedback.overallAssessment,
                     positivePoints: result.feedback.positivePoints,
