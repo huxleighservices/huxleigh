@@ -1,10 +1,9 @@
-
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { Loader2, User, BookOpen, LogOut, Briefcase, Clock } from 'lucide-react';
+import { Loader2, User, BookOpen, LogOut, Clock } from 'lucide-react';
 import {
   SidebarProvider,
   Sidebar,
@@ -38,32 +37,30 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
     }
   }, [currentUser, loading, router, pathname, isSignInPage]);
 
-  if (loading && !isSignInPage) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Loader2 className="h-12 w-12 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (isSignInPage) {
-     if (currentUser) {
-       // While redirecting, show a loader
-       return <div className="flex h-screen items-center justify-center"><Loader2 className="h-12 w-12 animate-spin text-primary" /></div>;
-     }
-    return <>{children}</>;
-  }
-  
-  if (!currentUser) {
-    // While redirecting to sign-in, show a loader
-    return <div className="flex h-screen items-center justify-center"><Loader2 className="h-12 w-12 animate-spin text-primary" /></div>;
-  }
+  // ✅ CRITICAL FIX: Always render the same structure, just conditionally show content
+  const showContent = !loading && ((isSignInPage && !currentUser) || (!isSignInPage && currentUser));
+  const showLoader = loading || (!isSignInPage && !currentUser) || (isSignInPage && currentUser);
 
   const handleSignOut = async () => {
     await signOut();
     router.push('/company/staff/signin');
   };
 
+  // ✅ For sign-in page, always render children but show loader overlay if needed
+  if (isSignInPage) {
+    return (
+      <>
+        {showLoader && (
+          <div className="flex h-screen items-center justify-center">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          </div>
+        )}
+        {!showLoader && children}
+      </>
+    );
+  }
+
+  // ✅ For protected pages, always render the sidebar structure
   return (
     <SidebarProvider>
       <div className="flex min-h-screen">
@@ -90,7 +87,7 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-               <SidebarMenuItem>
+              <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
                   isActive={pathname === '/company/staff/timecard'}
@@ -128,7 +125,15 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
           </SidebarFooter>
         </Sidebar>
         <SidebarInset>
-          <div className="p-4 md:p-8 h-screen overflow-hidden flex flex-col">{children}</div>
+          <div className="p-4 md:p-8 h-screen overflow-hidden flex flex-col">
+            {showLoader ? (
+              <div className="flex h-full items-center justify-center">
+                <Loader2 className="h-12 w-12 animate-spin text-primary" />
+              </div>
+            ) : (
+              children
+            )}
+          </div>
         </SidebarInset>
       </div>
     </SidebarProvider>

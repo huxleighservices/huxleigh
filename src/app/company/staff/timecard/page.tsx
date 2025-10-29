@@ -1,12 +1,13 @@
+
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useCollection, useMemoFirebase, useFirestore } from '@/firebase';
-import { collection, query, orderBy } from 'firebase/firestore';
+import { collection, query, orderBy, limit } from 'firebase/firestore';
+import { Loader2 } from 'lucide-react';
+import type { TimePunch } from '@/types/auth';
 import { TimeClockCard } from './TimeClockCard';
 import { TimeCardList } from './TimeCardList';
-import type { TimePunch } from '@/types/auth';
-import { Loader2 } from 'lucide-react';
 
 export default function TimecardPage() {
   const { currentUser, loading: isAuthLoading } = useAuth();
@@ -20,22 +21,31 @@ export default function TimecardPage() {
     );
   }, [firestore, currentUser]);
 
+  const lastPunchQuery = useMemoFirebase(() => {
+    if (!firestore || !currentUser) return null;
+    return query(
+      collection(firestore, 'users', currentUser.uid, 'timePunches'),
+      orderBy('timestamp', 'desc'),
+      limit(1)
+    );
+  }, [firestore, currentUser]);
+
   const {
     data: timePunches,
     isLoading: isPunchesLoading,
-    error,
+    error: punchesError,
   } = useCollection<TimePunch>(timePunchesQuery);
+  
+  const {
+    data: lastPunchResult,
+    isLoading: isLastPunchLoading,
+    error: lastPunchError,
+  } = useCollection<TimePunch>(lastPunchQuery);
 
-  const isLoading = isAuthLoading || isPunchesLoading;
-  const lastPunch = timePunches && timePunches.length > 0 ? timePunches[0] : null;
+  const lastPunch = lastPunchResult && lastPunchResult.length > 0 ? lastPunchResult[0] : null;
 
-  if (isAuthLoading || !currentUser) {
-      return (
-        <div className="flex flex-1 items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        </div>
-      );
-  }
+  const isLoading = isAuthLoading || isPunchesLoading || isLastPunchLoading;
+  const error = punchesError || lastPunchError;
 
   if (error) {
     return (
@@ -43,6 +53,21 @@ export default function TimecardPage() {
         <p className="text-destructive">Error loading timecard data.</p>
       </div>
     );
+  }
+
+  // This check ensures currentUser is available before rendering the main content.
+  // It also prevents rendering during the initial auth loading phase.
+  if (isAuthLoading) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      </div>
+    );
+  }
+  
+  if (!currentUser) {
+    // This case should be handled by the StaffLayout, but it's a good safeguard.
+    return null; 
   }
 
   return (
@@ -53,13 +78,16 @@ export default function TimecardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full overflow-hidden">
         <div className="lg:col-span-1">
           <TimeClockCard 
-            lastPunch={lastPunch} 
-            currentUser={currentUser} 
             isLoading={isLoading} 
+            lastPunch={lastPunch}
+            currentUser={currentUser}
           />
         </div>
         <div className="lg:col-span-2 h-full overflow-y-auto pr-2">
-          <TimeCardList timePunches={timePunches ?? []} isLoading={isLoading} />
+          <TimeCardList 
+            isLoading={isLoading} 
+            timePunches={timePunches || []} 
+          />
         </div>
       </div>
     </div>

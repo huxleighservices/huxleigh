@@ -1,6 +1,7 @@
+
 'use client';
 import { useTransition } from 'react';
-import { useToast } from '@/hooks/use-toast'; // ✅ Restore this
+import { useToast } from '@/hooks/use-toast';
 import { createTimePunch } from '@/lib/firebase/firestore';
 import {
   Card,
@@ -23,7 +24,7 @@ interface TimeClockCardProps {
 }
 
 export function TimeClockCard({ lastPunch, currentUser, isLoading }: TimeClockCardProps) {
-  const { toast } = useToast(); // ✅ Restored
+  const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
   const isPunchedIn = lastPunch?.type === 'in';
@@ -54,68 +55,76 @@ export function TimeClockCard({ lastPunch, currentUser, isLoading }: TimeClockCa
     });
   };
 
-  if (isLoading) {
-    return (
-      <Card>
-        <CardHeader>
-          <Skeleton className="h-6 w-3/4" />
-          <Skeleton className="h-4 w-1/2" />
-        </CardHeader>
-        <CardContent className="flex flex-col items-center justify-center gap-4">
-          <Skeleton className="h-24 w-24 rounded-full" />
-          <div className="text-center w-full flex flex-col items-center gap-2">
-            <Skeleton className="h-6 w-1/3" />
-            <Skeleton className="h-4 w-2/3" />
-          </div>
-        </CardContent>
-        <CardFooter className="grid grid-cols-2 gap-4">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-10 w-full" />
-        </CardFooter>
-      </Card>
-    );
-  }
-
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Time Clock</CardTitle>
-        <CardDescription>Punch in and out to track your hours.</CardDescription>
+        {isLoading ? (
+          <>
+            <Skeleton className="h-6 w-3/4" />
+            <Skeleton className="h-4 w-1/2" />
+          </>
+        ) : (
+          <>
+            <CardTitle>Time Clock</CardTitle>
+            <CardDescription>Punch in and out to track your hours.</CardDescription>
+          </>
+        )}
       </CardHeader>
       <CardContent className="flex flex-col items-center justify-center gap-4">
-        <div
-          className={`flex h-24 w-24 items-center justify-center rounded-full ${
-            isPunchedIn ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
-          }`}
-        >
-          <Clock className="h-12 w-12" />
-        </div>
-        <div className="text-center">
-          <p className="font-semibold text-lg">{isPunchedIn ? 'Punched In' : 'Punched Out'}</p>
-          {lastPunch?.timestamp && (
-            <p className="text-sm text-muted-foreground">
-              Since {lastPunch.timestamp.toDate().toLocaleString()}
-            </p>
-          )}
-        </div>
+        {isLoading ? (
+          <>
+            <Skeleton className="h-24 w-24 rounded-full" />
+            <div className="text-center w-full flex flex-col items-center gap-2">
+              <Skeleton className="h-6 w-1/3" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              className={`flex h-24 w-24 items-center justify-center rounded-full ${
+                isPunchedIn ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
+              }`}
+            >
+              <Clock className="h-12 w-12" />
+            </div>
+            <div className="text-center">
+              <p className="font-semibold text-lg">{isPunchedIn ? 'Punched In' : 'Punched Out'}</p>
+              {lastPunch?.timestamp && (
+                <p className="text-sm text-muted-foreground">
+                  Since {lastPunch.timestamp.toDate().toLocaleString()}
+                </p>
+              )}
+            </div>
+          </>
+        )}
       </CardContent>
       <CardFooter className="grid grid-cols-2 gap-4">
-        <Button
-          onClick={() => handlePunch('in')}
-          disabled={isPending || isPunchedIn}
-          variant={isPunchedIn ? 'secondary' : 'default'}
-        >
-          {isPending && !isPunchedIn ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogIn className="mr-2 h-4 w-4" />}
-          Punch In
-        </Button>
-        <Button
-          onClick={() => handlePunch('out')}
-          disabled={isPending || !isPunchedIn}
-          variant={!isPunchedIn ? 'secondary' : 'destructive'}
-        >
-          {isPending && isPunchedIn ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogOut className="mr-2 h-4 w-4" />}
-          Punch Out
-        </Button>
+        {isLoading ? (
+          <>
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+          </>
+        ) : (
+          <>
+            <Button
+              onClick={() => handlePunch('in')}
+              disabled={isPending || isPunchedIn}
+              variant={isPunchedIn ? 'secondary' : 'default'}
+            >
+              {isPending && !isPunchedIn ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogIn className="mr-2 h-4 w-4" />}
+              Punch In
+            </Button>
+            <Button
+              onClick={() => handlePunch('out')}
+              disabled={isPending || !isPunchedIn}
+              variant={!isPunchedIn ? 'secondary' : 'destructive'}
+            >
+              {isPending && isPunchedIn ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <LogOut className="mr-2 h-4 w-4" />}
+              Punch Out
+            </Button>
+          </>
+        )}
       </CardFooter>
     </Card>
   );

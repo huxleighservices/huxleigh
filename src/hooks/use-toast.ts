@@ -1,6 +1,5 @@
 "use client"
 
-// Inspired by react-hot-toast library
 import * as React from "react"
 
 import type {
@@ -93,8 +92,6 @@ export const reducer = (state: State, action: Action): State => {
     case "DISMISS_TOAST": {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId)
       } else {
@@ -171,18 +168,33 @@ function toast({ ...props }: Toast) {
   }
 }
 
+// ✅ Use a ref to track if we've already subscribed
+const subscriptionRef = { current: false }
+
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
+  const setStateRef = React.useRef(setState)
+  
+  // Keep the ref updated
+  React.useEffect(() => {
+    setStateRef.current = setState
+  })
 
   React.useEffect(() => {
-    listeners.push(setState)
+    // ✅ Use the ref's setState to avoid re-subscribing
+    const stableSetState = (newState: State) => {
+      setStateRef.current(newState)
+    }
+    
+    listeners.push(stableSetState)
+    
     return () => {
-      const index = listeners.indexOf(setState)
+      const index = listeners.indexOf(stableSetState)
       if (index > -1) {
         listeners.splice(index, 1)
       }
     }
-  }, []) // ✅ FIXED: Empty dependency array - only run on mount/unmount
+  }, []) // Empty deps - only run once
 
   return {
     ...state,

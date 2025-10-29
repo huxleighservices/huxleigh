@@ -157,98 +157,96 @@ export function TimeCardList({ timePunches, isLoading }: TimeCardListProps) {
     });
   };
 
-  // ✅ Handle loading state AFTER all hooks
-  if (isLoading) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (weeklyTimeCards.length === 0) {
-    return <p className="text-muted-foreground text-center py-8">No time punches recorded yet.</p>;
-  }
-
+  // ✅ NO EARLY RETURNS - render conditionally within JSX
   return (
     <div className="space-y-4">
-        <div className="flex justify-end gap-2 mb-4">
-             <AlertDialog>
-                <AlertDialogTrigger asChild>
-                    <Button variant="destructive" disabled={selectedWeeks.size === 0 || isDeleting}>
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        Delete Selected ({selectedWeeks.size})
-                    </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            This will permanently delete {selectedWeeks.size} selected week(s) of time punches. This action cannot be undone.
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={handleDelete} disabled={isDeleting} className="bg-destructive hover:bg-destructive/90">
-                           {isDeleting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                            Yes, delete
-                        </AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
+      {isLoading ? (
+        <div className="flex flex-1 items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      ) : weeklyTimeCards.length === 0 ? (
+        <p className="text-muted-foreground text-center py-8">No time punches recorded yet.</p>
+      ) : (
+        <>
+          <div className="flex justify-end gap-2 mb-4">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" disabled={selectedWeeks.size === 0 || isDeleting}>
+                  <Trash2 className="mr-2 h-4 w-4" />
+                  Delete Selected ({selectedWeeks.size})
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will permanently delete {selectedWeeks.size} selected week(s) of time punches. This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDelete} disabled={isDeleting} className="bg-destructive hover:bg-destructive/90">
+                    {isDeleting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                    Yes, delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
             </AlertDialog>
             
             <Button onClick={handleEmail} disabled={selectedWeeks.size === 0 || isEmailing}>
-                {isEmailing ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Mail className="mr-2 h-4 w-4" />}
-                Email Selected ({selectedWeeks.size})
+              {isEmailing ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Mail className="mr-2 h-4 w-4" />}
+              Email Selected ({selectedWeeks.size})
             </Button>
-        </div>
+          </div>
 
-      {weeklyTimeCards.map(({ weekId, weekOf, totalHours, punches }) => (
-        <Card key={weekId}>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Checkbox
-                id={`select-week-${weekId}`}
-                checked={selectedWeeks.has(weekId)}
-                onCheckedChange={(checked) => handleSelectWeek(weekId, checked)}
-                aria-label={`Select week of ${format(weekOf, 'MMMM d, yyyy')}`}
-              />
-              <div>
-                <CardTitle>Week of {format(weekOf, 'MMMM d, yyyy')}</CardTitle>
-                <CardDescription>
-                  Total Hours: {totalHours.toFixed(2)}
-                </CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <ScrollArea className="h-48">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Time</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {punches.map(punch => (
-                    <TableRow key={punch.id}>
-                      <TableCell>
-                        <span className={`font-semibold ${punch.type === 'in' ? 'text-green-500' : 'text-red-500'}`}>
-                          {punch.type.toUpperCase()}
-                        </span>
-                      </TableCell>
-                      <TableCell>{format(punch.timestamp.toDate(), 'eee, MMM d')}</TableCell>
-                      <TableCell>{format(punch.timestamp.toDate(), 'h:mm:ss a')}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </ScrollArea>
-          </CardContent>
-        </Card>
-      ))}
+          {weeklyTimeCards.map(({ weekId, weekOf, totalHours, punches }) => (
+            <Card key={weekId}>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <Checkbox
+                    id={`select-week-${weekId}`}
+                    checked={selectedWeeks.has(weekId)}
+                    onCheckedChange={(checked) => handleSelectWeek(weekId, checked)}
+                    aria-label={`Select week of ${format(weekOf, 'MMMM d, yyyy')}`}
+                  />
+                  <div>
+                    <CardTitle>Week of {format(weekOf, 'MMMM d, yyyy')}</CardTitle>
+                    <CardDescription>
+                      Total Hours: {totalHours.toFixed(2)}
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ScrollArea className="h-48">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Type</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Time</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {punches.map(punch => (
+                        <TableRow key={punch.id}>
+                          <TableCell>
+                            <span className={`font-semibold ${punch.type === 'in' ? 'text-green-500' : 'text-red-500'}`}>
+                              {punch.type.toUpperCase()}
+                            </span>
+                          </TableCell>
+                          <TableCell>{format(punch.timestamp.toDate(), 'eee, MMM d')}</TableCell>
+                          <TableCell>{format(punch.timestamp.toDate(), 'h:mm:ss a')}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </ScrollArea>
+              </CardContent>
+            </Card>
+          ))}
+        </>
+      )}
     </div>
   );
 }
