@@ -44,16 +44,6 @@ export const navLinks = [
     ],
   },
   {
-    label: 'Business Solutions',
-    children: [
-      {
-        label: 'Trainer Software',
-        href: '/business-solutions/trainer-software',
-        description: 'AI-powered sales training and onboarding solutions.',
-      },
-    ],
-  },
-  {
     label: 'Marketing Products',
     children: [
       {
@@ -336,38 +326,4 @@ type JobPosting = {
   benefits?: string[];
 };
 
-export const jobPostings: JobPosting[] = [
-  {
-    title: 'Account Manager Intern (B2B Sales)',
-    type: 'Internship (Paid, 3 Months, Remote)',
-    description: [
-      'At Huxleigh, we’ve developed and created Tr/ai/ner. We’re transforming how businesses train their employees. Our AI-powered training solution gets teams up to speed quicker, better, and more streamlined than ever before. With customizable simulations, product knowledge modules, and seamless brand integration, we help companies onboard faster, reinforce culture, and drive sales performance.',
-      'We are looking for a motivated Account Manager Intern who wants to learn the ins and outs of B2B sales while actively contributing to client success. This is a hands-on role in a learn-and-work environment, offering mentorship, real-world projects, and a chance to make a direct impact.',
-    ],
-    responsibilities: [
-      'Prospecting & Outreach: Research and identify potential business clients in target industries; support outreach efforts via email, LinkedIn, and calls.',
-      'Client Engagement: Assist in handling inbound leads, product demos, and follow-ups with prospects under guidance of senior team members.',
-      'Pipeline Management: Help track leads, maintain appropriate records, and report on sales activities and progress.',
-      'Learning by Doing: Participate in sales simulations and objection handling exercises using our state-of-the-art training technology/program to develop real-world sales skills.',
-      'Support Sales Cycle: Shadow account managers on client calls, prepare proposals/quotes, and assist in managing trial accounts.',
-      'Reporting: Compile performance and learning reports on outreach, engagement, and sales growth.',
-    ],
-    qualifications: [
-      'Currently pursuing a degree in Business, Marketing, Communications, or related field (or equivalent experience/interest in sales).',
-      'Strong interpersonal and communication skills; comfortable speaking with business professionals.',
-      'Eagerness to learn B2B sales strategies and apply them in practice.',
-      'Organized, detail-oriented, and able to manage multiple tasks.',
-      'Self-motivated with a growth mindset; takes initiative in a fast-paced, startup-style environment.',
-      'Familiarity with Google Suite and/or Microsoft Suite',
-    ],
-    benefits: [
-      'Hands-on B2B sales experience with mentorship from experienced account managers.',
-      'Training and practice using AI-powered sales simulation tools.',
-      'Exposure to the full sales cycle, from lead generation to client onboarding.',
-      'Opportunity to contribute to real client relationships and impact business growth.',
-      'A foundation for future roles in sales, account management, or business development.',
-    ]
-  },
-];
-
-    
+export const jobPostings: JobPosting[] = [];

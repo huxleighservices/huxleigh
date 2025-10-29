@@ -1,14 +1,6 @@
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { jobPostings } from '@/lib/data';
-import { Check } from 'lucide-react';
-import { JobApplication } from './JobApplication';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function CareersPage() {
   return (
@@ -25,86 +17,14 @@ export default function CareersPage() {
       </section>
 
       <section className="pb-16 md:pb-24">
-        <div className="container max-w-4xl">
-          <div className="space-y-12">
-            {jobPostings.map((job) => (
-              <Card key={job.title} className="bg-card/50">
-                <CardHeader>
-                  <CardTitle className="text-3xl font-headline text-primary">
-                    {job.title}
-                  </CardTitle>
-                  {job.type && (
-                    <CardDescription>{job.type}</CardDescription>
-                  )}
-                </CardHeader>
-                <CardContent className="space-y-6 text-muted-foreground">
-                  {job.description.map((section, index) => (
-                    <div key={index}>
-                      <p>{section}</p>
-                    </div>
-                  ))}
-
-                  {job.responsibilities && (
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2">
-                        Responsibilities
-                      </h3>
-                      <ul className="space-y-2 list-disc pl-5">
-                        {job.responsibilities.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {job.compensation && (
-                     <div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2">
-                        Compensation & Training
-                      </h3>
-                      <p>{job.compensation}</p>
-                    </div>
-                  )}
-
-                  {job.qualifications && (
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground mb-2">
-                        Qualifications
-                      </h3>
-                      <ul className="space-y-2">
-                        {job.qualifications.map((item, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                             <Check className="h-5 w-5 mt-1 text-primary shrink-0"/>
-                             <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                   {job.benefits && (
-                    <div>
-                      <h3 className="font-semibold text-lg text-foreground mt-6 mb-2">
-                        Benefits
-                      </h3>
-                      <ul className="space-y-2">
-                        {job.benefits.map((item, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                             <Check className="h-5 w-5 mt-1 text-primary shrink-0"/>
-                             <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  <div className="pt-4">
-                    <JobApplication jobTitle={job.title} />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="container max-w-4xl text-center">
+            <h3 className="text-2xl font-headline text-primary">We're Not Currently Hiring</h3>
+            <p className="mt-4 text-lg text-muted-foreground">
+              While we don't have any open positions at the moment, we are always interested in connecting with talented individuals. If you are passionate about what we do, please feel free to send us an inquiry.
+            </p>
+            <Button asChild className="mt-8">
+                <Link href="/contact">Contact Us</Link>
+            </Button>
         </div>
       </section>
     </div>
