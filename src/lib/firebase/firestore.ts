@@ -135,6 +135,23 @@ export async function createHyperlink(creatorId: string, title: string, url: str
     }
 }
 
+export async function deleteHyperlink(hyperlinkId: string): Promise<void> {
+    if (!hyperlinkId) {
+        throw new Error('Hyperlink ID is required.');
+    }
+    const hyperlinkRef = doc(db, 'hyperlinks', hyperlinkId);
+    try {
+        await deleteDoc(hyperlinkRef);
+    } catch (serverError) {
+        const permissionError = new FirestorePermissionError({
+            path: hyperlinkRef.path,
+            operation: 'delete',
+        });
+        errorEmitter.emit('permission-error', permissionError);
+        throw permissionError;
+    }
+}
+
 // =================================================================
 // B2B Trainer (Tr/AI/ner) Functions
 // =================================================================

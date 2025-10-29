@@ -22,11 +22,21 @@ import {
   DialogDescription,
   DialogClose,
 } from '@/components/ui/dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { BookOpen, Plus, Loader2, KeyRound, Link as LinkIcon, ExternalLink } from 'lucide-react';
-import { createHyperlink } from '@/lib/firebase/firestore';
+import { BookOpen, Plus, Loader2, KeyRound, Link as LinkIcon, ExternalLink, Trash2 } from 'lucide-react';
+import { createHyperlink, deleteHyperlink } from '@/lib/firebase/firestore';
 import type { Hyperlink } from '@/types/auth';
 import { collection, query, orderBy } from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
@@ -78,9 +88,6 @@ function CreateHyperlinkDialog() {
         });
         resetAndClose();
       } catch (error) {
-        // The detailed error is now being thrown by the `createHyperlink` function
-        // and emitted globally. We can show a generic toast here, but the developer
-        // will see the detailed error in the Next.js overlay.
         toast({
           variant: 'destructive',
           title: 'Permission Denied',
@@ -184,6 +191,105 @@ function CreateHyperlinkDialog() {
   );
 }
 
+function DeleteHyperlinkDialog({ hyperlink, children }: { hyperlink: Hyperlink, children: React.ReactNode }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [passcode, setPasscode] = useState('');
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isPending, startTransition] = useTransition();
+    const { toast } = useToast();
+
+    const handlePasscodeSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (passcode === CREATE_PASSCODE) {
+            setIsAuthenticated(true);
+        } else {
+            toast({
+                variant: 'destructive',
+                title: 'Incorrect Passcode',
+                description: 'The passcode is incorrect. Deletion cancelled.',
+            });
+            resetAndClose();
+        }
+    };
+
+    const handleDelete = () => {
+        startTransition(async () => {
+            try {
+                await deleteHyperlink(hyperlink.id);
+                toast({
+                    variant: "destructive",
+                    title: 'Success!',
+                    description: `Hyperlink "${hyperlink.title}" has been deleted.`,
+                });
+                resetAndClose();
+            } catch (error) {
+                toast({
+                    variant: 'destructive',
+                    title: 'Permission Denied',
+                    description: 'You do not have permission to delete this hyperlink.',
+                });
+                resetAndClose();
+            }
+        });
+    }
+
+    const resetAndClose = () => {
+        setIsOpen(false);
+        setPasscode('');
+        setIsAuthenticated(false);
+    }
+
+    return (
+        <Dialog open={isOpen} onOpenChange={isOpen => !isOpen && resetAndClose()}>
+            <DialogTrigger asChild>{children}</DialogTrigger>
+            <DialogContent>
+                {!isAuthenticated ? (
+                    <>
+                        <DialogHeader>
+                            <DialogTitle>Authenticate to Delete</DialogTitle>
+                            <DialogDescription>
+                                To delete the hyperlink "{hyperlink.title}", please enter the passcode.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <form onSubmit={handlePasscodeSubmit} className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="delete-passcode">Passcode</Label>
+                                <div className="flex items-center gap-2">
+                                    <KeyRound className="h-5 w-5 text-muted-foreground" />
+                                    <Input id="delete-passcode" type="password" value={passcode} onChange={(e) => setPasscode(e.target.value)} required />
+                                </div>
+                            </div>
+                            <DialogFooter>
+                                <DialogClose asChild><Button variant="outline">Cancel</Button></DialogClose>
+                                <Button type="submit">Authenticate</Button>
+                            </DialogFooter>
+                        </form>
+                    </>
+                ) : (
+                    <AlertDialog open={isAuthenticated} onOpenChange={open => !open && resetAndClose()}>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    This action cannot be undone. This will permanently delete the hyperlink titled
+                                    <span className="font-bold text-foreground"> "{hyperlink.title}"</span>.
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel onClick={resetAndClose}>Cancel</AlertDialogCancel>
+                                <AlertDialogAction onClick={handleDelete} disabled={isPending} className="bg-destructive hover:bg-destructive/90">
+                                    {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                    Yes, delete it
+                                </AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
+                )}
+            </DialogContent>
+        </Dialog>
+    )
+}
+
 function HyperlinkList() {
     const firestore = useFirestore();
 
@@ -209,13 +315,21 @@ function HyperlinkList() {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hyperlinks.map(link => (
-                <Button key={link.id} asChild variant="outline" className="justify-start h-auto py-3">
-                    <Link href={link.url} target="_blank" rel="noopener noreferrer">
-                        <LinkIcon className="h-4 w-4 mr-3 shrink-0"/>
-                        <span className="flex-1 text-left truncate">{link.title}</span>
-                        <ExternalLink className="h-4 w-4 ml-2 text-muted-foreground"/>
-                    </Link>
-                </Button>
+                 <div key={link.id} className="group relative">
+                    <Button asChild variant="outline" className="w-full justify-start h-auto py-3 pr-10">
+                        <Link href={link.url} target="_blank" rel="noopener noreferrer">
+                            <LinkIcon className="h-4 w-4 mr-3 shrink-0"/>
+                            <span className="flex-1 text-left truncate">{link.title}</span>
+                            <ExternalLink className="h-4 w-4 ml-2 text-muted-foreground"/>
+                        </Link>
+                    </Button>
+                     <DeleteHyperlinkDialog hyperlink={link}>
+                         <Button variant="destructive" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity">
+                             <Trash2 className="h-4 w-4" />
+                             <span className="sr-only">Delete {link.title}</span>
+                         </Button>
+                     </DeleteHyperlinkDialog>
+                </div>
             ))}
         </div>
     );
