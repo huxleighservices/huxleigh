@@ -2,8 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-import { collection, addDoc, serverTimestamp, deleteDoc, doc } from 'firebase/firestore';
-import { initializeFirebase } from '@/firebase';
+import { getFirestore } from 'firebase-admin/firestore';
+import { initializeAdminApp } from '@/lib/firebase/admin';
 
 const hyperlinkSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -11,7 +11,9 @@ const hyperlinkSchema = z.object({
 });
 
 export async function createHyperlink(prevState: any, formData: FormData) {
-  const { firestore } = initializeFirebase();
+  await initializeAdminApp();
+  const firestore = getFirestore();
+
   const validatedFields = hyperlinkSchema.safeParse({
     name: formData.get('name'),
     url: formData.get('url'),
@@ -26,13 +28,13 @@ export async function createHyperlink(prevState: any, formData: FormData) {
   }
 
   const { name, url } = validatedFields.data;
-  const hyperlinksRef = collection(firestore, 'hyperlinks');
+  const hyperlinksRef = firestore.collection('hyperlinks');
 
   try {
-    await addDoc(hyperlinksRef, {
+    await hyperlinksRef.add({
       name,
       url,
-      createdAt: serverTimestamp(),
+      createdAt: new Date(),
     });
 
     revalidatePath('/company/staff/resources');
@@ -52,14 +54,16 @@ export async function createHyperlink(prevState: any, formData: FormData) {
 }
 
 export async function deleteHyperlink(id: string) {
-    const { firestore } = initializeFirebase();
+    await initializeAdminApp();
+    const firestore = getFirestore();
+
     if (!id) {
         throw new Error("No ID provided for deletion.");
     }
-    const hyperlinkRef = doc(firestore, 'hyperlinks', id);
+    const hyperlinkRef = firestore.collection('hyperlinks').doc(id);
 
     try {
-        await deleteDoc(hyperlinkRef);
+        await hyperlinkRef.delete();
         revalidatePath('/company/staff/resources');
     } catch (error: any) {
         console.error('Error deleting hyperlink:', error);
