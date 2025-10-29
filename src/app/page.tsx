@@ -77,7 +77,7 @@ export default function Home() {
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
               Powerful AI Software <br /> for Powerful People
             </h1>
-             <p className="mt-6 max-w-xl text-lg text-white/80">
+             <p className="mt-6 max-w-xl mx-auto text-lg text-white/80">
               Huxleigh is a premier software conglomerate specializing in
               AI-software services and white-label distribution.
             </p>
