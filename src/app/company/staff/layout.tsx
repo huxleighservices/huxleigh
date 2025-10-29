@@ -32,7 +32,9 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
     }
   }, [currentUser, loading, router, pathname]);
 
-  if (loading && !pathname.startsWith('/company/staff/signin')) {
+  const isSignInPage = pathname.startsWith('/company/staff/signin');
+
+  if (loading && !isSignInPage) {
     return (
       <div className="flex h-screen items-center justify-center">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -40,12 +42,16 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!currentUser && !pathname.startsWith('/company/staff/signin')) {
-    return null;
-  }
-
-  if (!currentUser) {
+  if (isSignInPage) {
+    if (currentUser) {
+      // This will be caught by the useEffect in the sign-in page to redirect.
+      return <div className="flex h-screen items-center justify-center"><Loader2 className="h-12 w-12 animate-spin text-primary" /></div>;
+    }
     return <>{children}</>;
+  }
+  
+  if (!currentUser) {
+    return null; // Let the useEffect handle redirection
   }
 
   const handleSignOut = async () => {
