@@ -3,16 +3,47 @@
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { getFirestore } from 'firebase-admin/firestore';
-import { initializeAdminApp } from '@/lib/firebase/admin';
+import { initializeApp, getApps, App, credential } from 'firebase-admin/app';
 
 const hyperlinkSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   url: z.string().url({ message: 'Please enter a valid URL.' }),
 });
 
+async function initializeAdminApp() {
+  if (getApps().length > 0) {
+    return getApps()[0];
+  }
+
+  const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+  if (!serviceAccountKey) {
+    return null;
+  }
+
+  try {
+    const parsedKey = JSON.parse(serviceAccountKey);
+    const app = initializeApp({
+      credential: credential.cert(parsedKey),
+    });
+    return app;
+  } catch (error) {
+    console.error('Failed to parse or initialize Firebase Admin SDK:', error);
+    return null;
+  }
+}
+
+
 export async function createHyperlink(prevState: any, formData: FormData) {
-  await initializeAdminApp();
-  const firestore = getFirestore();
+  const adminApp = await initializeAdminApp();
+  if (!adminApp) {
+    return {
+      success: false,
+      message: 'Server configuration error: Firebase Admin SDK could not be initialized. Please contact support.',
+      errors: null,
+    };
+  }
+  
+  const firestore = getFirestore(adminApp);
 
   const validatedFields = hyperlinkSchema.safeParse({
     name: formData.get('name'),
@@ -54,8 +85,11 @@ export async function createHyperlink(prevState: any, formData: FormData) {
 }
 
 export async function deleteHyperlink(id: string) {
-    await initializeAdminApp();
-    const firestore = getFirestore();
+    const adminApp = await initializeAdminApp();
+    if (!adminApp) {
+       throw new Error('Server configuration error: Firebase Admin SDK could not be initialized.');
+    }
+    const firestore = getFirestore(adminApp);
 
     if (!id) {
         throw new Error("No ID provided for deletion.");
