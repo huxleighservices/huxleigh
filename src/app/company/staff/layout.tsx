@@ -4,7 +4,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { Loader2, User, BookOpen, LogOut, Briefcase } from 'lucide-react';
+import { Loader2, User, BookOpen, LogOut, Briefcase, Clock } from 'lucide-react';
 import {
   SidebarProvider,
   Sidebar,
@@ -76,6 +76,18 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
                   <Link href="/company/staff">
                     <User />
                     <span>My Info</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+               <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === '/company/staff/timecard'}
+                  tooltip={{ children: 'Timecard' }}
+                >
+                  <Link href="/company/staff/timecard">
+                    <Clock />
+                    <span>Timecard</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
