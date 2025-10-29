@@ -68,22 +68,19 @@ export default function TrainerPage() {
              <div className="flex items-center gap-4 text-lg">
                 <Mail className="h-6 w-6 text-primary" />
                 <a
-                  href="mailto:service@huxleigh.com"
+                  href="mailto:sales@huxleigh.com"
                   className="hover:text-primary"
                 >
-                  service@huxleigh.com
+                  sales@huxleigh.com
                 </a>
               </div>
               <div className="flex items-center gap-4 text-lg">
                 <Phone className="h-6 w-6 text-primary" />
-                <a href="tel:412-339-0537" className="hover:text-primary">
-                  (412) 339-0537
+                <a href="tel:412-444-5041" className="hover:text-primary">
+                  412-444-5041
                 </a>
               </div>
           </div>
-           <Button asChild className="mt-12" size="lg">
-              <Link href="/contact">Get In Touch</Link>
-          </Button>
         </div>
       </section>
     </div>

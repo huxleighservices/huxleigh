@@ -46,10 +46,10 @@ export default function Footer() {
               <ul className="mt-4 space-y-2">
                 <li>
                   <a
-                    href="tel:412-339-0537"
+                    href="tel:412-339-0597"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    412-339-0537
+                    412-339-0597
                   </a>
                 </li>
                 <li>

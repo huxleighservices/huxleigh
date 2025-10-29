@@ -19,24 +19,47 @@ export default function ContactPage() {
       </section>
 
       <section className="pb-16 md:pb-24">
-        <div className="container max-w-2xl">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="space-y-8">
-              <h2 className="text-2xl font-bold font-headline text-primary">Contact Information</h2>
-              <div className="flex items-center gap-4 text-lg">
-                <Phone className="h-6 w-6 text-primary" />
-                <a href="tel:412-339-0597" className="hover:text-primary">
-                  412-339-0597
-                </a>
+        <div className="container grid md:grid-cols-2 gap-12 items-start max-w-4xl">
+           <div className="space-y-12">
+              <div>
+                <h2 className="text-2xl font-bold font-headline text-primary mb-4">Corporate Inquiries</h2>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4 text-lg">
+                    <Phone className="h-6 w-6 text-primary" />
+                    <a href="tel:412-339-0597" className="hover:text-primary">
+                      412-339-0597
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-4 text-lg">
+                    <Mail className="h-6 w-6 text-primary" />
+                    <a
+                      href="mailto:service@huxleigh.com"
+                      className="hover:text-primary"
+                    >
+                      service@huxleigh.com
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-4 text-lg">
-                <Mail className="h-6 w-6 text-primary" />
-                <a
-                  href="mailto:service@huxleigh.com"
-                  className="hover:text-primary"
-                >
-                  service@huxleigh.com
-                </a>
+               <div>
+                <h2 className="text-2xl font-bold font-headline text-primary mb-4">Sales & Product Inquiries</h2>
+                 <div className="space-y-4">
+                  <div className="flex items-center gap-4 text-lg">
+                    <Phone className="h-6 w-6 text-primary" />
+                    <a href="tel:412-444-5041" className="hover:text-primary">
+                      412-444-5041
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-4 text-lg">
+                    <Mail className="h-6 w-6 text-primary" />
+                    <a
+                      href="mailto:sales@huxleigh.com"
+                      className="hover:text-primary"
+                    >
+                      sales@huxleigh.com
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
             <div>
@@ -52,7 +75,6 @@ export default function ContactPage() {
               )}
               <ContactForm />
             </div>
-          </div>
         </div>
       </section>
     </div>
