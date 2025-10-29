@@ -1,9 +1,8 @@
 
 'use client';
 
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Rocket, ShieldCheck, DollarSign, Phone, Mail } from 'lucide-react';
+import { Rocket, ShieldCheck, DollarSign, ToyBrick, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 const features = [
@@ -21,6 +20,11 @@ const features = [
     icon: <DollarSign className="h-10 w-10 text-primary" />,
     title: 'Drive Sales Performance',
     description: 'Empower your team with consistent, high-quality training under a familiar brand, leading to increased confidence, better performance, and more closed deals.',
+  },
+  {
+    icon: <ToyBrick className="h-10 w-10 text-primary" />,
+    title: 'Easy to Use',
+    description: 'An intuitive interface and guided simulations mean less time training on the tool and more time training on what matters: selling.',
   },
 ];
 
@@ -40,7 +44,7 @@ export default function TrainerPage() {
 
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature) => (
               <div key={feature.title} className="flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-sm">
                 <div className="p-4 bg-primary/10 rounded-full mb-4">
@@ -51,20 +55,6 @@ export default function TrainerPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-       <section className="bg-card py-16 md:py-24">
-        <div className="container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-8">See It In Action</h2>
-             <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl">
-                <Image 
-                    src="https://storage.googleapis.com/firebase-studio-api-tests-prod.appspot.com/inputs%2Fclvg27o2p000213d2f9q6iaps%2FAl-Assisted%20Training%20Software.png"
-                    alt="Huxleigh Trainer Software Interface"
-                    fill
-                    className="object-contain"
-                />
-            </div>
         </div>
       </section>
 
