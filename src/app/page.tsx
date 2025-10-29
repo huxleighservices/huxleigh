@@ -88,17 +88,6 @@ export default function Home() {
             Huxleigh is a premier software conglomerate specializing in
             AI-software services and white-label distribution.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="font-bold animated-glow">
-              <Link href="/marketing-products/delture">Explore Marketing Products</Link>
-            </Button>
-            <Button asChild size="lg" variant="secondary" className="font-bold">
-              <Link href="/about">Our Vision</Link>
-            </Button>
-            <Button asChild size="lg" variant="secondary" className="font-bold">
-              <Link href="/contact">Contact Us</Link>
-            </Button>
-          </div>
         </div>
       </section>
 
