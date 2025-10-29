@@ -26,6 +26,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'i.redd.it',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
       }
     ],
   },
