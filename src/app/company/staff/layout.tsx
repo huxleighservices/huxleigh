@@ -38,30 +38,37 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
     }
   }, [currentUser, loading, router, pathname, isSignInPage]);
 
-  // ✅ CRITICAL FIX: Always render the same structure, just conditionally show content
-  const showContent = !loading && ((isSignInPage && !currentUser) || (!isSignInPage && currentUser));
   const showLoader = loading || (!isSignInPage && !currentUser) || (isSignInPage && currentUser);
 
   const handleSignOut = async () => {
     await signOut();
-    router.push('/company/staff/signin');
+    // The useEffect above will handle the redirect to signin
   };
 
-  // ✅ For sign-in page, always render children but show loader overlay if needed
   if (isSignInPage) {
+    if (showLoader) {
+      return (
+        <div className="flex h-screen items-center justify-center">
+          <Loader2 className="h-12 w-12 animate-spin text-primary" />
+        </div>
+      );
+    }
+    return <>{children}</>;
+  }
+  
+  if (showLoader) {
     return (
-      <>
-        {showLoader && (
-          <div className="flex h-screen items-center justify-center">
-            <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          </div>
-        )}
-        {!showLoader && children}
-      </>
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      </div>
     );
   }
 
-  // ✅ For protected pages, always render the sidebar structure
+  if (!currentUser) {
+    // This should technically be covered by the loader and redirect, but it's a good safeguard.
+    return null;
+  }
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen">
@@ -127,13 +134,7 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
         </Sidebar>
         <SidebarInset>
           <div className="p-4 md:p-8 h-screen overflow-hidden flex flex-col">
-            {showLoader ? (
-              <div className="flex h-full items-center justify-center">
-                <Loader2 className="h-12 w-12 animate-spin text-primary" />
-              </div>
-            ) : (
-              children
-            )}
+            {children}
           </div>
         </SidebarInset>
       </div>
