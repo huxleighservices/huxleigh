@@ -28,19 +28,3 @@ export interface UserProfile {
   updatedAt: Timestamp;
   role?: 'admin' | 'user';
 }
-
-export interface Hyperlink {
-  id: string;
-  title: string;
-  url: string;
-  createdAt: Timestamp;
-  creatorId: string;
-}
-
-export interface TimePunch {
-    id: string;
-    userId: string;
-    timestamp: Timestamp;
-    type: 'in' | 'out';
-    weekId: string; // e.g. "2024-W29"
-}

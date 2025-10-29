@@ -93,7 +93,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setLoading(true);
       await refreshUserData(user);
       setLoading(false);
     });
@@ -102,19 +101,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [refreshUserData]);
 
   const signInWithEmail = async (data: SignInFormData): Promise<User | AuthError> => {
-    setLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
       return userCredential.user;
     } catch (error) {
       return error as AuthError;
-    } finally {
-        setLoading(false);
     }
   };
 
   const signUpWithEmail = async (data: SignUpFormData): Promise<User | AuthError> => {
-    setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
@@ -135,20 +130,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return user;
     } catch (error) {
         return error as AuthError;
-    } finally {
-        setLoading(false);
     }
   };
 
   const signOut = async () => {
-    setLoading(true);
     try {
       await firebaseSignOut(auth);
       router.push('/'); 
     } catch (error) {
       console.error("Error signing out: ", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -157,7 +147,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!userToDelete) {
         return createAuthError("auth/no-current-user", "User not authenticated for deletion.");
     }
-    setLoading(true);
     try {
         const userId = userToDelete.uid;
         // Delete from Auth
@@ -172,8 +161,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             alert('This is a sensitive operation and requires you to have signed in recently. Please sign out, sign back in, and try again.');
         }
         return error as AuthError;
-    } finally {
-        setLoading(false);
     }
 };
 
@@ -182,7 +169,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!currentUser) {
       return createAuthError("auth/no-current-user", "User not authenticated for profile update.");
     }
-    setLoading(true);
     try {
       // Update Firebase Auth profile if data is provided
       if (Object.keys(authData).length > 0) {
@@ -201,8 +187,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.error("Error updating profile in AuthContext:", error);
       return error as AuthError;
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -217,7 +201,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     updateUserProfile,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = (): AuthContextType => {

@@ -236,68 +236,6 @@
         "summaryText",
         "dateCreated"
       ]
-    },
-     "Hyperlink": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Hyperlink",
-      "type": "object",
-      "description": "Represents a hyperlink resource created by staff.",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the hyperlink."
-        },
-        "title": {
-          "type": "string",
-          "description": "The display text for the hyperlink button."
-        },
-        "url": {
-          "type": "string",
-          "format": "uri",
-          "description": "The destination URL of the hyperlink."
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The timestamp when the hyperlink was created."
-        },
-        "creatorId": {
-          "type": "string",
-          "description": "The UID of the user who created the hyperlink."
-        }
-      },
-      "required": ["id", "title", "url", "createdAt", "creatorId"]
-    },
-    "TimePunch": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "TimePunch",
-      "type": "object",
-      "description": "Represents a single time punch event for a user.",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the time punch."
-        },
-        "userId": {
-          "type": "string",
-          "description": "The UID of the user this punch belongs to."
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The server timestamp of when the punch occurred."
-        },
-        "type": {
-          "type": "string",
-          "enum": ["in", "out"],
-          "description": "The type of punch, either 'in' or 'out'."
-        },
-        "weekId": {
-            "type": "string",
-            "description": "An identifier for the week the punch belongs to, e.g., '2024-W29'."
-        }
-      },
-      "required": ["id", "userId", "timestamp", "type", "weekId"]
     }
   },
   "auth": {
@@ -419,40 +357,8 @@
             }
           ]
         }
-      },
-      {
-        "path": "/hyperlinks/{hyperlinkId}",
-        "definition": {
-          "entityName": "Hyperlink",
-          "schema": { "$ref": "#/backend/entities/Hyperlink" },
-          "description": "Stores hyperlink resources created by staff.",
-           "params": [
-            {
-              "name": "hyperlinkId",
-              "description": "Unique identifier for the hyperlink."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/users/{userId}/timePunches/{timePunchId}",
-        "definition": {
-          "entityName": "TimePunch",
-          "schema": { "$ref": "#/backend/entities/TimePunch" },
-          "description": "Stores individual time punch events for a user.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The UID of the user."
-            },
-            {
-              "name": "timePunchId",
-              "description": "Unique identifier for the time punch."
-            }
-          ]
-        }
       }
     ],
-    "reasoning": "The Firestore structure is designed to support Huxleigh AI's website, including blog posts, client success stories, inquiries, and AI article summaries. The structure prioritizes authorization independence, clarity, and scalability. It uses path-based ownership for Authors and their BlogPosts, and segregates data based on access requirements. No collaborative data structures are used.\n\n*   **Blog Posts:** Blog posts are stored under `/blog_posts/{blogPostId}`. The `authorId` field links to the author. Given the Author 1:N BlogPost relationship, the system assumes that the blogs will need to be pulled in a way that can list blogs based on author. \n*   **Authors:** Authors are stored under `/authors/{authorId}`.\n*   **Tags:** Tags are stored in `/tags/{tagId}`. Blog posts link to tags via the `tagIds` array. Given the Tag N:N BlogPost relationship, denormalizing the blog id to the tag would give the query capability that may be requested. \n*   **Client Success Stories:** Stored under `/client_success_stories/{clientSuccessStoryId}`. The `clientId` field links to the Client.\n*   **Clients:** Stored under `/clients/{clientId}`.\n*   **Inquiries:** Stored under `/inquiries/{inquiryId}`. This allows for easy listing and management of inquiries.\n*   **AI Article Summaries:** Stored under `/ai_article_summaries/{aiArticleSummaryId}`. These summaries are referenced within blog posts. There are no permissions associated with this entity.\n*   **Hyperlinks:** Stores hyperlink resources in `/hyperlinks/{hyperlinkId}`. This collection is for staff-created links.\n* **Time Punches:** Time punches are stored in a subcollection under each user's document at `/users/{userId}/timePunches/{timePunchId}`. This ensures data is user-scoped and queries for a specific user's punches are efficient and secure.\n\n**Authorization Independence:** No `get()` calls are needed for authorization rules because there are no role-based or team-based schemas used. The only schema that has a 1:N relationship is Author and BlogPost, but the BlogPosts aren't private. \n\n**QAPs Support:** Secure `list` operations are supported by segregating data based on access needs. Public data (blog posts, success stories) is stored in root-level collections. Private data (inquiries) could be secured with appropriate rules if needed, although they are presumed to be viewable by admins."
+    "reasoning": "The Firestore structure is designed to support Huxleigh AI's website, including blog posts, client success stories, inquiries, and AI article summaries. The structure prioritizes authorization independence, clarity, and scalability. It uses path-based ownership for Authors and their BlogPosts, and segregates data based on access requirements. No collaborative data structures are used.\n\n*   **Blog Posts:** Blog posts are stored under `/blog_posts/{blogPostId}`. The `authorId` field links to the author. Given the Author 1:N BlogPost relationship, the system assumes that the blogs will need to be pulled in a way that can list blogs based on author. \n*   **Authors:** Authors are stored under `/authors/{authorId}`.\n*   **Tags:** Tags are stored in `/tags/{tagId}`. Blog posts link to tags via the `tagIds` array. Given the Tag N:N BlogPost relationship, denormalizing the blog id to the tag would give the query capability that may be requested. \n*   **Client Success Stories:** Stored under `/client_success_stories/{clientSuccessStoryId}`. The `clientId` field links to the Client.\n*   **Clients:** Stored under `/clients/{clientId}`.\n*   **Inquiries:** Stored under `/inquiries/{inquiryId}`. This allows for easy listing and management of inquiries.\n*   **AI Article Summaries:** Stored under `/ai_article_summaries/{aiArticleSummaryId}`. These summaries are referenced within blog posts. There are no permissions associated with this entity.\n\n**Authorization Independence:** No `get()` calls are needed for authorization rules because there are no role-based or team-based schemas used. The only schema that has a 1:N relationship is Author and BlogPost, but the BlogPosts aren't private. \n\n**QAPs Support:** Secure `list` operations are supported by segregating data based on access needs. Public data (blog posts, success stories) is stored in root-level collections. Private data (inquiries) could be secured with appropriate rules if needed, although they are presumed to be viewable by admins."
   }
 }
