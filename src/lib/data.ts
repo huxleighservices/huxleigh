@@ -44,7 +44,7 @@ export const navLinks = [
     ],
   },
   {
-    label: 'Marketing Products',
+    label: 'Software',
     children: [
       {
         label: 'Delture',
@@ -55,6 +55,11 @@ export const navLinks = [
         label: 'Stratavue',
         href: '/marketing-products/stratavue',
         description: 'The premiere AI-assisted music marketing suite.',
+      },
+       {
+        label: 'Trainer',
+        href: '/trainer',
+        description: 'AI-assisted sales training and onboarding software.',
       },
     ],
   },

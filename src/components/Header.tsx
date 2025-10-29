@@ -150,7 +150,7 @@ export default function Header() {
                   <Accordion
                     type="multiple"
                     className="w-full"
-                    defaultValue={['Company']}
+                    defaultValue={['Company', 'Software']}
                   >
                     {navLinks.map((link) =>
                       link.children ? (
@@ -208,5 +208,3 @@ export default function Header() {
     </header>
   );
 }
-
-    
