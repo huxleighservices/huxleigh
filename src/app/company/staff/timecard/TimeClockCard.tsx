@@ -1,6 +1,6 @@
 
 'use client';
-import { useState, useTransition } from 'react';
+import { useTransition } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { createTimePunch } from '@/lib/firebase/firestore';
@@ -24,9 +24,18 @@ export function TimeClockCard({ lastPunch }: TimeClockCardProps) {
   const { currentUser } = useAuth();
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
+  
+  const isPunchedIn = lastPunch?.type === 'in';
 
   const handlePunch = (type: 'in' | 'out') => {
-    if (!currentUser) return;
+    if (!currentUser) {
+       toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: 'You must be signed in to punch the clock.',
+      });
+      return;
+    }
     startTransition(async () => {
       try {
         await createTimePunch(currentUser.uid, type);
@@ -44,7 +53,6 @@ export function TimeClockCard({ lastPunch }: TimeClockCardProps) {
     });
   };
 
-  const isPunchedIn = lastPunch?.type === 'in';
 
   return (
     <Card>
