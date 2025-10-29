@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { blogPosts } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { summarizeTrendingTechArticle } from '@/ai/flows/summarize-trending-tech-articles';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Bot } from 'lucide-react';
 
@@ -10,34 +9,6 @@ export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
-}
-
-async function AISummary({ title, content }: { title: string; content: string }) {
-  try {
-    const { summary, commentary } = await summarizeTrendingTechArticle({
-      articleTitle: title,
-      articleContent: content,
-    });
-    return (
-      <Alert className="bg-card my-8">
-        <Bot className="h-4 w-4" />
-        <AlertTitle className="font-headline text-lg text-primary">AI-Powered Insights</AlertTitle>
-        <AlertDescription className="mt-4 space-y-4">
-          <div>
-            <h3 className="font-semibold mb-1">Summary</h3>
-            <p className="text-muted-foreground">{summary}</p>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-1">Commentary</h3>
-            <p className="text-muted-foreground">{commentary}</p>
-          </div>
-        </AlertDescription>
-      </Alert>
-    );
-  } catch (error) {
-    console.error("AI summary failed:", error);
-    return null;
-  }
 }
 
 export default async function BlogPostPage({
@@ -83,7 +54,6 @@ export default async function BlogPostPage({
 
       <div className="container py-12">
         <div className="mx-auto max-w-3xl">
-          <AISummary title={post.title} content={post.content} />
           <div className="prose prose-invert prose-lg max-w-none prose-headings:font-headline prose-a:text-primary hover:prose-a:text-primary/80 prose-strong:text-foreground">
             <p>{post.content}</p>
           </div>
