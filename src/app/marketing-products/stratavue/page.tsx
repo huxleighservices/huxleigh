@@ -100,7 +100,7 @@ export default function StratavuePage() {
   );
 
   return (
-    <div className="bg-black -my-16 flex flex-col">
+    <div className="bg-black flex flex-col">
       <section className="flex flex-col items-center justify-center text-center overflow-hidden pt-16 pb-8">
         <div className="relative z-10 p-8 rounded-lg flex flex-col items-center">
           <Image
@@ -264,7 +264,3 @@ export default function StratavuePage() {
     </div>
   );
 }
-
-
-
-
