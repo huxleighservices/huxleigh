@@ -26,9 +26,14 @@ const TrainerFlowInputSchema = z.object({
 });
 export type TrainerFlowInput = z.infer<typeof TrainerFlowInputSchema>;
 
+// This internal schema includes the isFinalTurn flag for the prompt.
+const TrainerFlowInternalInputSchema = TrainerFlowInputSchema.extend({
+    isFinalTurn: z.boolean(),
+});
+
 const TrainerFlowOutputSchema = z.object({
-  aiResponse: z.string().describe('The AI\'s response in the conversation.'),
-  feedback: TrainingFeedbackSchema.optional().describe('Feedback on the user\'s performance if the conversation has concluded.'),
+  aiResponse: z.string().optional().describe('The AI\'s response in the conversation. This should be empty in the final turn.'),
+  feedback: TrainingFeedbackSchema.optional().describe('Feedback on the user\'s performance. This should ONLY be populated in the final turn.'),
 });
 export type TrainerFlowOutput = z.infer<typeof TrainerFlowOutputSchema>;
 
@@ -42,23 +47,21 @@ const prompts = {
     'cold-call': `You are an AI sales trainer. The user is practicing a cold call. You are a busy executive who was not expecting their call. Be slightly annoyed but willing to listen for a few moments if they are compelling. The user is selling AI training software.`
 };
 
-const trainerFlow = ai.defineFlow(
-  {
-    name: 'trainerFlow',
-    inputSchema: TrainerFlowInputSchema,
-    outputSchema: TrainerFlowOutputSchema,
-  },
-  async (input) => {
-    const { phase, difficulty, conversationHistory, userMessage } = input;
-    
-    // Check if this is the final turn
-    const isFinalTurn = conversationHistory.filter(m => m.role === 'user').length >= USER_TURN_LIMIT;
-
-    const systemPrompt = `
+const trainerPrompt = ai.definePrompt({
+    name: 'trainerPrompt',
+    input: { schema: TrainerFlowInternalInputSchema },
+    output: { schema: TrainerFlowOutputSchema },
+    model: 'googleai/gemini-2.5-flash',
+    prompt: `
       You are an AI sales trainer simulating a B2B sales conversation.
-      PHASE: ${prompts[phase]}
-      DIFFICULTY: ${difficulty}. For Beginner, be more forgiving. For Advanced, be very challenging.
-      CONVERSATION HISTORY is provided below.
+      PHASE: ${"{{{phase}}}"}
+      DIFFICULTY: {{{difficulty}}}. For Beginner, be more forgiving. For Advanced, be very challenging.
+      
+      CONVERSATION HISTORY:
+      {{#each conversationHistory}}
+      - {{role}}: {{content}}
+      {{/each}}
+      - user: {{{userMessage}}}
 
       {{#if isFinalTurn}}
       This is the final turn. The simulation is over. Your task is to provide feedback.
@@ -75,48 +78,43 @@ const trainerFlow = ai.defineFlow(
       - Your response should be a single, natural-sounding reply.
       - DO NOT provide feedback yet. Only generate the 'aiResponse' field.
       {{/if}}
-    `;
+    `,
+});
 
-    const model = ai.getModel('googleai/gemini-2.5-flash');
+const trainerFlow = ai.defineFlow(
+  {
+    name: 'trainerFlow',
+    inputSchema: TrainerFlowInputSchema,
+    outputSchema: TrainerFlowOutputSchema,
+  },
+  async (input) => {
+    const { conversationHistory, userMessage } = input;
+    
+    const isFinalTurn = conversationHistory.filter(m => m.role === 'user').length >= USER_TURN_LIMIT - 1;
 
-    const result = await model.generate({
-        prompt: `
-            SYSTEM PROMPT: ${systemPrompt}
-            
-            CONVERSATION HISTORY:
-            ${conversationHistory.map(m => `${m.role}: ${m.content}`).join('\n')}
-            user: ${userMessage}
-        `,
-        custom: { isFinalTurn },
-        output: {
-            schema: z.object({
-                aiResponse: isFinalTurn ? z.string().optional().describe("This should be empty in the final turn.") : z.string().describe("The AI's conversational response."),
-                feedback: isFinalTurn ? TrainingFeedbackSchema : TrainingFeedbackSchema.optional().describe("This should only be populated in the final turn."),
-            }),
-        }
+    const fullConversationHistory = [...conversationHistory, { role: 'user', content: userMessage }];
+
+    const { output } = await trainerPrompt({
+        ...input,
+        isFinalTurn,
     });
-
-    const output = result.output;
     
     if (!output) {
         throw new Error('Failed to generate AI response');
     }
     
     if (isFinalTurn && !output.feedback) {
-        // AI failed to provide feedback. Let's try to generate it again, forcefully.
-        const feedbackPrompt = `The sales simulation is over. Based on the following conversation, provide a performance review. Conversation: ${[...conversationHistory, {role: 'user', content: userMessage}].map(m => `${m.role}: ${m.content}`).join('\n')}`;
-
-        const feedbackResult = await model.generate({
-          prompt: feedbackPrompt,
-          output: { schema: TrainingFeedbackSchema }
-        });
-        if (!feedbackResult.output) throw new Error('Failed to generate feedback on the final turn.');
-        return { aiResponse: '', feedback: feedbackResult.output };
+        // Fallback in case the model fails to generate feedback in the final turn.
+        return { aiResponse: '', feedback: {
+            overallAssessment: "The AI was unable to generate feedback for this session.",
+            positivePoints: [],
+            areasForImprovement: ["Please try the simulation again."],
+        }};
     }
 
     if (!isFinalTurn && !output.aiResponse) {
-        // AI failed to provide a response.
-        return { aiResponse: "I'm not sure how to respond to that. Could you try rephrasing?", feedback: undefined };
+        // Fallback for conversational turns.
+        return { aiResponse: "I'm not sure how to respond to that. Could you try rephrasing?" };
     }
     
     return output;

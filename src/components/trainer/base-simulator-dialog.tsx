@@ -53,10 +53,13 @@ export function BaseSimulatorDialog({ open, onOpenChange, phase, title, descript
           userMessage: userInput
         });
         
+        const fullConversationForSaving = [...updatedConversation];
+        
         // Handle conversational turn
         if (result.aiResponse) {
           const aiMessage: TrainingMessage = { role: 'ai', content: result.aiResponse };
           setConversation(prev => [...prev, aiMessage]);
+          fullConversationForSaving.push(aiMessage);
         }
 
         // Handle final turn with feedback
@@ -71,7 +74,7 @@ export function BaseSimulatorDialog({ open, onOpenChange, phase, title, descript
             const trainingResult: Omit<TrainingResult, 'id' | 'completedAt'> = {
                 phase,
                 difficulty,
-                conversation: updatedConversation,
+                conversation: fullConversationForSaving, // Use the full conversation including the AI's final response if any
                 feedback: {
                     overallAssessment: result.feedback.overallAssessment,
                     positivePoints: result.feedback.positivePoints,
