@@ -267,49 +267,6 @@
         }
       },
       "required": ["id", "title", "url", "createdAt", "creatorId"]
-    },
-    "TrainingSession": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "title": "TrainingSession",
-        "type": "object",
-        "description": "Represents a B2B training session for a staff member.",
-        "properties": {
-            "id": { "type": "string" },
-            "userId": { "type": "string", "description": "The UID of the staff member." },
-            "name": { "type": "string", "description": "The name of the training session." },
-            "createdAt": { "type": "string", "format": "date-time" },
-            "results": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": { "type": "string" },
-                        "phase": { "type": "string" },
-                        "difficulty": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced"] },
-                        "completedAt": { "type": "string", "format": "date-time" },
-                        "conversation": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "role": { "type": "string", "enum": ["user", "ai"] },
-                                    "content": { "type": "string" }
-                                }
-                            }
-                        },
-                        "feedback": {
-                            "type": "object",
-                            "properties": {
-                                "overallAssessment": { "type": "string" },
-                                "positivePoints": { "type": "array", "items": { "type": "string" } },
-                                "areasForImprovement": { "type": "array", "items": { "type": "string" } }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "required": ["id", "userId", "name", "createdAt"]
     }
   },
   "auth": {
@@ -445,20 +402,10 @@
             }
           ]
         }
-      },
-      {
-        "path": "/users/{userId}/trainingSessions/{sessionId}",
-        "definition": {
-            "entityName": "TrainingSession",
-            "schema": { "$ref": "#/backend/entities/TrainingSession" },
-            "description": "Stores training sessions for a specific user.",
-            "params": [
-                { "name": "userId", "description": "The user's unique ID." },
-                { "name": "sessionId", "description": "The unique ID for the training session." }
-            ]
-        }
       }
     ],
-    "reasoning": "The Firestore structure is designed to support Huxleigh AI's website, including blog posts, client success stories, inquiries, and AI article summaries. The structure prioritizes authorization independence, clarity, and scalability. It uses path-based ownership for Authors and their BlogPosts, and segregates data based on access requirements. No collaborative data structures are used.\n\n*   **Blog Posts:** Blog posts are stored under `/blog_posts/{blogPostId}`. The `authorId` field links to the author. Given the Author 1:N BlogPost relationship, the system assumes that the blogs will need to be pulled in a way that can list blogs based on author. \n*   **Authors:** Authors are stored under `/authors/{authorId}`.\n*   **Tags:** Tags are stored in `/tags/{tagId}`. Blog posts link to tags via the `tagIds` array. Given the Tag N:N BlogPost relationship, denormalizing the blog id to the tag would give the query capability that may be requested. \n*   **Client Success Stories:** Stored under `/client_success_stories/{clientSuccessStoryId}`. The `clientId` field links to the Client.\n*   **Clients:** Stored under `/clients/{clientId}`.\n*   **Inquiries:** Stored under `/inquiries/{inquiryId}`. This allows for easy listing and management of inquiries.\n*   **AI Article Summaries:** Stored under `/ai_article_summaries/{aiArticleSummaryId}`. These summaries are referenced within blog posts. There are no permissions associated with this entity.\n*   **Hyperlinks:** Stores hyperlink resources in `/hyperlinks/{hyperlinkId}`. This collection is for staff-created links.\n*   **Training Sessions:** Stores user-specific training data under `/users/{userId}/trainingSessions/{sessionId}`. This nested structure ensures that a user can only access their own training data, simplifying security rules.\n\n**Authorization Independence:** No `get()` calls are needed for authorization rules because there are no role-based or team-based schemas used. The only schema that has a 1:N relationship is Author and BlogPost, but the BlogPosts aren't private. \n\n**QAPs Support:** Secure `list` operations are supported by segregating data based on access needs. Public data (blog posts, success stories) is stored in root-level collections. Private data (inquiries) could be secured with appropriate rules if needed, although they are presumed to be viewable by admins."
+    "reasoning": "The Firestore structure is designed to support Huxleigh AI's website, including blog posts, client success stories, inquiries, and AI article summaries. The structure prioritizes authorization independence, clarity, and scalability. It uses path-based ownership for Authors and their BlogPosts, and segregates data based on access requirements. No collaborative data structures are used.\n\n*   **Blog Posts:** Blog posts are stored under `/blog_posts/{blogPostId}`. The `authorId` field links to the author. Given the Author 1:N BlogPost relationship, the system assumes that the blogs will need to be pulled in a way that can list blogs based on author. \n*   **Authors:** Authors are stored under `/authors/{authorId}`.\n*   **Tags:** Tags are stored in `/tags/{tagId}`. Blog posts link to tags via the `tagIds` array. Given the Tag N:N BlogPost relationship, denormalizing the blog id to the tag would give the query capability that may be requested. \n*   **Client Success Stories:** Stored under `/client_success_stories/{clientSuccessStoryId}`. The `clientId` field links to the Client.\n*   **Clients:** Stored under `/clients/{clientId}`.\n*   **Inquiries:** Stored under `/inquiries/{inquiryId}`. This allows for easy listing and management of inquiries.\n*   **AI Article Summaries:** Stored under `/ai_article_summaries/{aiArticleSummaryId}`. These summaries are referenced within blog posts. There are no permissions associated with this entity.\n*   **Hyperlinks:** Stores hyperlink resources in `/hyperlinks/{hyperlinkId}`. This collection is for staff-created links.\n\n**Authorization Independence:** No `get()` calls are needed for authorization rules because there are no role-based or team-based schemas used. The only schema that has a 1:N relationship is Author and BlogPost, but the BlogPosts aren't private. \n\n**QAPs Support:** Secure `list` operations are supported by segregating data based on access needs. Public data (blog posts, success stories) is stored in root-level collections. Private data (inquiries) could be secured with appropriate rules if needed, although they are presumed to be viewable by admins."
   }
 }
+
+    

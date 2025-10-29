@@ -37,31 +37,4 @@ export interface Hyperlink {
   creatorId: string;
 }
 
-// B2B Trainer Types
-export interface TrainingMessage {
-    role: 'user' | 'ai';
-    content: string;
-}
-
-export interface TrainingFeedback {
-    overallAssessment: string;
-    positivePoints: string[];
-    areasForImprovement: string[];
-}
-
-export interface TrainingResult {
-    id: string;
-    phase: string;
-    difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
-    conversation: TrainingMessage[];
-    feedback?: TrainingFeedback;
-    completedAt: Timestamp;
-}
-
-export interface TrainingSession {
-    id: string;
-    userId: string;
-    name: string;
-    createdAt: Timestamp;
-    results: TrainingResult[];
-}
+    
