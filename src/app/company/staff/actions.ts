@@ -3,8 +3,31 @@
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { getAuth } from 'firebase-admin/auth';
-import { initializeAdminApp } from '@/lib/firebase/admin';
+import { initializeApp, getApps, App, credential } from 'firebase-admin/app';
 import { updateUserProfile as updateDbUserProfile } from '@/lib/firebase/firestore';
+
+async function initializeAdminApp(): Promise<App | null> {
+  if (getApps().length > 0) {
+    return getApps()[0];
+  }
+
+  const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+  if (!serviceAccountKey) {
+    console.error('Firebase service account key is not available.');
+    return null;
+  }
+
+  try {
+    const parsedKey = JSON.parse(serviceAccountKey);
+    const app = initializeApp({
+      credential: credential.cert(parsedKey),
+    });
+    return app;
+  } catch (error) {
+    console.error('Failed to parse or initialize Firebase Admin SDK:', error);
+    return null;
+  }
+}
 
 const updateProfileSchema = z.object({
   displayName: z
@@ -14,8 +37,15 @@ const updateProfileSchema = z.object({
 });
 
 export async function updateUserProfile(prevState: any, formData: FormData) {
-  await initializeAdminApp();
-  const auth = getAuth();
+  const adminApp = await initializeAdminApp();
+  if (!adminApp) {
+    return {
+      success: false,
+      message: 'Server configuration error. Please contact support.',
+      errors: {},
+    };
+  }
+  const auth = getAuth(adminApp);
 
   const validatedFields = updateProfileSchema.safeParse({
     displayName: formData.get('displayName'),
