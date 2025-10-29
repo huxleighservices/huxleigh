@@ -1,10 +1,9 @@
-
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { Loader2, User, BookOpen, LogOut, Clock } from 'lucide-react';
+import { Loader2, User, BookOpen, LogOut } from 'lucide-react';
 import {
   SidebarProvider,
   Sidebar,
@@ -41,8 +40,10 @@ export default function StaffLayout({
       }
     }
   }, [currentUser, loading, router, pathname, isSignInPage]);
+  
+  const showLoader = loading || (!currentUser && !isSignInPage);
 
-  if (loading) {
+  if (showLoader) {
     return (
       <div className="flex h-screen items-center justify-center">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -50,12 +51,9 @@ export default function StaffLayout({
     );
   }
 
+
   if (isSignInPage) {
     return <FirebaseClientProvider>{children}</FirebaseClientProvider>;
-  }
-
-  if (!currentUser) {
-    return null;
   }
 
   const handleSignOut = async () => {
@@ -90,7 +88,18 @@ export default function StaffLayout({
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-                {/* The new Timecard link will go here */}
+                 <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname.startsWith('/company/staff/resources')}
+                    tooltip={{ children: 'Resources' }}
+                  >
+                    <Link href="/company/staff/resources">
+                      <BookOpen />
+                      <span>Resources</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
               </SidebarMenu>
             </SidebarContent>
             <SidebarFooter>

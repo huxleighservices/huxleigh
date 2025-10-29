@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Ban } from 'lucide-react';
