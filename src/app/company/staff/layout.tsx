@@ -26,13 +26,17 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (!loading && !currentUser && !pathname.startsWith('/company/staff/signin')) {
-      router.replace('/company/staff/signin');
-    }
-  }, [currentUser, loading, router, pathname]);
-
   const isSignInPage = pathname.startsWith('/company/staff/signin');
+
+  useEffect(() => {
+    if (!loading) {
+      if (currentUser && isSignInPage) {
+        router.replace('/company/staff');
+      } else if (!currentUser && !isSignInPage) {
+        router.replace('/company/staff/signin');
+      }
+    }
+  }, [currentUser, loading, router, pathname, isSignInPage]);
 
   if (loading && !isSignInPage) {
     return (
@@ -43,15 +47,16 @@ function StaffLayoutContent({ children }: { children: React.ReactNode }) {
   }
 
   if (isSignInPage) {
-    if (currentUser) {
-      // This will be caught by the useEffect in the sign-in page to redirect.
-      return <div className="flex h-screen items-center justify-center"><Loader2 className="h-12 w-12 animate-spin text-primary" /></div>;
-    }
+     if (currentUser) {
+       // While redirecting, show a loader
+       return <div className="flex h-screen items-center justify-center"><Loader2 className="h-12 w-12 animate-spin text-primary" /></div>;
+     }
     return <>{children}</>;
   }
   
   if (!currentUser) {
-    return null; // Let the useEffect handle redirection
+    // While redirecting to sign-in, show a loader
+    return <div className="flex h-screen items-center justify-center"><Loader2 className="h-12 w-12 animate-spin text-primary" /></div>;
   }
 
   const handleSignOut = async () => {

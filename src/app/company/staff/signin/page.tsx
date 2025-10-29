@@ -1,3 +1,4 @@
+
 'use client';
 import { SignInForm } from './SignInForm';
 import { useAuth } from '@/contexts/AuthContext';
@@ -11,11 +12,13 @@ export default function StaffSignInPage() {
   const router = useRouter();
 
   useEffect(() => {
+    // Redirect if user is already logged in
     if (!loading && currentUser) {
       router.replace('/company/staff');
     }
   }, [currentUser, loading, router]);
 
+  // Show a loader while checking auth state or if redirecting
   if (loading || currentUser) {
     return (
       <div className="flex h-screen w-full items-center justify-center">
@@ -24,6 +27,7 @@ export default function StaffSignInPage() {
     );
   }
 
+  // Render the sign-in form if not loading and no user
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="mx-auto w-full max-w-md p-4 md:p-0">
