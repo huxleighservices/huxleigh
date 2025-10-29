@@ -43,7 +43,7 @@ import { collection, query, orderBy } from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
 import Link from 'next/link';
 
-const CREATE_PASSCODE = 'aldous';
+const CREATE_PASSCODE = 'crome';
 
 function CreateHyperlinkDialog() {
   const { userProfile } = useAuth();
