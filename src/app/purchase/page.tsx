@@ -1,3 +1,4 @@
+
 import { CreditCard } from 'lucide-react';
 
 export default function PurchasePage() {

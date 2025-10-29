@@ -92,9 +92,6 @@ export default function Home() {
             <Button asChild size="lg" className="font-bold animated-glow">
               <Link href="/marketing-products/delture">Explore Marketing Products</Link>
             </Button>
-            <Button asChild size="lg" className="font-bold animated-glow">
-              <Link href="/business-solutions/trainer-software">Explore our B2B Solutions</Link>
-            </Button>
             <Button asChild size="lg" variant="secondary" className="font-bold">
               <Link href="/about">Our Vision</Link>
             </Button>

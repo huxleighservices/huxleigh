@@ -58,6 +58,21 @@ export const navLinks = [
       },
     ],
   },
+   {
+    label: 'Resources',
+    children: [
+      {
+        label: 'Blog',
+        href: '/blog',
+        description: 'Insights, analysis, and news from the AI forefront.',
+      },
+      {
+        label: 'Success Stories',
+        href: '/success-stories',
+        description: 'How our clients leverage Huxleigh to achieve results.',
+      },
+    ],
+  },
   { href: '/contact', label: 'Contact' },
 ];
 
