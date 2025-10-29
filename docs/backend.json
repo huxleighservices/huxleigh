@@ -1,4 +1,3 @@
-
 {
   "entities": {
     "BlogPost": {
@@ -236,6 +235,38 @@
         "summaryText",
         "dateCreated"
       ]
+    },
+    "Hyperlink": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Hyperlink",
+      "type": "object",
+      "description": "Represents a hyperlink resource for staff members.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the hyperlink."
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the hyperlink."
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL of the hyperlink.",
+          "format": "uri"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Date and time when the hyperlink was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "url",
+        "createdAt"
+      ]
     }
   },
   "auth": {
@@ -357,8 +388,24 @@
             }
           ]
         }
+      },
+      {
+        "path": "/hyperlinks/{hyperlinkId}",
+        "definition": {
+          "entityName": "Hyperlink",
+          "schema": {
+            "$ref": "#/backend/entities/Hyperlink"
+          },
+          "description": "Represents a hyperlink resource for staff members.",
+          "params": [
+            {
+              "name": "hyperlinkId",
+              "description": "Unique identifier for the hyperlink."
+            }
+          ]
+        }
       }
     ],
-    "reasoning": "The Firestore structure is designed to support Huxleigh AI's website, including blog posts, client success stories, inquiries, and AI article summaries. The structure prioritizes authorization independence, clarity, and scalability. It uses path-based ownership for Authors and their BlogPosts, and segregates data based on access requirements. No collaborative data structures are used.\n\n*   **Blog Posts:** Blog posts are stored under `/blog_posts/{blogPostId}`. The `authorId` field links to the author. Given the Author 1:N BlogPost relationship, the system assumes that the blogs will need to be pulled in a way that can list blogs based on author. \n*   **Authors:** Authors are stored under `/authors/{authorId}`.\n*   **Tags:** Tags are stored in `/tags/{tagId}`. Blog posts link to tags via the `tagIds` array. Given the Tag N:N BlogPost relationship, denormalizing the blog id to the tag would give the query capability that may be requested. \n*   **Client Success Stories:** Stored under `/client_success_stories/{clientSuccessStoryId}`. The `clientId` field links to the Client.\n*   **Clients:** Stored under `/clients/{clientId}`.\n*   **Inquiries:** Stored under `/inquiries/{inquiryId}`. This allows for easy listing and management of inquiries.\n*   **AI Article Summaries:** Stored under `/ai_article_summaries/{aiArticleSummaryId}`. These summaries are referenced within blog posts. There are no permissions associated with this entity.\n\n**Authorization Independence:** No `get()` calls are needed for authorization rules because there are no role-based or team-based schemas used. The only schema that has a 1:N relationship is Author and BlogPost, but the BlogPosts aren't private. \n\n**QAPs Support:** Secure `list` operations are supported by segregating data based on access needs. Public data (blog posts, success stories) is stored in root-level collections. Private data (inquiries) could be secured with appropriate rules if needed, although they are presumed to be viewable by admins."
+    "reasoning": "The Firestore structure is designed to support Huxleigh AI's website, including blog posts, client success stories, inquiries, and AI article summaries. The structure prioritizes authorization independence, clarity, and scalability. It uses path-based ownership for Authors and their BlogPosts, and segregates data based on access requirements. No collaborative data structures are used.\n\n*   **Blog Posts:** Blog posts are stored under `/blog_posts/{blogPostId}`. The `authorId` field links to the author. Given the Author 1:N BlogPost relationship, the system assumes that the blogs will need to be pulled in a way that can list blogs based on author. \n*   **Authors:** Authors are stored under `/authors/{authorId}`.\n*   **Tags:** Tags are stored in `/tags/{tagId}`. Blog posts link to tags via the `tagIds` array. Given the Tag N:N BlogPost relationship, denormalizing the blog id to the tag would give the query capability that may be requested. \n*   **Client Success Stories:** Stored under `/client_success_stories/{clientSuccessStoryId}`. The `clientId` field links to the Client.\n*   **Clients:** Stored under `/clients/{clientId}`.\n*   **Inquiries:** Stored under `/inquiries/{inquiryId}`. This allows for easy listing and management of inquiries.\n*   **AI Article Summaries:** Stored under `/ai_article_summaries/{aiArticleSummaryId}`. These summaries are referenced within blog posts. There are no permissions associated with this entity.\n*   **Hyperlinks:** Stored under `/hyperlinks/{hyperlinkId}`. This is a shared collection for all staff members to access important resources.\n\n**Authorization Independence:** No `get()` calls are needed for authorization rules because there are no role-based or team-based schemas used. The only schema that has a 1:N relationship is Author and BlogPost, but the BlogPosts aren't private. \n\n**QAPs Support:** Secure `list` operations are supported by segregating data based on access needs. Public data (blog posts, success stories) is stored in root-level collections. Private data (inquiries) could be secured with appropriate rules if needed, although they are presumed to be viewable by admins."
   }
 }
