@@ -3,7 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { Loader2, User, BookOpen, LogOut } from 'lucide-react';
+import { Loader2, User, BookOpen, LogOut, Clock } from 'lucide-react';
 import {
   SidebarProvider,
   Sidebar,
@@ -40,7 +40,7 @@ export default function StaffLayout({
       }
     }
   }, [currentUser, loading, router, pathname, isSignInPage]);
-  
+
   const showLoader = loading || (!currentUser && !isSignInPage);
 
   if (showLoader) {
@@ -51,24 +51,30 @@ export default function StaffLayout({
     );
   }
 
-
   if (isSignInPage) {
     return <FirebaseClientProvider>{children}</FirebaseClientProvider>;
   }
 
   const handleSignOut = async () => {
     await signOut();
-    // The useEffect above will handle the redirect to signin
   };
 
   return (
     <FirebaseClientProvider>
       <SidebarProvider>
         <div className="flex min-h-screen">
-          <Sidebar side="left" collapsible="icon" variant="sidebar" className="border-r-2 border-primary/20">
+          <Sidebar
+            side="left"
+            collapsible="icon"
+            variant="sidebar"
+            className="border-r-2 border-primary/20"
+          >
             <SidebarHeader>
               <div className="flex items-center justify-between p-2">
-                <Link href="/" className="group-data-[collapsible=icon]:hidden">
+                <Link
+                  href="/"
+                  className="group-data-[collapsible=icon]:hidden"
+                >
                   <Logo className="h-8 w-auto" />
                 </Link>
                 <SidebarTrigger />
@@ -88,7 +94,7 @@ export default function StaffLayout({
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-                 <SidebarMenuItem>
+                <SidebarMenuItem>
                   <SidebarMenuButton
                     asChild
                     isActive={pathname.startsWith('/company/staff/resources')}
@@ -100,12 +106,27 @@ export default function StaffLayout({
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname.startsWith('/company/staff/punch')}
+                    tooltip={{ children: 'Time Punch' }}
+                  >
+                    <Link href="/company/staff/punch">
+                      <Clock />
+                      <span>Time Punch</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
               </SidebarMenu>
             </SidebarContent>
             <SidebarFooter>
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton onClick={handleSignOut} tooltip={{ children: 'Sign Out' }}>
+                  <SidebarMenuButton
+                    onClick={handleSignOut}
+                    tooltip={{ children: 'Sign Out' }}
+                  >
                     <LogOut />
                     <span>Sign Out</span>
                   </SidebarMenuButton>
@@ -114,9 +135,7 @@ export default function StaffLayout({
             </SidebarFooter>
           </Sidebar>
           <SidebarInset>
-            <div className="p-4 md:p-8">
-              {children}
-            </div>
+            <div className="p-4 md:p-8">{children}</div>
           </SidebarInset>
         </div>
       </SidebarProvider>
