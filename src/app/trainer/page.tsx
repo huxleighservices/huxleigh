@@ -4,6 +4,7 @@
 import { Button } from '@/components/ui/button';
 import { Rocket, ShieldCheck, DollarSign, ToyBrick, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const features = [
   {
@@ -32,10 +33,15 @@ export default function TrainerPage() {
   return (
     <div className="bg-background text-foreground">
       <section className="bg-card py-16 md:py-24 text-center">
-        <div className="container">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline text-primary">
-            AI-Assisted Training Software
-          </h1>
+        <div className="container flex flex-col items-center">
+          <Image
+            src="https://i.redd.it/7sqws0etxnyf1.png"
+            alt="Trainer Logo"
+            width={500}
+            height={100}
+            className="h-auto mb-4"
+            priority
+          />
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
             The ultimate tool to onboard, train, and elevate your sales team with the power of AI.
           </p>
