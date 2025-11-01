@@ -134,7 +134,7 @@ export default function TrainerPage() {
         <div className="container text-center max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">Ready to Empower Your Team?</h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Contact us today to schedule a demo and learn how Huxleigh Trainer can be customized for your organization.
+            As a white-label product, Huxleigh Trainer seamlessly integrates with your existing systems. Contact us today to schedule a demo and learn how our software can be customized for your organization.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-8">
              <div className="flex items-center gap-4 text-lg">
