@@ -2,32 +2,28 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Rocket, ShieldCheck, DollarSign, ToyBrick, Phone, Mail } from 'lucide-react';
+import { Rocket, ShieldCheck, DollarSign, ToyBrick, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-const features = [
+const newFeatures = [
   {
-    icon: <Rocket className="h-10 w-10 text-primary" />,
-    title: 'Accelerated Onboarding',
-    description: 'Get your sales team up to speed faster with a training tool that carries your brand, ensuring a cohesive and trusted learning environment from day one.',
+    icon: <PhoneCall className="h-10 w-10 text-primary" />,
+    title: 'AI-Powered Cold Call Simulations',
+    description: 'Practice your pitch and handle objections with a responsive AI that realistically simulates potential clients, providing a safe and effective training ground.',
   },
   {
-    icon: <ShieldCheck className="h-10 w-10 text-primary" />,
-    title: 'Reinforce Company Culture',
-    description: 'A training platform that looks and feels like your own reinforces your company\'s methods and values, boosting team morale and alignment.',
+    icon: <MessagesSquare className="h-10 w-10 text-primary" />,
+    title: 'Dynamic Messaging Scenarios',
+    description: 'Engage in realistic messaging simulations with AI-driven replies. Hone your communication skills across different platforms and client personas.',
   },
   {
-    icon: <DollarSign className="h-10 w-10 text-primary" />,
-    title: 'Drive Sales Performance',
-    description: 'Empower your team with consistent, high-quality training under a familiar brand, leading to increased confidence, better performance, and more closed deals.',
+    icon: <FileQuestion className="h-10 w-10 text-primary" />,
+    title: 'Intuitive & Customizable Quizzes',
+    description: 'Create and deploy fully customized quizzes to test knowledge and reinforce key training concepts. Track progress and identify areas for improvement.',
   },
-  {
-    icon: <ToyBrick className="h-10 w-10 text-primary" />,
-    title: 'Easy to Use',
-    description: 'An intuitive interface and guided simulations mean less time training on the tool and more time training on what matters: selling.',
-  },
-];
+]
 
 export default function TrainerPage() {
   return (
@@ -50,16 +46,86 @@ export default function TrainerPage() {
 
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature) => (
-              <div key={feature.title} className="flex flex-col items-center text-center p-6 bg-card rounded-lg shadow-sm">
-                <div className="p-4 bg-primary/10 rounded-full mb-4">
-                    {feature.icon}
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">A Smarter Way to Train</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Our AI is designed to feel less like a program and more like a partner.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {newFeatures.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center text-center p-8 bg-card rounded-lg shadow-lg border border-border"
+              >
+                <div className="p-4 bg-primary/10 rounded-full mb-6">
+                  {feature.icon}
                 </div>
-                <h3 className="text-2xl font-bold font-headline mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
+                <h3 className="text-2xl font-bold font-headline mb-3">{feature.title}</h3>
+                <p className="text-muted-foreground flex-1">{feature.description}</p>
+              </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+       <section className="py-16 md:py-24 bg-card">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
+                <BrainCircuit className="w-12 h-12 text-primary" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">Train an AI, Not Just an Employee</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Our AI deeply learns your company's products and services, creating a highly intelligent training partner. This purpose-built approach is designed to:
+              </p>
+              <ul className="mt-6 space-y-4 text-lg">
+                <li className="flex items-start gap-3">
+                  <DollarSign className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                  <span>
+                    <strong>Cut significant costs</strong> by reducing the need for extensive one-on-one coaching and role-play sessions.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                   <ShieldCheck className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                  <span>
+                    <strong>Minimize extra labor</strong> by providing a consistent, always-on training resource for your sales and service teams.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Rocket className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                  <span>
+                    <strong>Slash training time</strong> with accelerated, adaptive learning paths that get your team ready faster than ever before.
+                  </span>
+                </li>
+              </ul>
+            </motion.div>
+             <motion.div
+              className="relative h-80 lg:h-96 rounded-lg overflow-hidden shadow-2xl"
+               initial={{ opacity: 0, scale: 0.9 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 0.6, delay: 0.2 }}
+               viewport={{ once: true }}
+             >
+               <Image
+                 src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 alt="Sales team collaborating"
+                 fill
+                 className="object-cover"
+                 data-ai-hint="sales team"
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+             </motion.div>
           </div>
         </div>
       </section>
