@@ -21,6 +21,10 @@ const pricingTiers = [
       'Camp/ai/gn Lite',
       '1 GB of file storage',
     ],
+    paymentLinks: {
+      monthly: 'https://delture.com',
+      annually: 'https://delture.com',
+    },
   },
   {
     name: 'PRO',
@@ -33,6 +37,10 @@ const pricingTiers = [
       'Camp/ai/gn Pro',
       '10 GB of file storage',
     ],
+    paymentLinks: {
+      monthly: 'https://buy.stripe.com/bJeaEZgIOe4V8bY6Oo3ZK03',
+      annually: 'https://buy.stripe.com/7sYaEZ2RY3qh1NA4Gg3ZK01',
+    },
   },
   {
     name: 'PRO+ AGENT',
@@ -47,6 +55,10 @@ const pricingTiers = [
       'Camp/ai/gn Pro',
       '50 GB of file storage',
     ],
+    paymentLinks: {
+      monthly: 'https://buy.stripe.com/7sYbJ3dwCf8Zcse1u43ZK04',
+      annually: 'https://buy.stripe.com/fZu4gB0JQgd30Jwc8I3ZK02',
+    },
   },
 ];
 
@@ -211,10 +223,15 @@ export default function DelturePage() {
                     ))}
                   </ul>
                   <Button
-                    disabled
-                    className='bg-gray-400 text-white w-full font-bold py-6 text-lg cursor-not-allowed'
+                      asChild
+                      className="bg-[#ff0033] hover:bg-red-700 text-white w-full font-bold py-6 text-lg"
                   >
-                    Coming Soon
+                      <Link
+                        href={tier.paymentLinks[billingCycle]}
+                        target={tier.name === 'FREE' ? '_blank' : '_self'}
+                      >
+                        {tier.name === 'FREE' ? 'Get Started' : 'Sign Up'}
+                      </Link>
                   </Button>
                 </CardContent>
               </Card>
