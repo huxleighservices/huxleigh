@@ -60,7 +60,7 @@ export default function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-stone-200 bg-stone-100/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 w-full border-b border-stone-200 bg-stone-200/80 backdrop-blur-lg">
       <div className="container flex h-20 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center">
