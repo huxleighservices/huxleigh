@@ -73,12 +73,11 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
-          <div className="relative p-8 md:p-12 border-white/20 rounded-2xl shadow-2xl">
             <video
               autoPlay
               muted
               playsInline
-              className="h-auto w-1/3 mx-auto mb-6"
+              className="h-auto w-1/3 mx-auto mb-6 mix-blend-screen"
             >
               <source src="https://packaged-media.redd.it/nkqjpfq0gazf1/pb/m2-res_428p.mp4?m=DASHPlaylist.mpd&v=1&e=1762300800&s=989525398bcee1d2f364fc4059974b52d6d33c87" type="video/mp4" />
             </video>
@@ -89,7 +88,6 @@ export default function Home() {
               Huxleigh is a premier software conglomerate specializing in
               AI-software services and white-label distribution.
             </p>
-          </div>
         </div>
       </section>
 
