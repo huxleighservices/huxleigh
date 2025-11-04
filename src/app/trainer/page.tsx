@@ -27,15 +27,15 @@ export default function TrainerPage() {
   return (
     <div className="bg-background text-foreground">
       <section className="border-b py-16 md:py-24 text-center relative overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-50 blur-3xl"></div>
-        <div className="container flex flex-col items-center relative z-10">
-          <div className="glassmorphism p-8 md:p-12 rounded-2xl border">
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-80 blur-3xl"></div>
+        <div className="container flex flex-col items-center justify-center relative z-10">
+          <div className="glassmorphism p-8 md:p-12 rounded-2xl border flex flex-col items-center">
             <Image
               src="https://i.redd.it/7sqws0etxnyf1.png"
               alt="Trainer Logo"
               width={500}
               height={100}
-              className="h-auto mb-4"
+              className="h-auto mb-4 invert"
               priority
             />
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
