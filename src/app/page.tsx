@@ -61,7 +61,7 @@ const companyPillars = [
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden bg-black">
+      <section className="relative h-screen min-h-[700px] w-full overflow-hidden">
         <video
           autoPlay
           loop
@@ -72,9 +72,9 @@ export default function Home() {
           <source src="/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
-          <div className="relative p-8 md:p-12 border border-white/20 rounded-lg bg-black/20 backdrop-blur-md">
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
+          <div className="relative p-8 md:p-12 border border-white/20 rounded-2xl bg-black/30 backdrop-blur-md shadow-2xl">
             <Logo className="h-auto w-1/3 mx-auto mb-6" />
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
               Powerful AI Software <br /> for Powerful People
@@ -90,7 +90,7 @@ export default function Home() {
       <section id="services" className="py-16 md:py-24">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-headline text-3xl font-bold md:text-4xl">
+            <h2 className="font-headline text-3xl font-bold md:text-4xl text-foreground">
               Transforming Industries with Intelligent Technology
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -102,10 +102,10 @@ export default function Home() {
             {serviceHighlights.map((service) => (
               <Card
                 key={service.title}
-                className="flex transform flex-col justify-between transition-transform duration-300 hover:-translate-y-2 hover:shadow-primary/20 hover:shadow-lg"
+                className="glassmorphism flex transform flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-primary/10 hover:shadow-2xl hover:border-primary/30"
               >
                 <CardHeader>
-                  <div className="mb-4 flex items-center justify-center rounded-full bg-primary/10 p-3">
+                  <div className="mb-4 flex items-center justify-center rounded-full bg-primary/10 p-3 w-fit">
                     {service.icon}
                   </div>
                   <CardTitle className="text-xl font-bold">
@@ -128,7 +128,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-card py-16 md:py-24">
+      <section className="py-16 md:py-24">
         <div className="container">
           <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
@@ -142,7 +142,9 @@ export default function Home() {
               <div className="mt-8 space-y-6">
                 {companyPillars.map((pillar) => (
                   <div key={pillar.title} className="flex items-start gap-4">
-                    <div className="mt-1">{pillar.icon}</div>
+                    <div className="mt-1 flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-primary/10">
+                      {pillar.icon}
+                    </div>
                     <div>
                       <h3 className="text-xl font-bold">{pillar.title}</h3>
                       <p className="mt-1 text-muted-foreground">
@@ -153,7 +155,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="relative h-80 w-full overflow-hidden rounded-lg shadow-lg md:h-[450px]">
+            <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-lg md:h-[450px]">
               <Image
                 src="https://images.unsplash.com/photo-1616333827064-52d363cf4bea?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="AI partnership"

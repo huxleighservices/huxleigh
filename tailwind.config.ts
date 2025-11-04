@@ -25,10 +25,8 @@ export default {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
+        card: 'hsl(var(--card))',
+        'card-foreground': 'hsl(var(--card-foreground))',
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
@@ -80,15 +78,15 @@ export default {
           '500': '#14b8a6',
           '600': '#0d9488',
           '700': '#0f766e',
-      '800': '#115e59',
+          '800': '#115e59',
           '900': '#134e4a',
           '950': '#042f2e',
         },
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 4px)',
+        sm: 'calc(var(--radius) - 8px)',
       },
       keyframes: {
         'accordion-down': {

@@ -90,8 +90,8 @@ export default function DelturePage() {
         />
         <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-20 container py-12 flex flex-col items-center text-center">
-          <div className="relative p-12 bg-white rounded-[calc(var(--radius)+10px)] border-4 border-gray-200">
-            <div className="relative z-10 p-8 flex flex-col items-center">
+          <div className="relative p-8 sm:p-12 glassmorphism rounded-2xl border-4 border-gray-200/50">
+            <div className="relative z-10 flex flex-col items-center">
               <Image
                 src="https://delture.com/delture-logo-3.png"
                 alt="Delture Logo"
@@ -100,7 +100,7 @@ export default function DelturePage() {
                 className="mb-4"
                 priority
               />
-              <p className="mt-4 text-lg text-black max-w-md">
+              <p className="mt-4 text-lg text-white max-w-md">
                 The all-in-one Ai-powered social media software solution for student organizations
               </p>
             </div>
@@ -119,7 +119,7 @@ export default function DelturePage() {
         </div>
       </div>
 
-      <section className="bg-card py-16 md:py-24">
+      <section className="bg-secondary/30 py-16 md:py-24">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
             <h2 className="font-headline text-4xl font-bold md:text-5xl">
@@ -137,7 +137,7 @@ export default function DelturePage() {
                   alt="Delture Desktop"
                   width={1920}
                   height={1080}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg shadow-2xl"
                 />
               </div>
             </div>
@@ -148,7 +148,7 @@ export default function DelturePage() {
                   alt="Delture Mobile"
                   width={1080}
                   height={1920}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg shadow-2xl"
                 />
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function DelturePage() {
                 onCheckedChange={(checked) => {
                   setBillingCycle(checked ? 'annually' : 'monthly');
                 }}
-                className="data-[state=checked]:bg-destructive-foreground data-[state=unchecked]:bg-destructive-foreground/50 [&>span]:bg-destructive"
+                className="data-[state=checked]:bg-white data-[state=unchecked]:bg-white/50 [&>span]:bg-red-500"
               />
               <Label
                 htmlFor="billing-cycle-switch"
@@ -189,10 +189,10 @@ export default function DelturePage() {
             {pricingTiers.map((tier) => (
                 <Card
                 key={tier.name}
-                className="flex flex-col rounded-xl bg-white text-black border border-black"
+                className="flex flex-col rounded-xl bg-background/90 text-foreground border shadow-xl backdrop-blur-sm"
               >
                 <CardHeader className="text-center p-8">
-                  <CardTitle className="text-3xl font-extrabold uppercase tracking-widest">
+                  <CardTitle className="text-3xl font-extrabold uppercase tracking-widest text-[#ff0033]">
                     {tier.name}
                   </CardTitle>
                 </CardHeader>
@@ -228,7 +228,7 @@ export default function DelturePage() {
                   >
                       <Link
                         href={tier.paymentLinks[billingCycle]}
-                        target={tier.name === 'FREE' ? '_blank' : '_self'}
+                        target={tier.name === 'FREE' ? '_blank' : '_blank'}
                       >
                         {tier.name === 'FREE' ? 'Get Started' : 'Sign Up'}
                       </Link>
@@ -240,7 +240,7 @@ export default function DelturePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-card">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
             <h2 className="font-headline text-4xl font-bold md:text-5xl">
@@ -249,7 +249,7 @@ export default function DelturePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, i) => (
-              <Card key={i} className="bg-background border-border">
+              <Card key={i} className="glassmorphism border">
                 <CardContent className="p-8 flex flex-col h-full">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (

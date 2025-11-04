@@ -7,7 +7,7 @@ export default function ContactPage() {
 
   return (
     <div>
-      <section className="bg-card py-16 md:py-24">
+      <section className="glassmorphism border-b py-16 md:py-24">
         <div className="container text-center">
           <h1 className="font-headline text-4xl font-bold md:text-6xl">
             Contact Us
@@ -18,9 +18,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="pb-16 md:pb-24">
-        <div className="container grid md:grid-cols-2 gap-12 items-start max-w-4xl">
-           <div className="space-y-12">
+      <section className="py-16 md:py-24">
+        <div className="container grid md:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+           <div className="space-y-12 glassmorphism p-8 rounded-lg border">
               <div>
                 <h2 className="text-2xl font-bold font-headline text-primary mb-4">Corporate Inquiries</h2>
                 <div className="space-y-4">
@@ -62,7 +62,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="glassmorphism p-8 rounded-lg border">
                <h2 className="text-2xl font-bold font-headline text-primary mb-8">Send us a Message</h2>
                 {!isResendConfigured && (
                 <Alert variant="destructive" className="mb-4">

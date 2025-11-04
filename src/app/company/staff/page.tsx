@@ -70,7 +70,7 @@ export default function StaffPage() {
     <div className="space-y-6">
       <h1 className="text-3xl font-bold font-headline">My Info</h1>
 
-      <Card className="max-w-2xl">
+      <Card className="max-w-2xl glassmorphism">
         <CardHeader>
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16">
@@ -97,6 +97,7 @@ export default function StaffPage() {
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 required
+                className="bg-background/50"
               />
             </div>
              <Button type="submit" disabled={isSubmitting}>

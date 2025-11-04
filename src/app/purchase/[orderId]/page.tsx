@@ -10,10 +10,10 @@ export default function PurchaseSuccessPage({
 }) {
   return (
     <div className="container py-24 flex items-center justify-center">
-      <Card className="w-full max-w-lg text-center">
+      <Card className="w-full max-w-lg text-center glassmorphism">
         <CardHeader>
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/50 mb-4">
-            <CheckCircle className="h-10 w-10 text-green-500" />
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 mb-4">
+            <CheckCircle className="h-10 w-10 text-green-600" />
           </div>
           <CardTitle className="text-3xl font-headline">
             Thank You For Your Order!

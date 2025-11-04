@@ -83,7 +83,7 @@ export default function ResourcesPage() {
         <NewHyperlinkDialog />
       </div>
 
-      <Card>
+      <Card className="glassmorphism">
         <CardHeader>
           <div className="flex items-center gap-4">
             <BookOpen className="h-8 w-8 text-primary" />
@@ -118,7 +118,7 @@ export default function ResourcesPage() {
                 <div key={link.id} className="flex group">
                   <Button
                     variant="outline"
-                    className="justify-between flex-1 rounded-r-none"
+                    className="justify-between flex-1 rounded-r-none bg-background/50 hover:bg-secondary"
                     asChild
                   >
                     <Link href={link.url} target="_blank">
@@ -134,15 +134,15 @@ export default function ResourcesPage() {
                       <Button
                         variant="outline"
                         size="icon"
-                        className="rounded-l-none border-l-0 px-2"
+                        className="rounded-l-none border-l-0 px-2 bg-background/50 hover:bg-secondary"
                       >
                         <MoreVertical className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
+                    <DropdownMenuContent align="end" className="glassmorphism">
                       <DropdownMenuItem
                         onClick={() => handleDelete(link.id)}
-                        className="text-destructive"
+                        className="text-destructive focus:bg-destructive/10 focus:text-destructive"
                       >
                         <Trash2 className="mr-2 h-4 w-4" />
                         Delete

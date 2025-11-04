@@ -60,7 +60,7 @@ export default function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-lg">
       <div className="container flex h-16 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center">
@@ -76,7 +76,7 @@ export default function Header() {
                   <Button
                     variant="ghost"
                     className={cn(
-                      'flex items-center gap-1 transition-colors hover:text-foreground/80',
+                      'flex items-center gap-1 font-semibold transition-colors hover:text-primary',
                       pathname.startsWith(
                         `/${link.label.toLowerCase().replace(' ', '-')}`
                       ) ||
@@ -84,15 +84,15 @@ export default function Header() {
                           (pathname === '/about' ||
                             pathname === '/company/news' ||
                             pathname === '/company/careers'))
-                        ? 'text-foreground'
-                        : 'text-foreground/60'
+                        ? 'text-primary'
+                        : 'text-foreground/80'
                     )}
                   >
                     {link.label}
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
+                <DropdownMenuContent className="w-56 glassmorphism">
                   <ul className="grid gap-3 p-4">
                     {link.children.map((child) => (
                       <ListItem
@@ -111,10 +111,10 @@ export default function Header() {
                 key={link.href}
                 href={link.href!}
                 className={cn(
-                  'transition-colors hover:text-foreground/80',
+                  'font-semibold transition-colors hover:text-primary',
                   pathname === link.href
-                    ? 'text-foreground'
-                    : 'text-foreground/60'
+                    ? 'text-primary'
+                    : 'text-foreground/80'
                 )}
               >
                 {link.label}
@@ -131,7 +131,7 @@ export default function Header() {
                 <span className="sr-only">Open Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="pr-0">
+            <SheetContent side="left" className="pr-0 glassmorphism">
               <SheetHeader>
                   <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
                   <SheetDescription className="sr-only">A list of links to navigate the website.</SheetDescription>

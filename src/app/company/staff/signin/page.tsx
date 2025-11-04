@@ -29,8 +29,8 @@ export default function StaffSignInPage() {
 
   // Render the sign-in form if not loading and no user
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="mx-auto w-full max-w-md p-4 md:p-0">
+    <div className="flex min-h-screen items-center justify-center bg-background p-4">
+      <div className="mx-auto w-full max-w-md p-4 md:p-8 rounded-2xl glassmorphism border">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold font-headline">My Huxleigh</h1>
           <p className="text-muted-foreground mt-2">

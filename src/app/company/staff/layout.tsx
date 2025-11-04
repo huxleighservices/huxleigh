@@ -66,7 +66,7 @@ export default function StaffLayout({
           <Sidebar
             side="left"
             collapsible="icon"
-            variant="sidebar"
+            variant="inset"
             className="border-r-2 border-primary/20"
           >
             <SidebarHeader>

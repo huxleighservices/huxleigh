@@ -93,7 +93,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-card">
+      <section className="py-16 md:py-24 bg-secondary/50">
         <div className="container">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="font-headline text-4xl font-bold md:text-6xl text-primary">
@@ -113,7 +113,7 @@ export default function AboutPage() {
               {leadershipTeam.map((member) => (
                 <div
                   key={member.name}
-                  className="bg-background p-6 rounded-lg shadow-sm"
+                  className="bg-background/70 p-6 rounded-lg shadow-sm backdrop-blur-sm border"
                 >
                   <h4 className="text-xl font-bold text-foreground">
                     {member.name}
@@ -141,7 +141,7 @@ export default function AboutPage() {
               {deltureTeam.map((member) => (
                 <div
                   key={member.name}
-                  className="bg-background p-6 rounded-lg shadow-sm"
+                  className="bg-background/70 p-6 rounded-lg shadow-sm backdrop-blur-sm border"
                 >
                   <h4 className="text-xl font-bold text-foreground">
                     {member.name}
@@ -159,14 +159,13 @@ export default function AboutPage() {
                 alt="Stratavue Logo"
                 width={300}
                 height={75}
-                className="brightness-0 invert"
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
               {stratavueTeam.map((member) => (
                 <div
                   key={member.name}
-                  className="bg-background p-6 rounded-lg shadow-sm lg:col-start-2"
+                  className="bg-background/70 p-6 rounded-lg shadow-sm backdrop-blur-sm border lg:col-start-2"
                 >
                   <h4 className="text-xl font-bold text-foreground">
                     {member.name}
@@ -180,14 +179,14 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <div className="bg-accent py-8">
+        <div className="bg-accent/80 py-8">
           <div className="container text-center">
             <h2 className="font-headline text-4xl md:text-5xl font-bold text-accent-foreground">
               WHAT SETS US APART?
             </h2>
           </div>
         </div>
-        <div className="bg-background py-16 md:py-24">
+        <div className="py-16 md:py-24">
           <div className="container grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-center">
             <div className="text-lg text-muted-foreground md:order-1 order-2 text-center md:text-left">
               <p>

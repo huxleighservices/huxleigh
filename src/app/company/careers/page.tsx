@@ -4,19 +4,19 @@ import Link from 'next/link';
 
 export default function CareersPage() {
   return (
-    <div>
-      <section className="py-16 md:py-24 text-center">
+    <div className="bg-background text-foreground">
+      <section className="py-16 md:py-24 text-center glassmorphism border-b">
         <div className="container">
-          <h1 className="text-5xl md:text-7xl font-bold text-accent gold-glow uppercase tracking-wider">
+          <h1 className="text-5xl md:text-7xl font-bold text-primary tracking-wider font-headline">
             Join Us
           </h1>
-          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-accent gold-glow uppercase tracking-wide">
+          <h2 className="mt-4 text-3xl md:text-5xl font-bold text-foreground/80 tracking-wide font-headline">
             This is the Huxleigh Family
           </h2>
         </div>
       </section>
 
-      <section className="pb-16 md:pb-24">
+      <section className="py-16 md:py-24">
         <div className="container max-w-4xl text-center">
             <h3 className="text-2xl font-headline text-primary">We're Not Currently Hiring</h3>
             <p className="mt-4 text-lg text-muted-foreground">

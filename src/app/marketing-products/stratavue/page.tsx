@@ -100,7 +100,7 @@ export default function StratavuePage() {
   );
 
   return (
-    <div className="bg-black flex flex-col">
+    <div className="bg-[#0c0a09] flex flex-col">
       <section className="flex flex-col items-center justify-center text-center overflow-hidden pt-16 pb-8">
         <div className="relative z-10 p-8 rounded-lg flex flex-col items-center">
           <Image
@@ -109,7 +109,7 @@ export default function StratavuePage() {
             width={400}
             height={100}
             priority
-            className="drop-shadow-2xl"
+            className="drop-shadow-[0_5px_15px_rgba(139,92,246,0.4)]"
           />
           <p className="mt-4 text-lg text-violet-300 text-center max-w-md">
             Reach New Heights with the Premiere AI-Assisted Music Marketing
@@ -132,7 +132,7 @@ export default function StratavuePage() {
             loop
             muted
             playsInline
-            className="mt-8 rounded-lg shadow-lg w-full max-w-4xl"
+            className="mt-8 rounded-2xl shadow-2xl shadow-violet-500/20 w-full max-w-4xl"
           />
         </div>
       </section>
@@ -144,12 +144,12 @@ export default function StratavuePage() {
             alt="Stratavue Screencast"
             width={1080}
             height={607}
-            className="rounded-lg bg-transparent"
+            className="rounded-2xl shadow-2xl shadow-violet-500/20"
           />
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-black/50">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center mb-12">
             <h2 className="font-headline text-4xl font-bold text-white md:text-5xl">
@@ -195,14 +195,14 @@ export default function StratavuePage() {
               <Card
                 key={plan.name}
                 className={cn(
-                  'flex flex-col bg-gray-900/50 text-white rounded-xl border-violet-500/30',
+                  'flex flex-col bg-gray-900/50 text-white rounded-2xl border-violet-500/30 transition-all duration-300',
                   {
-                    'border-2 border-violet-500 shadow-2xl shadow-violet-500/20':
+                    'border-2 border-violet-500 shadow-2xl shadow-violet-500/20 scale-105':
                       plan.isPopular,
                   }
                 )}
               >
-                <CardHeader className="text-center p-6 items-center">
+                <CardHeader className="text-center p-6 items-center relative">
                   {plan.isPopular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                       <div className="bg-violet-600 text-white font-bold text-sm uppercase px-4 py-1 rounded-full">

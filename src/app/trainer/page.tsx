@@ -28,7 +28,7 @@ const newFeatures = [
 export default function TrainerPage() {
   return (
     <div className="bg-background text-foreground">
-      <section className="bg-card py-16 md:py-24 text-center">
+      <section className="glassmorphism border-b py-16 md:py-24 text-center">
         <div className="container flex flex-col items-center">
           <Image
             src="https://i.redd.it/7sqws0etxnyf1.png"
@@ -60,7 +60,7 @@ export default function TrainerPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="flex flex-col items-center text-center p-8 bg-card rounded-lg shadow-lg border border-border"
+                className="flex flex-col items-center text-center p-8 glassmorphism rounded-lg shadow-lg border"
               >
                 <div className="p-4 bg-primary/10 rounded-full mb-6">
                   {feature.icon}
@@ -73,7 +73,7 @@ export default function TrainerPage() {
         </div>
       </section>
 
-       <section className="py-16 md:py-24 bg-card">
+       <section className="py-16 md:py-24 glassmorphism border-y">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
