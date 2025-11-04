@@ -74,14 +74,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
           <div className="p-8 rounded-lg glassmorphism">
-            <video
-              autoPlay
-              muted
-              playsInline
-              className="h-auto w-1/3 mx-auto mb-6"
-            >
-              <source src="https://packaged-media.redd.it/nkqjpfq0gazf1/pb/m2-res_428p.mp4?m=DASHPlaylist.mpd&v=1&e=1762300800&s=989525398bcee1d2f364fc4059974b52d6d33c87" type="video/mp4" />
-            </video>
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
               Powerful AI Software <br /> for Powerful People
             </h1>
