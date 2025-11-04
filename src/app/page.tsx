@@ -78,7 +78,7 @@ export default function Home() {
               autoPlay
               muted
               playsInline
-              className="h-auto w-1/3 mx-auto mb-6"
+              className="h-auto w-1/3 mx-auto mb-6 mix-blend-screen"
             >
               <source src="https://packaged-media.redd.it/nkqjpfq0gazf1/pb/m2-res_428p.mp4?m=DASHPlaylist.mpd&v=1&e=1762300800&s=989525398bcee1d2f364fc4059974b52d6d33c87" type="video/mp4" />
             </video>
