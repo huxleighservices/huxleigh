@@ -113,11 +113,20 @@ export default {
             transform: 'rotate(360deg)',
           },
         },
+        'gradient-move': {
+          '0%, 100%': {
+            'background-position': '0% 50%',
+          },
+          '50%': {
+            'background-position': '100% 50%',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'spin': 'spin 1.5s linear infinite',
+        'gradient-move': 'gradient-move 15s ease infinite',
       },
     },
   },

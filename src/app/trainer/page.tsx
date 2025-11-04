@@ -1,9 +1,7 @@
 
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Rocket, ShieldCheck, DollarSign, ToyBrick, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit } from 'lucide-react';
-import Link from 'next/link';
+import { Rocket, ShieldCheck, DollarSign, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -28,8 +26,9 @@ const newFeatures = [
 export default function TrainerPage() {
   return (
     <div className="bg-background text-foreground">
-      <section className="glassmorphism border-b py-16 md:py-24 text-center">
-        <div className="container flex flex-col items-center">
+      <section className="glassmorphism border-b py-16 md:py-24 text-center relative overflow-hidden">
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400/70 to-blue-600/70 animate-gradient-move opacity-30 blur-3xl"></div>
+        <div className="container flex flex-col items-center relative z-10">
           <Image
             src="https://i.redd.it/7sqws0etxnyf1.png"
             alt="Trainer Logo"
