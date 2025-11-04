@@ -60,7 +60,7 @@ export default function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-stone-200 bg-stone-200/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 w-full border-b border-stone-700 bg-stone-800/80 backdrop-blur-lg">
       <div className="container flex h-20 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center">
@@ -76,7 +76,7 @@ export default function Header() {
                   <Button
                     variant="ghost"
                      className={cn(
-                      'flex items-center gap-1 bg-white font-semibold text-foreground/80 shadow-sm transition-colors hover:bg-white/90 hover:text-primary',
+                      'flex items-center gap-1 bg-white font-semibold shadow-sm transition-colors hover:bg-white/90',
                        pathname.startsWith(
                         `/${link.label.toLowerCase().replace(' ', '-')}`
                       ) ||
