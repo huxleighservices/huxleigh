@@ -27,7 +27,7 @@ export default function TrainerPage() {
   return (
     <div className="bg-background text-foreground">
       <section className="border-b py-16 md:py-24 text-center relative overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400/70 to-blue-600/70 animate-gradient-move opacity-30 blur-3xl"></div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-50 blur-3xl"></div>
         <div className="container flex flex-col items-center relative z-10">
           <div className="glassmorphism p-8 md:p-12 rounded-2xl border">
             <Image
