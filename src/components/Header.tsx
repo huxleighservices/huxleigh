@@ -76,7 +76,7 @@ export default function Header() {
                   <Button
                     variant="ghost"
                      className={cn(
-                      'flex items-center gap-1 bg-white font-semibold shadow-sm transition-colors hover:bg-white/90',
+                      'flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-4 font-semibold text-white/90 shadow-sm transition-colors hover:bg-white/20',
                        pathname.startsWith(
                         `/${link.label.toLowerCase().replace(' ', '-')}`
                       ) ||
@@ -84,8 +84,8 @@ export default function Header() {
                           (pathname === '/about' ||
                             pathname === '/company/news' ||
                             pathname === '/company/careers'))
-                        ? 'text-primary'
-                        : 'text-foreground/80'
+                        ? 'bg-white/20 text-white'
+                        : 'text-white/80'
                     )}
                   >
                     {link.label}
@@ -107,15 +107,15 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-               <Button asChild variant="ghost" className="bg-white shadow-sm hover:bg-white/90">
+               <Button asChild variant="ghost" className="rounded-full border border-white/20 bg-white/10 px-4 text-white/90 shadow-sm transition-colors hover:bg-white/20">
                   <Link
                     key={link.href}
                     href={link.href!}
                     className={cn(
-                      'font-semibold transition-colors hover:text-primary',
+                      'font-semibold transition-colors',
                       pathname === link.href
-                        ? 'text-primary'
-                        : 'text-foreground/80'
+                        ? 'text-white'
+                        : 'text-white/80'
                     )}
                   >
                     {link.label}
