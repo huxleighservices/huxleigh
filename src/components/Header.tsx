@@ -60,24 +60,24 @@ export default function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-lg">
-      <div className="container flex h-16 items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-stone-200 bg-stone-100/80 backdrop-blur-lg">
+      <div className="container flex h-20 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center">
             <Logo className="h-10 w-auto" />
           </Link>
         </div>
 
-        <nav className="hidden items-center gap-6 text-sm md:flex">
+        <nav className="hidden items-center gap-2 text-sm md:flex">
           {navLinks.map((link) =>
             link.children ? (
               <DropdownMenu key={link.label}>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className={cn(
-                      'flex items-center gap-1 font-semibold transition-colors hover:text-primary',
-                      pathname.startsWith(
+                     className={cn(
+                      'flex items-center gap-1 bg-white font-semibold text-foreground/80 shadow-sm transition-colors hover:bg-white/90 hover:text-primary',
+                       pathname.startsWith(
                         `/${link.label.toLowerCase().replace(' ', '-')}`
                       ) ||
                         (link.label === 'Company' &&
@@ -107,18 +107,20 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Link
-                key={link.href}
-                href={link.href!}
-                className={cn(
-                  'font-semibold transition-colors hover:text-primary',
-                  pathname === link.href
-                    ? 'text-primary'
-                    : 'text-foreground/80'
-                )}
-              >
-                {link.label}
-              </Link>
+               <Button asChild variant="ghost" className="bg-white shadow-sm hover:bg-white/90">
+                  <Link
+                    key={link.href}
+                    href={link.href!}
+                    className={cn(
+                      'font-semibold transition-colors hover:text-primary',
+                      pathname === link.href
+                        ? 'text-primary'
+                        : 'text-foreground/80'
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+               </Button>
             )
           )}
         </nav>
