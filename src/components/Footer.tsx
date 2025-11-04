@@ -5,14 +5,14 @@ import { navLinks, socialLinks } from '@/lib/data';
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-background/50">
+    <footer className="border-t border-stone-700 bg-stone-800">
       <div className="container">
         <div className="grid grid-cols-1 gap-8 py-12 md:grid-cols-12">
           <div className="flex flex-col items-start col-span-12 md:col-span-3">
             <Link href="/" className="flex items-center">
               <Logo className="h-10 w-auto" />
             </Link>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-stone-400">
               Powerful AI Software for Powerful People.
             </p>
           </div>
@@ -21,7 +21,7 @@ export default function Footer() {
               .filter((link) => link.children)
               .map((link) => (
                 <div key={link.label}>
-                  <h3 className="font-semibold tracking-wider text-foreground">
+                  <h3 className="font-semibold tracking-wider text-white">
                     {link.label}
                   </h3>
                   <ul className="mt-4 space-y-2">
@@ -29,7 +29,7 @@ export default function Footer() {
                       <li key={child.href}>
                         <Link
                           href={child.href}
-                          className="text-muted-foreground hover:text-primary"
+                          className="text-stone-400 hover:text-white"
                         >
                           {child.label}
                         </Link>
@@ -40,14 +40,14 @@ export default function Footer() {
               ))}
 
             <div>
-              <h3 className="font-semibold tracking-wider text-foreground">
+              <h3 className="font-semibold tracking-wider text-white">
                 Connect
               </h3>
               <ul className="mt-4 space-y-2">
                 <li>
                   <a
                     href="tel:412-339-0597"
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-stone-400 hover:text-white"
                   >
                     412-339-0597
                   </a>
@@ -55,7 +55,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="mailto:service@huxleigh.com"
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-stone-400 hover:text-white"
                   >
                     service@huxleigh.com
                   </a>
@@ -68,7 +68,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary"
+                    className="text-stone-400 hover:text-white"
                   >
                     <social.icon className="h-6 w-6" />
                     <span className="sr-only">{social.name}</span>
@@ -78,8 +78,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-between border-t py-6 sm:flex-row">
-          <p className="text-sm text-muted-foreground">
+        <div className="flex flex-col items-center justify-between border-t border-stone-700 py-6 sm:flex-row">
+          <p className="text-sm text-stone-500">
             &copy; {new Date().getFullYear()} Huxleigh LLC. All rights reserved.
           </p>
         </div>
