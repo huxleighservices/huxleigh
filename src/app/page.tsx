@@ -73,6 +73,7 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
+          <div className="p-8 rounded-lg glassmorphism">
             <video
               autoPlay
               muted
@@ -88,6 +89,7 @@ export default function Home() {
               Huxleigh is a premier software conglomerate specializing in
               AI-software services and white-label distribution.
             </p>
+          </div>
         </div>
       </section>
 
