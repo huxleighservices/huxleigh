@@ -73,7 +73,7 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
-          <div className="relative p-8 md:p-12 border border-white/20 rounded-2xl bg-black/30 backdrop-blur-md shadow-2xl">
+          <div className="relative p-8 md:p-12 border border-white/20 rounded-2xl backdrop-blur-md shadow-2xl">
             <video
               autoPlay
               muted
