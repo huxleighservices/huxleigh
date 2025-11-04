@@ -26,20 +26,22 @@ const newFeatures = [
 export default function TrainerPage() {
   return (
     <div className="bg-background text-foreground">
-      <section className="glassmorphism border-b py-16 md:py-24 text-center relative overflow-hidden">
+      <section className="border-b py-16 md:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400/70 to-blue-600/70 animate-gradient-move opacity-30 blur-3xl"></div>
         <div className="container flex flex-col items-center relative z-10">
-          <Image
-            src="https://i.redd.it/7sqws0etxnyf1.png"
-            alt="Trainer Logo"
-            width={500}
-            height={100}
-            className="h-auto mb-4"
-            priority
-          />
-          <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-            The ultimate tool to onboard, train, and elevate your sales team with the power of AI.
-          </p>
+          <div className="glassmorphism p-8 md:p-12 rounded-2xl border">
+            <Image
+              src="https://i.redd.it/7sqws0etxnyf1.png"
+              alt="Trainer Logo"
+              width={500}
+              height={100}
+              className="h-auto mb-4"
+              priority
+            />
+            <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+              The ultimate tool to onboard, train, and elevate your sales team with the power of AI.
+            </p>
+          </div>
         </div>
       </section>
 
