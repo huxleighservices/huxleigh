@@ -19,7 +19,7 @@ const pricingTiers = [
       'Planning Calendar',
       'Caption Bot',
       'Camp/ai/gn Lite',
-      '1 GB of file storage',
+      { text: '1 GB of file storage', comingSoon: true },
     ],
     paymentLinks: {
       monthly: 'https://delture.com',
@@ -35,7 +35,7 @@ const pricingTiers = [
       'Planning Calendar',
       'Caption Bot',
       'Camp/ai/gn Pro',
-      '10 GB of file storage',
+      { text: '10 GB of file storage', comingSoon: true },
     ],
     paymentLinks: {
       monthly: 'https://buy.stripe.com/bJeaEZgIOe4V8bY6Oo3ZK03',
@@ -53,7 +53,7 @@ const pricingTiers = [
       'Bi-weekly agent planning sessions',
       'Caption Bot',
       'Camp/ai/gn Pro',
-      '50 GB of file storage',
+      { text: '50 GB of file storage', comingSoon: true },
     ],
     paymentLinks: {
       monthly: 'https://buy.stripe.com/7sYbJ3dwCf8Zcse1u43ZK04',
@@ -218,7 +218,14 @@ export default function DelturePage() {
                     {tier.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-red-500" />
-                        <span>{feature}</span>
+                        <span>
+                          {typeof feature === 'string' ? feature : feature.text}
+                          {typeof feature !== 'string' && feature.comingSoon && (
+                            <span className="ml-2 text-xs font-bold text-primary animate-pulse">
+                              (Coming Soon)
+                            </span>
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
