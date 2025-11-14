@@ -1,4 +1,3 @@
-
 import {
   Linkedin,
   BrainCircuit,
@@ -58,7 +57,7 @@ export const navLinks = [
       },
        {
         label: 'HTBase',
-        href: '/trainer',
+        href: '/HTBase',
         description: 'AI-assisted sales training and onboarding software.',
       },
     ],
