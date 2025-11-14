@@ -23,8 +23,8 @@ const newFeatures = [
   },
   {
     icon: <Cpu className="h-10 w-10 text-white" />,
-    title: 'Custom Built Assets',
-    description: 'We can build custom assets in your software to meet any need you have for your sales or service team.',
+    title: 'Bespoke Asset Development',
+    description: 'We architect and integrate tailor-made assets directly into your software, addressing the unique operational needs of your sales and service teams.',
   },
 ]
 
