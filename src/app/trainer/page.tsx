@@ -30,7 +30,14 @@ export default function TrainerPage() {
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-80 blur-3xl"></div>
         <div className="container flex flex-col items-center justify-center relative z-10">
           <div className="glassmorphism p-8 md:p-12 rounded-2xl border flex flex-col items-center">
-            <h1 className="text-5xl md:text-7xl font-bold font-headline text-white tracking-wider">HTBase</h1>
+            <Image
+              src="https://preview.redd.it/mszt14me641g1.png?width=1080&crop=smart&auto=webp&s=767e946bd9165e98a8637eb5cb35ced596f2a4d5"
+              alt="HTBase Logo"
+              width={400}
+              height={100}
+              priority
+              className="drop-shadow-lg"
+            />
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
               The ultimate tool to onboard, train, and elevate your sales team with the power of AI.
             </p>
