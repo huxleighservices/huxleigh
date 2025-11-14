@@ -30,14 +30,7 @@ export default function TrainerPage() {
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-80 blur-3xl"></div>
         <div className="container flex flex-col items-center justify-center relative z-10">
           <div className="glassmorphism p-8 md:p-12 rounded-2xl border flex flex-col items-center">
-            <Image
-              src="https://i.redd.it/7sqws0etxnyf1.png"
-              alt="Trainer Logo"
-              width={500}
-              height={100}
-              className="h-auto mb-4 invert"
-              priority
-            />
+            <h1 className="text-5xl md:text-7xl font-bold font-headline text-white tracking-wider">HTBase</h1>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
               The ultimate tool to onboard, train, and elevate your sales team with the power of AI.
             </p>
@@ -135,7 +128,7 @@ export default function TrainerPage() {
         <div className="container text-center max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">Ready to Empower Your Team?</h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            As a white-label product, Huxleigh Trainer seamlessly integrates with your existing systems. Contact us today to schedule a demo and learn how our software can be customized for your organization.
+            As a white-label product, HTBase seamlessly integrates with your existing systems. Contact us today to schedule a demo and learn how our software can be customized for your organization.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-8">
              <div className="flex items-center gap-4 text-lg">

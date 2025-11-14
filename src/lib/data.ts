@@ -57,7 +57,7 @@ export const navLinks = [
         description: 'The premiere AI-assisted music marketing suite.',
       },
        {
-        label: 'Trainer',
+        label: 'HTBase',
         href: '/trainer',
         description: 'AI-assisted sales training and onboarding software.',
       },
