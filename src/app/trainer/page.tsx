@@ -7,17 +7,17 @@ import { motion } from 'framer-motion';
 
 const newFeatures = [
   {
-    icon: <PhoneCall className="h-10 w-10 text-primary" />,
+    icon: <PhoneCall className="h-10 w-10 text-white" />,
     title: 'AI-Powered Cold Call Simulations',
     description: 'Practice your pitch and handle objections with a responsive AI that realistically simulates potential clients, providing a safe and effective training ground.',
   },
   {
-    icon: <MessagesSquare className="h-10 w-10 text-primary" />,
+    icon: <MessagesSquare className="h-10 w-10 text-white" />,
     title: 'Dynamic Messaging Scenarios',
     description: 'Engage in realistic messaging simulations with AI-driven replies. Hone your communication skills across different platforms and client personas.',
   },
   {
-    icon: <FileQuestion className="h-10 w-10 text-primary" />,
+    icon: <FileQuestion className="h-10 w-10 text-white" />,
     title: 'Intuitive & Customizable Quizzes',
     description: 'Create and deploy fully customized quizzes to test knowledge and reinforce key training concepts. Track progress and identify areas for improvement.',
   },
@@ -61,13 +61,13 @@ export default function TrainerPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="flex flex-col items-center text-center p-8 glassmorphism rounded-lg shadow-lg border"
+                className="flex flex-col items-center text-center p-8 rounded-lg shadow-lg bg-gradient-to-br from-turquoise-500 to-cyan-500 border border-white/20 text-white"
               >
-                <div className="p-4 bg-primary/10 rounded-full mb-6">
+                <div className="mb-6">
                   {feature.icon}
                 </div>
                 <h3 className="text-2xl font-bold font-headline mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground flex-1">{feature.description}</p>
+                <p className="opacity-90 flex-1">{feature.description}</p>
               </motion.div>
             ))}
           </div>
