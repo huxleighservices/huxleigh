@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Rocket, ShieldCheck, DollarSign, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit } from 'lucide-react';
+import { Rocket, ShieldCheck, DollarSign, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -20,6 +20,11 @@ const newFeatures = [
     icon: <FileQuestion className="h-10 w-10 text-white" />,
     title: 'Intuitive & Customizable Quizzes',
     description: 'Create and deploy fully customized quizzes to test knowledge and reinforce key training concepts. Track progress and identify areas for improvement.',
+  },
+  {
+    icon: <Cpu className="h-10 w-10 text-white" />,
+    title: 'Custom Built Assets',
+    description: 'We can build custom assets in your software to meet any need you have for your sales or service team.',
   },
 ]
 
@@ -53,7 +58,7 @@ export default function TrainerPage() {
               Our AI is designed to feel less like a program and more like a partner.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {newFeatures.map((feature, index) => (
               <motion.div
                 key={feature.title}
