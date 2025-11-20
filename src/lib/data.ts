@@ -1,3 +1,4 @@
+
 import {
   Linkedin,
   BrainCircuit,
@@ -290,6 +291,13 @@ type NewsItem = {
 };
 
 export const newsItems: NewsItem[] = [
+  {
+    title: 'HTBase finishes testing education-geared format.',
+    date: '2025-11-20',
+    content:
+      'HTBase is now ready to be launched into university sales programs after successful testing of its new education-focused format.',
+    icon: Award,
+  },
   {
     title: 'Delture Places 4th in OWU Pitch Competition',
     date: '2025-10-25',
