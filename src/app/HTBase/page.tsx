@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Rocket, ShieldCheck, DollarSign, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu } from 'lucide-react';
+import { Rocket, BookOpen, Users, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 
-const newFeatures = [
+const businessFeatures = [
   {
     icon: <PhoneCall className="h-10 w-10 text-white" />,
     title: 'AI-Powered Cold Call Simulations',
@@ -28,6 +28,29 @@ const newFeatures = [
     title: 'Bespoke Asset Development',
     description: 'We architect and integrate tailor-made assets directly into your software, addressing the unique operational needs of your sales and service teams.',
   },
+];
+
+const educationFeatures = [
+    {
+      icon: <PhoneCall className="h-10 w-10 text-white" />,
+      title: 'Real-World Sales Simulations',
+      description: 'Students practice sales techniques and handle objections in realistic scenarios tailored for business and sales curriculum.',
+    },
+    {
+      icon: <MessagesSquare className="h-10 w-10 text-white" />,
+      title: 'Interactive Communication Labs',
+      description: 'Engage in dynamic messaging simulations to master professional communication across various platforms and client personas.',
+    },
+    {
+      icon: <FileQuestion className="h-10 w-10 text-white" />,
+      title: 'Advanced Assessment Tools',
+      description: 'Design and deploy custom quizzes and assessments to reinforce key concepts and track student comprehension and progress.',
+    },
+    {
+      icon: <Cpu className="h-10 w-10 text-white" />,
+      title: 'Custom Curriculum Integration',
+      description: 'We partner with educators to develop and integrate bespoke assets and scenarios directly into your course to enrich the learning experience.',
+    },
 ]
 
 export default function TrainerPage() {
@@ -71,7 +94,7 @@ export default function TrainerPage() {
         </div>
       </section>
 
-      {mode === 'business' && (
+      {mode === 'business' ? (
         <>
           <section className="py-16 md:py-24">
             <div className="container">
@@ -82,7 +105,7 @@ export default function TrainerPage() {
                 </p>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {newFeatures.map((feature, index) => (
+                {businessFeatures.map((feature, index) => (
                   <motion.div
                     key={feature.title}
                     initial={{ opacity: 0, y: 50 }}
@@ -120,21 +143,21 @@ export default function TrainerPage() {
                   </p>
                   <ul className="mt-6 space-y-4 text-lg">
                     <li className="flex items-start gap-3">
-                      <DollarSign className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
-                      <span>
-                        <strong>Cut significant costs</strong> by reducing the need for extensive one-on-one coaching and role-play sessions.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <ShieldCheck className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
-                      <span>
-                        <strong>Minimize extra labor</strong> by providing a consistent, always-on training resource for your sales and service teams.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
                       <Rocket className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
                         <strong>Slash training time</strong> with accelerated, adaptive learning paths that get your team ready faster than ever before.
+                      </span>
+                    </li>
+                     <li className="flex items-start gap-3">
+                       <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                      <span>
+                        <strong>Minimize instructor workload</strong> by providing a consistent, always-on training resource for your sales and service teams.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <BookOpen className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                      <span>
+                        <strong>Enhance learning outcomes</strong> with practical, hands-on experience that goes beyond traditional textbook learning.
                       </span>
                     </li>
                   </ul>
@@ -164,6 +187,120 @@ export default function TrainerPage() {
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Ready to Empower Your Team?</h2>
               <p className="mt-4 text-lg text-muted-foreground">
                 As a white-label product, HTBase seamlessly integrates with your existing systems. Contact us today to schedule a demo and learn how our software can be customized for your organization.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-8">
+                <div className="flex items-center gap-4 text-lg">
+                    <Mail className="h-6 w-6 text-primary" />
+                    <a
+                      href="mailto:sales@huxleigh.com"
+                      className="hover:text-primary"
+                    >
+                      sales@huxleigh.com
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-4 text-lg">
+                    <Phone className="h-6 w-6 text-primary" />
+                    <a href="tel:412-444-5041" className="hover:text-primary">
+                      412-444-5041
+                    </a>
+                  </div>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <>
+          <section className="py-16 md:py-24">
+            <div className="container">
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold font-headline">A Smarter Way to Learn</h2>
+                <p className="mt-4 text-lg text-muted-foreground">
+                  Our AI provides an immersive learning experience, bridging the gap between theory and practice.
+                </p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {educationFeatures.map((feature, index) => (
+                  <motion.div
+                    key={feature.title}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col items-center text-center p-8 rounded-lg shadow-lg bg-gradient-to-br from-turquoise-500 to-cyan-500 border border-white/20 text-white"
+                  >
+                    <div className="mb-6">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold font-headline mb-3">{feature.title}</h3>
+                    <p className="opacity-90 flex-1">{feature.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-16 md:py-24 glassmorphism border-y">
+            <div className="container">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
+                    <BrainCircuit className="w-12 h-12 text-primary" />
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Educate with an AI, Not Just a Textbook</h2>
+                  <p className="mt-4 text-lg text-muted-foreground">
+                    Our AI deeply understands your curriculum, creating an intelligent and interactive learning partner. This experiential approach is designed to:
+                  </p>
+                  <ul className="mt-6 space-y-4 text-lg">
+                    <li className="flex items-start gap-3">
+                      <Rocket className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                      <span>
+                        <strong>Accelerate skill development</strong> with adaptive, hands-on learning modules that prepare students for real-world challenges.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                       <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                      <span>
+                        <strong>Free up instructor time</strong> by automating repetitive training exercises and providing students with an always-available practice tool.
+                      </span>
+                    </li>
+                     <li className="flex items-start gap-3">
+                      <BookOpen className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                      <span>
+                        <strong>Deepen comprehension</strong> by enabling students to apply theoretical knowledge in a safe, simulated environment.
+                      </span>
+                    </li>
+                  </ul>
+                </motion.div>
+                <motion.div
+                  className="relative h-80 lg:h-96 rounded-lg overflow-hidden shadow-2xl"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Students collaborating in a classroom"
+                    fill
+                    className="object-cover"
+                    data-ai-hint="students classroom"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          <section className="py-16 md:py-24">
+            <div className="container text-center max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">Ready to Enhance Your Curriculum?</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                HTBase seamlessly integrates with your existing learning management systems. Contact us today to schedule a demo and learn how our software can be customized for your institution.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-8">
                 <div className="flex items-center gap-4 text-lg">
