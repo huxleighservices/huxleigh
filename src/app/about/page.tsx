@@ -1,6 +1,6 @@
 
 import Image from 'next/image';
-import { Users, Lightbulb, RefreshCw } from 'lucide-react';
+import { Users, Lightbulb, RefreshCw, Target, Eye } from 'lucide-react';
 
 const values = [
   {
@@ -77,6 +77,35 @@ export default function AboutPage() {
       </section>
 
       <section className="py-16 md:py-24">
+        <div className="container grid md:grid-cols-2 gap-12">
+          <div className="glassmorphism p-8 rounded-lg border">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-primary/10 rounded-full">
+                <Target className="h-8 w-8 text-primary" />
+              </div>
+              <h2 className="font-headline text-3xl font-bold">MISSION</h2>
+            </div>
+            <p className="text-lg text-muted-foreground">
+              To create and implement powerful solutions for powerful ideas
+              that align with our values.
+            </p>
+          </div>
+          <div className="glassmorphism p-8 rounded-lg border">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-primary/10 rounded-full">
+                <Eye className="h-8 w-8 text-primary" />
+              </div>
+              <h2 className="font-headline text-3xl font-bold">VISION</h2>
+            </div>
+            <p className="text-lg text-muted-foreground">
+              To change how businesses solve problems in the pursuit of
+              furthering community, creativity, and/or change.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-16 md:pb-24">
         <div className="container">
           <div className="grid md:grid-cols-3 gap-12 text-center">
             {values.map((value) => (
