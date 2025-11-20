@@ -26,45 +26,6 @@ const values = [
   },
 ];
 
-const leadershipTeam = [
-  {
-    name: 'David Zimmerman',
-    roles: ['Founder, President', 'Developer: Delture, Stratavue'],
-  },
-  {
-    name: 'Patrick McCollum',
-    roles: [
-      'Vice President of Product Management',
-      'Operations Specialist: Delture, Stratavue',
-    ],
-  },
-  {
-    name: 'Ken Harris',
-    roles: [
-      'Vice President of Customer Development',
-      'Operations Specialist: Stratavue',
-    ],
-  },
-];
-
-const deltureTeam = [
-  {
-    name: 'Justin Liu',
-    role: 'Growth Executive',
-  },
-  {
-    name: 'Hudson Bowers',
-    role: 'Outreach Representative',
-  },
-];
-
-const stratavueTeam = [
-  {
-    name: 'Mason Edmunds',
-    role: 'Outreach Executive',
-  },
-];
-
 const differentiators = [
   {
     icon: <Rocket className="h-8 w-8 text-primary" />,
@@ -148,91 +109,6 @@ export default function AboutPage() {
                 </h3>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-secondary/50">
-        <div className="container">
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="font-headline text-4xl font-bold md:text-6xl text-primary">
-              Meet the Team
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              The architects of innovation, dedicated to building the future of
-              AI-powered solutions.
-            </p>
-          </div>
-
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-center text-foreground mb-8 font-headline">
-              Leadership
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {leadershipTeam.map((member) => (
-                <div
-                  key={member.name}
-                  className="bg-background/70 p-6 rounded-lg shadow-sm backdrop-blur-sm border"
-                >
-                  <h4 className="text-xl font-bold text-foreground">
-                    {member.name}
-                  </h4>
-                  {member.roles.map((role) => (
-                    <p key={role} className="text-muted-foreground mt-1">
-                      {role}
-                    </p>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-20">
-            <div className="flex justify-center mb-8">
-              <Image
-                src="https://delture.com/delture-logo-3.png"
-                alt="Delture Logo"
-                width={200}
-                height={66}
-              />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {deltureTeam.map((member) => (
-                <div
-                  key={member.name}
-                  className="bg-background/70 p-6 rounded-lg shadow-sm backdrop-blur-sm border"
-                >
-                  <h4 className="text-xl font-bold text-foreground">
-                    {member.name}
-                  </h4>
-                  <p className="text-muted-foreground mt-1">{member.role}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-20">
-            <div className="flex justify-center mb-8">
-              <Image
-                src="https://stratavue.app/logo.png?v=2"
-                alt="Stratavue Logo"
-                width={300}
-                height={75}
-              />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-              {stratavueTeam.map((member) => (
-                <div
-                  key={member.name}
-                  className="bg-background/70 p-6 rounded-lg shadow-sm backdrop-blur-sm border lg:col-start-2"
-                >
-                  <h4 className="text-xl font-bold text-foreground">
-                    {member.name}
-                  </h4>
-                  <p className="text-muted-foreground mt-1">{member.role}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
