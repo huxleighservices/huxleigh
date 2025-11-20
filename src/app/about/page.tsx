@@ -1,6 +1,15 @@
 
 import Image from 'next/image';
-import { Users, Lightbulb, RefreshCw, Target, Eye } from 'lucide-react';
+import {
+  Users,
+  Lightbulb,
+  RefreshCw,
+  Target,
+  Eye,
+  Rocket,
+  Wrench,
+  HeartHandshake,
+} from 'lucide-react';
 
 const values = [
   {
@@ -53,6 +62,27 @@ const stratavueTeam = [
   {
     name: 'Mason Edmunds',
     role: 'Outreach Executive',
+  },
+];
+
+const differentiators = [
+  {
+    icon: <Rocket className="h-8 w-8 text-primary" />,
+    title: 'AI-Assisted Idea Execution',
+    description:
+      'We create digital products for brands, stories, and ideas, elevating professional personality by executing concepts with the power of Artificial Intelligence.',
+  },
+  {
+    icon: <HeartHandshake className="h-8 w-8 text-primary" />,
+    title: 'Service-Oriented Problem Solving',
+    description:
+      'Service is the root of all solutions. We are committed to an approach that involves deeply understanding each customer’s ideas, problems, and opportunities.',
+  },
+  {
+    icon: <Wrench className="h-8 w-8 text-primary" />,
+    title: 'Branded & White-Label Solutions',
+    description:
+      'We build, test, and shape software across different fronts to elevate ideas and businesses. We implement our own branded software and provide white-label solutions for customers looking to preserve their identities.',
   },
 ];
 
@@ -211,31 +241,32 @@ export default function AboutPage() {
         <div className="bg-accent/80 py-8">
           <div className="container text-center">
             <h2 className="font-headline text-4xl md:text-5xl font-bold text-accent-foreground">
-              WHAT SETS US APART?
+              WE DO SOFTWARE.
             </h2>
           </div>
         </div>
         <div className="py-16 md:py-24">
-          <div className="container grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-center">
-            <div className="text-lg text-muted-foreground md:order-1 order-2 text-center md:text-left">
-              <p>
-                We are glad you asked. With our proprietary{' '}
-                <span className="font-bold text-foreground">
-                  Camp/AI/gn&trade;
-                </span>{' '}
-                system, our software solutions are built upon the foundation of
-                AI-integrated marketing tools.
-              </p>
-            </div>
-            <div className="flex items-center justify-center md:order-2 order-1">
-              <h3 className="font-headline text-6xl md:text-8xl font-bold text-foreground relative">
-                Camp
-                <span className="text-primary">/</span>
-                AI
-                <span className="text-primary">/</span>
-                gn
-              </h3>
-            </div>
+          <div className="container space-y-12">
+            {differentiators.map((item) => (
+              <div
+                key={item.title}
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
+              >
+                <div className="flex justify-center md:justify-end">
+                  <div className="p-4 bg-primary/10 rounded-full">
+                    {item.icon}
+                  </div>
+                </div>
+                <div className="md:col-span-2 text-center md:text-left">
+                  <h3 className="text-2xl font-bold font-headline text-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-lg text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
