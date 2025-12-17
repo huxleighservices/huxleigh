@@ -20,11 +20,6 @@ const businessFeatures = [
     description: 'We transform your unique operational needs into tangible software assets. Our team architects and develops bespoke solutions to turn any concept into reality.',
   },
   {
-    icon: <FileQuestion className="h-10 w-10 text-white" />,
-    title: 'Intelligent Knowledge Base',
-    description: 'Instantly access product information, competitor analysis, and sales scripts with an AI that learns and organizes your company\'s data.',
-  },
-  {
     icon: <LifeBuoy className="h-10 w-10 text-white" />,
     title: 'Premium Service & Support',
     description: 'Our dedicated team provides expert guidance and hands-on support throughout the integration process and beyond, ensuring your continued success.',
@@ -41,11 +36,6 @@ const educationFeatures = [
       icon: <Wrench className="h-10 w-10 text-white" />,
       title: 'Custom Curriculum Integration',
       description: 'We partner with educators to develop bespoke AI workflows and scenarios, seamlessly integrating custom assets directly into your course to enrich the learning experience.',
-    },
-    {
-      icon: <FileQuestion className="h-10 w-10 text-white" />,
-      title: 'Applied ERP Skill Development',
-      description: 'Design and deploy custom scenarios and assessments that reinforce key sales concepts and track student competency with ERP best practices.',
     },
     {
       icon: <LifeBuoy className="h-10 w-10 text-white" />,
@@ -104,7 +94,7 @@ export default function TrainerPage() {
                   Our AI is designed to feel less like a program and more like a partner in your sales process.
                 </p>
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {businessFeatures.map((feature, index) => (
                   <motion.div
                     key={feature.title}
@@ -218,7 +208,7 @@ export default function TrainerPage() {
                   Our AI-infused ERP provides an immersive learning experience, bridging the gap between theory and modern sales practice.
                 </p>
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {educationFeatures.map((feature, index) => (
                   <motion.div
                     key={feature.title}
