@@ -10,23 +10,23 @@ import { Label } from '@/components/ui/label';
 const businessFeatures = [
   {
     icon: <PhoneCall className="h-10 w-10 text-white" />,
-    title: 'AI-Powered Cold Call Simulations',
-    description: 'Practice your pitch and handle objections with a responsive AI that realistically simulates potential clients, providing a safe and effective training ground.',
+    title: 'AI-Powered Call Coaching',
+    description: 'Receive real-time feedback and objection handling suggestions during live calls, all seamlessly integrated within your CRM workflow.',
   },
   {
     icon: <MessagesSquare className="h-10 w-10 text-white" />,
-    title: 'Dynamic Messaging Scenarios',
-    description: 'Engage in realistic messaging simulations with AI-driven replies. Hone your communication skills across different platforms and client personas.',
+    title: 'Intelligent Messaging Automation',
+    description: 'Let AI draft personalized follow-ups, schedule meetings, and manage your pipeline through dynamic, context-aware messaging.',
   },
   {
     icon: <FileQuestion className="h-10 w-10 text-white" />,
-    title: 'Intuitive & Customizable Quizzes',
-    description: 'Create and deploy fully customized quizzes to test knowledge and reinforce key training concepts. Track progress and identify areas for improvement.',
+    title: 'Automated Knowledge Base',
+    description: 'Instantly access product information, competitor analysis, and sales scripts with an AI that learns and organizes your company\'s data.',
   },
   {
     icon: <Cpu className="h-10 w-10 text-white" />,
-    title: 'Bespoke Asset Development',
-    description: 'We architect and integrate tailor-made assets directly into your software, addressing the unique operational needs of your sales and service teams.',
+    title: 'Bespoke AI Workflow Integration',
+    description: 'We architect and integrate tailor-made AI agents directly into your CRM, automating unique and complex tasks for your sales and service teams.',
   },
 ];
 
@@ -34,22 +34,22 @@ const educationFeatures = [
     {
       icon: <PhoneCall className="h-10 w-10 text-white" />,
       title: 'Real-World Sales Simulations',
-      description: 'Students practice sales techniques and handle objections in realistic scenarios tailored for business and sales curriculum.',
+      description: 'Students practice sales techniques and handle objections in realistic scenarios, preparing them for careers with modern sales technology.',
     },
     {
       icon: <MessagesSquare className="h-10 w-10 text-white" />,
       title: 'Interactive Communication Labs',
-      description: 'Engage in dynamic messaging simulations to master professional communication across various platforms and client personas.',
+      description: 'Engage in dynamic messaging simulations to master professional communication and client relationship management within a CRM environment.',
     },
     {
       icon: <FileQuestion className="h-10 w-10 text-white" />,
-      title: 'Advanced Assessment Tools',
-      description: 'Design and deploy custom quizzes and assessments to reinforce key concepts and track student comprehension and progress.',
+      title: 'Applied CRM Skill Development',
+      description: 'Design and deploy custom scenarios and assessments that reinforce key sales concepts and track student competency with CRM best practices.',
     },
     {
       icon: <Cpu className="h-10 w-10 text-white" />,
       title: 'Custom Curriculum Integration',
-      description: 'We partner with educators to develop and integrate bespoke assets and scenarios directly into your course to enrich the learning experience.',
+      description: 'We partner with educators to develop and integrate bespoke AI workflows and scenarios directly into your course to enrich the learning experience.',
     },
 ]
 
@@ -70,7 +70,7 @@ export default function TrainerPage() {
               priority
             />
             <p className="mt-4 max-w-3xl mx-auto text-lg text-white">
-              The ultimate tool to onboard, train, and elevate your sales team with the power of AI.
+              The smartest, most AI-infused CRM for modern sales teams.
             </p>
           </div>
         </div>
@@ -98,9 +98,9 @@ export default function TrainerPage() {
           <section className="py-16 md:py-24">
             <div className="container">
               <div className="text-center max-w-3xl mx-auto mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline">A Smarter Way to Train</h2>
+                <h2 className="text-3xl md:text-4xl font-bold font-headline">A Smarter Way to Sell</h2>
                 <p className="mt-4 text-lg text-muted-foreground">
-                  Our AI is designed to feel less like a program and more like a partner.
+                  Our AI is designed to feel less like a program and more like a partner in your sales process.
                 </p>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -136,27 +136,27 @@ export default function TrainerPage() {
                   <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
                     <BrainCircuit className="w-12 h-12 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Train an AI, Not Just an Employee</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">A CRM That Thinks, Not Just Stores</h2>
                   <p className="mt-4 text-lg text-muted-foreground">
-                    Our AI deeply learns your company's products and services, creating a highly intelligent training partner. This purpose-built approach is designed to:
+                    Our AI deeply learns your products, processes, and customers, creating an intelligent CRM that actively helps you close deals. This purpose-built approach is designed to:
                   </p>
                   <ul className="mt-6 space-y-4 text-lg">
                     <li className="flex items-start gap-3">
                       <Rocket className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Slash training time</strong> with accelerated, adaptive learning paths that get your team ready faster than ever before.
+                        <strong>Boost sales velocity</strong> with AI-driven insights and automation that accelerate your sales cycle.
                       </span>
                     </li>
                      <li className="flex items-start gap-3">
                        <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Minimize instructor workload</strong> by providing a consistent, always-on training resource for your sales and service teams.
+                        <strong>Amplify team productivity</strong> by automating administrative tasks and allowing your team to focus on selling.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <BookOpen className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Enhance learning outcomes</strong> with practical, hands-on experience that goes beyond traditional textbook learning.
+                        <strong>Enhance decision-making</strong> with predictive analytics and actionable intelligence delivered right in your workflow.
                       </span>
                     </li>
                   </ul>
@@ -212,9 +212,9 @@ export default function TrainerPage() {
           <section className="py-16 md:py-24">
             <div className="container">
               <div className="text-center max-w-3xl mx-auto mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline">A Smarter Way to Learn</h2>
+                <h2 className="text-3xl md:text-4xl font-bold font-headline">A Smarter Way to Learn Sales</h2>
                 <p className="mt-4 text-lg text-muted-foreground">
-                  Our AI provides an immersive learning experience, bridging the gap between theory and practice.
+                  Our AI-infused CRM provides an immersive learning experience, bridging the gap between theory and modern sales practice.
                 </p>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -250,27 +250,27 @@ export default function TrainerPage() {
                   <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
                     <BrainCircuit className="w-12 h-12 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Educate with an AI, Not Just a Textbook</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Educate with a CRM, Not Just a Textbook</h2>
                   <p className="mt-4 text-lg text-muted-foreground">
-                    Our AI deeply understands your curriculum, creating an intelligent and interactive learning partner. This experiential approach is designed to:
+                    Our AI deeply understands your curriculum, creating an intelligent and interactive learning environment within a true-to-life CRM. This experiential approach is designed to:
                   </p>
                   <ul className="mt-6 space-y-4 text-lg">
                     <li className="flex items-start gap-3">
                       <Rocket className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Accelerate skill development</strong> with adaptive, hands-on learning modules that prepare students for real-world challenges.
+                        <strong>Accelerate career readiness</strong> with hands-on modules that prepare students for the modern sales world.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                        <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Free up instructor time</strong> by automating repetitive training exercises and providing students with an always-available practice tool.
+                        <strong>Free up instructor time</strong> by automating repetitive exercises and providing students with an always-available practice CRM.
                       </span>
                     </li>
                      <li className="flex items-start gap-3">
                       <BookOpen className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Deepen comprehension</strong> by enabling students to apply theoretical knowledge in a safe, simulated environment.
+                        <strong>Deepen comprehension</strong> by enabling students to apply theoretical knowledge in a safe, simulated CRM environment.
                       </span>
                     </li>
                   </ul>
