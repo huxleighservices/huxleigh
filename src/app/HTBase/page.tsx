@@ -1,7 +1,8 @@
+
 'use client';
 
 import { useState } from 'react';
-import { Rocket, BookOpen, Users, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu } from 'lucide-react';
+import { Rocket, BookOpen, Users, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu, Wrench, LifeBuoy } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Switch } from '@/components/ui/switch';
@@ -10,23 +11,23 @@ import { Label } from '@/components/ui/label';
 const businessFeatures = [
   {
     icon: <PhoneCall className="h-10 w-10 text-white" />,
-    title: 'AI-Powered Call Coaching',
-    description: 'Receive real-time feedback and objection handling suggestions during live calls, all seamlessly integrated within your CRM workflow.',
+    title: 'Hyper-Realistic AI Simulations',
+    description: 'Engage in dynamic cold call and messaging simulations with an AI that deeply understands your business, providing an unparalleled training experience.',
   },
   {
-    icon: <MessagesSquare className="h-10 w-10 text-white" />,
-    title: 'Intelligent Messaging Automation',
-    description: 'Let AI draft personalized follow-ups, schedule meetings, and manage your pipeline through dynamic, context-aware messaging.',
+    icon: <Wrench className="h-10 w-10 text-white" />,
+    title: 'Custom-Built Asset Creation',
+    description: 'We transform your unique operational needs into tangible software assets. Our team architects and develops bespoke solutions to turn any concept into reality.',
   },
   {
     icon: <FileQuestion className="h-10 w-10 text-white" />,
-    title: 'Automated Knowledge Base',
+    title: 'Intelligent Knowledge Base',
     description: 'Instantly access product information, competitor analysis, and sales scripts with an AI that learns and organizes your company\'s data.',
   },
   {
-    icon: <Cpu className="h-10 w-10 text-white" />,
-    title: 'Bespoke AI Workflow Integration',
-    description: 'We architect and integrate tailor-made AI agents directly into your CRM, automating unique and complex tasks for your sales and service teams.',
+    icon: <LifeBuoy className="h-10 w-10 text-white" />,
+    title: 'Premium Service & Support',
+    description: 'Our dedicated team provides expert guidance and hands-on support throughout the integration process and beyond, ensuring your continued success.',
   },
 ];
 
@@ -34,12 +35,12 @@ const educationFeatures = [
     {
       icon: <PhoneCall className="h-10 w-10 text-white" />,
       title: 'Real-World Sales Simulations',
-      description: 'Students practice sales techniques and handle objections in realistic scenarios, preparing them for careers with modern sales technology.',
+      description: 'Students practice sales techniques in hyper-realistic scenarios, preparing them for careers with an AI that mirrors real-world client interactions.',
     },
     {
-      icon: <MessagesSquare className="h-10 w-10 text-white" />,
-      title: 'Interactive Communication Labs',
-      description: 'Engage in dynamic messaging simulations to master professional communication and client relationship management within a CRM environment.',
+      icon: <Wrench className="h-10 w-10 text-white" />,
+      title: 'Custom Curriculum Integration',
+      description: 'We partner with educators to develop bespoke AI workflows and scenarios, seamlessly integrating custom assets directly into your course to enrich the learning experience.',
     },
     {
       icon: <FileQuestion className="h-10 w-10 text-white" />,
@@ -47,9 +48,9 @@ const educationFeatures = [
       description: 'Design and deploy custom scenarios and assessments that reinforce key sales concepts and track student competency with CRM best practices.',
     },
     {
-      icon: <Cpu className="h-10 w-10 text-white" />,
-      title: 'Custom Curriculum Integration',
-      description: 'We partner with educators to develop and integrate bespoke AI workflows and scenarios directly into your course to enrich the learning experience.',
+      icon: <LifeBuoy className="h-10 w-10 text-white" />,
+      title: 'Dedicated Institutional Support',
+      description: 'Our specialists provide comprehensive support to faculty and staff, ensuring smooth implementation and ongoing success within your academic program.',
     },
 ]
 
@@ -61,7 +62,7 @@ export default function TrainerPage() {
       <section className="border-b py-16 md:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-80 blur-3xl"></div>
         <div className="container flex flex-col items-center justify-center relative z-10">
-          <div className="glassmorphism bg-black/50 p-8 md:p-12 rounded-2xl border flex flex-col items-center">
+          <div className="bg-black/50 p-8 md:p-12 rounded-2xl border flex flex-col items-center">
             <Image
               src="https://preview.redd.it/htbase-gradients-v0-65kk0u62cu7g1.png?width=1080&crop=smart&auto=webp&s=5a43fb34ccdf7532874f95fe72354d8384668dcc"
               alt="HTBase Logo"
@@ -325,3 +326,5 @@ export default function TrainerPage() {
     </div>
   );
 }
+
+    
