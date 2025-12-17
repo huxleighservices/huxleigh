@@ -61,7 +61,7 @@ export default function TrainerPage() {
       <section className="border-b py-16 md:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-80 blur-3xl"></div>
         <div className="container flex flex-col items-center justify-center relative z-10">
-          <div className="glassmorphism p-8 md:p-12 rounded-2xl border flex flex-col items-center">
+          <div className="glassmorphism bg-black/50 p-8 md:p-12 rounded-2xl border flex flex-col items-center">
             <Image
               src="https://preview.redd.it/htbase-gradients-v0-65kk0u62cu7g1.png?width=1080&crop=smart&auto=webp&s=5a43fb34ccdf7532874f95fe72354d8384668dcc"
               alt="HTBase Logo"
