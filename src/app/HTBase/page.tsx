@@ -68,7 +68,6 @@ export default function TrainerPage() {
               width={400}
               height={100}
               priority
-              className="drop-shadow-lg"
             />
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
               The ultimate tool to onboard, train, and elevate your sales team with the power of AI.
