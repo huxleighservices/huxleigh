@@ -44,8 +44,8 @@ const educationFeatures = [
     },
     {
       icon: <FileQuestion className="h-10 w-10 text-white" />,
-      title: 'Applied CRM Skill Development',
-      description: 'Design and deploy custom scenarios and assessments that reinforce key sales concepts and track student competency with CRM best practices.',
+      title: 'Applied ERP Skill Development',
+      description: 'Design and deploy custom scenarios and assessments that reinforce key sales concepts and track student competency with ERP best practices.',
     },
     {
       icon: <LifeBuoy className="h-10 w-10 text-white" />,
@@ -71,7 +71,7 @@ export default function TrainerPage() {
               priority
             />
             <p className="mt-4 max-w-3xl mx-auto text-lg text-white">
-              The smartest, most AI-infused CRM for modern sales teams.
+              The smartest, most AI-infused ERP for modern sales teams.
             </p>
           </div>
         </div>
@@ -137,9 +137,9 @@ export default function TrainerPage() {
                   <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
                     <BrainCircuit className="w-12 h-12 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-headline">A CRM That Thinks, Not Just Stores</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">An ERP That Thinks, Not Just Stores</h2>
                   <p className="mt-4 text-lg text-muted-foreground">
-                    Our AI deeply learns your products, processes, and customers, creating an intelligent CRM that actively helps you close deals. This purpose-built approach is designed to:
+                    Our AI deeply learns your products, processes, and customers, creating an intelligent ERP that actively helps you close deals. This purpose-built approach is designed to:
                   </p>
                   <ul className="mt-6 space-y-4 text-lg">
                     <li className="flex items-start gap-3">
@@ -215,7 +215,7 @@ export default function TrainerPage() {
               <div className="text-center max-w-3xl mx-auto mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold font-headline">A Smarter Way to Learn Sales</h2>
                 <p className="mt-4 text-lg text-muted-foreground">
-                  Our AI-infused CRM provides an immersive learning experience, bridging the gap between theory and modern sales practice.
+                  Our AI-infused ERP provides an immersive learning experience, bridging the gap between theory and modern sales practice.
                 </p>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -251,9 +251,9 @@ export default function TrainerPage() {
                   <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
                     <BrainCircuit className="w-12 h-12 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Educate with a CRM, Not Just a Textbook</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Educate with an ERP, Not Just a Textbook</h2>
                   <p className="mt-4 text-lg text-muted-foreground">
-                    Our AI deeply understands your curriculum, creating an intelligent and interactive learning environment within a true-to-life CRM. This experiential approach is designed to:
+                    Our AI deeply understands your curriculum, creating an intelligent and interactive learning environment within a true-to-life ERP. This experiential approach is designed to:
                   </p>
                   <ul className="mt-6 space-y-4 text-lg">
                     <li className="flex items-start gap-3">
@@ -265,13 +265,13 @@ export default function TrainerPage() {
                     <li className="flex items-start gap-3">
                        <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Free up instructor time</strong> by automating repetitive exercises and providing students with an always-available practice CRM.
+                        <strong>Free up instructor time</strong> by automating repetitive exercises and providing students with an always-available practice environment.
                       </span>
                     </li>
                      <li className="flex items-start gap-3">
                       <BookOpen className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Deepen comprehension</strong> by enabling students to apply theoretical knowledge in a safe, simulated CRM environment.
+                        <strong>Deepen comprehension</strong> by enabling students to apply theoretical knowledge in a safe, simulated enterprise environment.
                       </span>
                     </li>
                   </ul>
@@ -326,5 +326,3 @@ export default function TrainerPage() {
     </div>
   );
 }
-
-    
