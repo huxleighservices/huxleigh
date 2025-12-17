@@ -63,7 +63,7 @@ export default function TrainerPage() {
         <div className="container flex flex-col items-center justify-center relative z-10">
           <div className="glassmorphism p-8 md:p-12 rounded-2xl border flex flex-col items-center">
             <Image
-              src="https://preview.redd.it/mszt14me641g1.png?width=1080&crop=smart&auto=webp&s=767e946bd9165e98a8637eb5cb35ced596f2a4d5"
+              src="https://preview.redd.it/htbase-gradients-v0-65kk0u62cu7g1.png?width=1080&crop=smart&auto=webp&s=5a43fb34ccdf7532874f95fe72354d8384668dcc"
               alt="HTBase Logo"
               width={400}
               height={100}
