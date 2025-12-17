@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Rocket, BookOpen, Users, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu, Wrench, LifeBuoy } from 'lucide-react';
+import { Rocket, ShieldCheck, DollarSign, BookOpen, Users, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu, Wrench, LifeBuoy } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Switch } from '@/components/ui/switch';
@@ -137,27 +137,27 @@ export default function TrainerPage() {
                   <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
                     <BrainCircuit className="w-12 h-12 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-headline">An ERP That Thinks, Not Just Stores</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Train an AI, Not Just an Employee</h2>
                   <p className="mt-4 text-lg text-muted-foreground">
-                    Our AI deeply learns your products, processes, and customers, creating an intelligent ERP that actively helps you close deals. This purpose-built approach is designed to:
+                    Our AI deeply learns your company's products and services, creating a highly intelligent training partner. This purpose-built approach is designed to:
                   </p>
                   <ul className="mt-6 space-y-4 text-lg">
                     <li className="flex items-start gap-3">
-                      <Rocket className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                      <DollarSign className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Boost sales velocity</strong> with AI-driven insights and automation that accelerate your sales cycle.
+                        <strong>Cut significant costs</strong> by reducing the need for extensive one-on-one coaching and role-play sessions.
                       </span>
                     </li>
                      <li className="flex items-start gap-3">
-                       <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                       <ShieldCheck className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Amplify team productivity</strong> by automating administrative tasks and allowing your team to focus on selling.
+                        <strong>Minimize extra labor</strong> by providing a consistent, always-on training resource for your sales and service teams.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <BookOpen className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
+                      <Rocket className="h-6 w-6 text-primary mt-1 flex-shrink-0"/>
                       <span>
-                        <strong>Enhance decision-making</strong> with predictive analytics and actionable intelligence delivered right in your workflow.
+                        <strong>Slash training time</strong> with accelerated, adaptive learning paths that get your team ready faster than ever before.
                       </span>
                     </li>
                   </ul>
@@ -251,9 +251,9 @@ export default function TrainerPage() {
                   <div className="p-6 bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mb-6">
                     <BrainCircuit className="w-12 h-12 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Educate with an ERP, Not Just a Textbook</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Prepare Students for the Real World</h2>
                   <p className="mt-4 text-lg text-muted-foreground">
-                    Our AI deeply understands your curriculum, creating an intelligent and interactive learning environment within a true-to-life ERP. This experiential approach is designed to:
+                    Our platform provides hands-on, career-focused training that equips students with the skills they need to succeed in modern sales. This innovative approach is designed to:
                   </p>
                   <ul className="mt-6 space-y-4 text-lg">
                     <li className="flex items-start gap-3">
