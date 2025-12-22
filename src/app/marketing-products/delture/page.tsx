@@ -16,10 +16,8 @@ const pricingTiers = [
     annualPrice: '0',
     features: [
       '1 Account',
-      'Planning Calendar',
       'Caption Bot',
-      'Camp/ai/gn Lite',
-      { text: '1 GB of file storage', comingSoon: true },
+      'Camp/ai/gn',
     ],
     paymentLinks: {
       monthly: 'https://delture.com',
@@ -28,32 +26,13 @@ const pricingTiers = [
   },
   {
     name: 'PRO',
-    monthlyPrice: '19.99',
-    annualPrice: '12.99',
-    features: [
-      '2 Accounts',
-      'Planning Calendar',
-      'Caption Bot',
-      'Camp/ai/gn Pro',
-      { text: '10 GB of file storage', comingSoon: true },
-    ],
-    paymentLinks: {
-      monthly: 'https://buy.stripe.com/bJeaEZgIOe4V8bY6Oo3ZK03',
-      annually: 'https://buy.stripe.com/7sYaEZ2RY3qh1NA4Gg3ZK01',
-    },
-  },
-  {
-    name: 'PRO+ AGENT',
     monthlyPrice: '34.99',
     annualPrice: '26.99',
     features: [
       '5 Accounts',
-      'Planning Calendar',
-      '1-on-1 content agent',
-      'Bi-weekly agent planning sessions',
+      'Content Agent',
       'Caption Bot',
-      'Camp/ai/gn Pro',
-      { text: '50 GB of file storage', comingSoon: true },
+      'Camp/ai/gn +',
     ],
     paymentLinks: {
       monthly: 'https://buy.stripe.com/7sYbJ3dwCf8Zcse1u43ZK04',
@@ -185,7 +164,7 @@ export default function DelturePage() {
               </Label>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch justify-center">
             {pricingTiers.map((tier) => (
                 <Card
                 key={tier.name}
