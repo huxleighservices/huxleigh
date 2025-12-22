@@ -198,12 +198,7 @@ export default function DelturePage() {
                       <li key={i} className="flex items-center gap-3">
                         <Check className="h-5 w-5 text-red-500" />
                         <span>
-                          {typeof feature === 'string' ? feature : feature.text}
-                          {typeof feature !== 'string' && feature.comingSoon && (
-                            <span className="ml-2 text-xs font-bold text-primary animate-pulse">
-                              (Coming Soon)
-                            </span>
-                          )}
+                          {feature}
                         </span>
                       </li>
                     ))}
