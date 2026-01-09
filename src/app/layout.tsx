@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     'Huxleigh is a premier software conglomerate specializing in AI-software services and white-label distribution.',
   icons: {
-    icon: '/huxleigh-icon.png',
+    icon: '/IconH.png',
   },
 };
 
