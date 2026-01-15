@@ -14,6 +14,7 @@ import {
   Briefcase,
   UserPlus,
   Award,
+  HardDrive,
 } from 'lucide-react';
 
 export const navLinks = [
@@ -60,6 +61,16 @@ export const navLinks = [
         label: 'HTBase',
         href: '/HTBase',
         description: 'AI-assisted sales training and onboarding software.',
+      },
+    ],
+  },
+  {
+    label: 'Hardware',
+    children: [
+      {
+        label: 'HT-Go',
+        href: '/hardware/ht-go',
+        description: 'Portable AI-powered sales training hardware.',
       },
     ],
   },
@@ -291,7 +302,7 @@ type NewsItem = {
 };
 
 export const newsItems: NewsItem[] = [
-  {
+    {
     title: 'HTBase finishes testing education-geared format.',
     date: '2025-11-20',
     content:
