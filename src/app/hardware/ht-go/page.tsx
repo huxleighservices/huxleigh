@@ -1,14 +1,20 @@
-import { HardDrive } from 'lucide-react';
+import Image from 'next/image';
 
 export default function HtGoPage() {
   return (
-    <div className="container flex flex-col items-center justify-center py-24 text-center">
-      <div className="glassmorphism p-12 rounded-2xl border flex flex-col items-center">
-        <HardDrive className="h-24 w-24 text-primary mb-8" />
-        <h1 className="text-4xl font-bold font-headline">HT-Go</h1>
-        <p className="mt-4 text-lg text-muted-foreground max-w-md">
-          This page is under construction. Check back soon for our revolutionary portable AI-powered sales training hardware.
-        </p>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-600 via-purple-800 to-indigo-900 text-white text-center p-4">
+      <div className="flex flex-col items-center space-y-8">
+        <Image
+          src="https://preview.redd.it/f16kfi6nmydg1.png?width=1080&crop=smart&auto=webp&s=bdfe55960a1fb027ab317408176e62c59dd0e3a6"
+          alt="HT-Go Logo"
+          width={400}
+          height={100}
+          priority
+          className="drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]"
+        />
+        <h1 className="text-5xl md:text-7xl font-black font-headline tracking-wide uppercase drop-shadow-lg">
+          The Device that Knows
+        </h1>
       </div>
     </div>
   );
