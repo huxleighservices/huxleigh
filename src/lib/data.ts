@@ -302,7 +302,14 @@ type NewsItem = {
 };
 
 export const newsItems: NewsItem[] = [
-    {
+  {
+    title: 'R&D Team Makes Strides in Hardware for HTBase and HT-Go',
+    date: '2025-12-15',
+    content:
+      'Our Research & Development team is making significant progress on hardware integrations for our HTBase software ecosystem. This includes exciting advancements for the upcoming HT-Go device, which will bring our powerful AI training tools into a dedicated, portable form factor. These developments are set to further revolutionize on-the-go sales and service training.',
+    icon: HardDrive,
+  },
+  {
     title: 'HTBase finishes testing education-geared format.',
     date: '2025-11-20',
     content:
