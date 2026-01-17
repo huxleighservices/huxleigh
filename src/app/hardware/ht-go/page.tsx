@@ -48,6 +48,11 @@ export default function HtGoPage() {
 
       <section className="py-16 md:py-24">
         <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold uppercase tracking-widest text-red-400 animate-pulse font-headline">
+              Coming Soon
+            </h2>
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
