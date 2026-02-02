@@ -71,7 +71,7 @@ export default function Home() {
           <source src="/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-blue-950/60"></div>
+        <div className="absolute inset-0 bg-sky-800/70"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
           <div className="p-8 rounded-lg glassmorphism">
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
