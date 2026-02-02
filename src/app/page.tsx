@@ -111,11 +111,8 @@ export default function Home() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-headline text-3xl font-bold md:text-4xl text-foreground">
-              Our Flagship Products
+              Check us Out
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Explore our suite of AI-powered applications designed to drive growth and efficiency.
-            </p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {productHighlights.map((product) => (
