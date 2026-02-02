@@ -146,46 +146,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="grid items-center gap-12 md:grid-cols-2">
-            <div>
-              <h2 className="font-headline text-3xl font-bold md:text-4xl">
-                Your Strategic Partner in AI Innovation
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                At Huxleigh, we believe in building more than just software.
-                We build partnerships that foster growth and drive success.
-              </p>
-              <div className="mt-8 space-y-6">
-                {companyPillars.map((pillar) => (
-                  <div key={pillar.title} className="flex items-start gap-4">
-                    <div className="mt-1 flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-primary/10">
-                      {pillar.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">{pillar.title}</h3>
-                      <p className="mt-1 text-muted-foreground">
-                        {pillar.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative h-80 w-full overflow-hidden rounded-2xl shadow-lg md:h-[450px]">
-              <Image
-                src="https://images.unsplash.com/photo-1616333827064-52d363cf4bea?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="AI partnership"
-                fill
-                className="object-cover"
-                data-ai-hint="teamwork collaboration"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
