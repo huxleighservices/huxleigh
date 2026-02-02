@@ -3,11 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
-  BrainCircuit,
   Award,
   Users,
   MessageCircle,
-  Newspaper,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -16,23 +14,36 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
-const serviceHighlights = [
+const productHighlights = [
   {
-    icon: <BrainCircuit className="h-8 w-8 text-primary" />,
-    title: 'AI-Grounded Marketing Products',
-    description:
-      'Leverage our AI-powered marketing products to create data-driven strategies and deliver exceptional results that boost your bottom line.',
+    logoSrc: 'https://delture.com/delture-logo-3.png',
+    logoAlt: 'Delture Logo',
+    description: 'The all-in-one AI-powered social media solution for student organizations.',
     href: '/marketing-products/delture',
+    colorClass: 'hover:border-red-500/30 hover:shadow-red-500/10',
+    logoWidth: 140,
+    logoHeight: 46
   },
   {
-    icon: <Newspaper className="h-8 w-8 text-primary" />,
-    title: 'Company News',
-    description:
-      'Stay up-to-date with our latest advancements, partnerships, and company milestones.',
-    href: '/company/news',
+    logoSrc: 'https://stratavue.app/logo.png?v=2',
+    logoAlt: 'Stratavue Logo',
+    description: 'The premiere AI-assisted music marketing suite to orchestrate your success.',
+    href: '/marketing-products/stratavue',
+    colorClass: 'hover:border-violet-500/30 hover:shadow-violet-500/10',
+    logoWidth: 140,
+    logoHeight: 35
+  },
+  {
+    logoSrc: 'https://preview.redd.it/mszt14me641g1.png?width=1080&crop=smart&auto=webp&s=767e946bd9165e98a8637eb5cb35ced596f2a4d5',
+    logoAlt: 'HTBase Logo',
+    description: 'AI-assisted sales training and onboarding software to elevate your team.',
+    href: '/HTBase',
+    colorClass: 'hover:border-cyan-500/30 hover:shadow-cyan-500/10',
+    logoWidth: 140,
+    logoHeight: 35
   },
 ];
 
@@ -96,34 +107,36 @@ export default function Home() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-headline text-3xl font-bold md:text-4xl text-foreground">
-              Transforming Industries with Intelligent Technology
+              Our Flagship Products
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              We provide the tools and expertise to unlock the power of AI for
-              your organization.
+              Explore our suite of AI-powered applications designed to drive growth and efficiency.
             </p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {serviceHighlights.map((service) => (
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {productHighlights.map((product) => (
               <Card
-                key={service.title}
-                className="glassmorphism flex transform flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-primary/10 hover:shadow-2xl hover:border-primary/30"
+                key={product.href}
+                className={cn("glassmorphism flex transform flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl", product.colorClass)}
               >
-                <CardHeader>
-                  <div className="mb-4 flex items-center justify-center rounded-full bg-primary/10 p-3 w-fit">
-                    {service.icon}
+                <CardHeader className="items-center text-center">
+                  <div className="h-20 flex items-center justify-center">
+                     <Image
+                        src={product.logoSrc}
+                        alt={product.logoAlt}
+                        width={product.logoWidth}
+                        height={product.logoHeight}
+                        className="object-contain"
+                      />
                   </div>
-                  <CardTitle className="text-xl font-bold">
-                    {service.title}
-                  </CardTitle>
-                  <CardDescription className="pt-2">
-                    {service.description}
+                   <CardDescription className="pt-4 h-24">
+                    {product.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button variant="link" asChild className="p-0 font-semibold">
-                    <Link href={service.href}>
-                      Learn More <ArrowRight />
+                  <Button variant="link" asChild className="p-0 font-semibold w-full">
+                    <Link href={product.href}>
+                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </CardContent>
