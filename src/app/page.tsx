@@ -73,6 +73,14 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-sky-800/70"></div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4">
+           <Image
+              src="https://preview.redd.it/z9fhqu44z4hg1.png?width=1080&crop=smart&auto=webp&s=17d8afdcc43566a5f579bb8dd2ddf205f8ab4796"
+              alt="Huxleigh AI Brain"
+              width={200}
+              height={200}
+              className="mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.7)]"
+              priority
+            />
           <div className="p-8 rounded-lg glassmorphism">
             <h1 className="font-headline text-4xl font-black tracking-tight uppercase md:text-6xl lg:text-7xl">
               Powerful AI Software <br /> for Powerful People
