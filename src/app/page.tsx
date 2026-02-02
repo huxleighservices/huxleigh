@@ -78,8 +78,7 @@ export default function Home() {
               Powerful AI Software <br /> for Powerful People
             </h1>
             <p className="mt-6 max-w-xl mx-auto text-lg text-white/80">
-              Huxleigh is a premier software conglomerate specializing in
-              AI-software services and white-label distribution.
+              Huxleigh is an AI-first software conglomerate that offers B2C software applications and custom CRM solutions for businesses.
             </p>
           </div>
         </div>
