@@ -24,6 +24,7 @@ const productHighlights = [
     description: 'The all-in-one AI-powered social media solution for student organizations.',
     href: '/marketing-products/delture',
     colorClass: 'hover:border-red-500/30 hover:shadow-red-500/10',
+    buttonColorClass: 'bg-red-500 hover:bg-red-600 text-white',
     logoWidth: 140,
     logoHeight: 46
   },
@@ -33,6 +34,8 @@ const productHighlights = [
     description: 'The premiere AI-assisted music marketing suite to orchestrate your success.',
     href: '/marketing-products/stratavue',
     colorClass: 'hover:border-violet-500/30 hover:shadow-violet-500/10',
+    logoClassName: 'invert',
+    buttonColorClass: 'bg-violet-600 hover:bg-violet-700 text-white',
     logoWidth: 140,
     logoHeight: 35
   },
@@ -42,6 +45,7 @@ const productHighlights = [
     description: 'AI-assisted sales training and onboarding software to elevate your team.',
     href: '/HTBase',
     colorClass: 'hover:border-cyan-500/30 hover:shadow-cyan-500/10',
+    buttonColorClass: 'bg-cyan-500 hover:bg-cyan-600 text-white',
     logoWidth: 140,
     logoHeight: 35
   },
@@ -126,7 +130,7 @@ export default function Home() {
                         alt={product.logoAlt}
                         width={product.logoWidth}
                         height={product.logoHeight}
-                        className="object-contain"
+                        className={cn("object-contain", (product as any).logoClassName)}
                       />
                   </div>
                    <CardDescription className="pt-4 h-24">
@@ -134,7 +138,7 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button variant="link" asChild className="p-0 font-semibold w-full">
+                  <Button asChild className={cn("w-full font-semibold", (product as any).buttonColorClass)}>
                     <Link href={product.href}>
                       Learn More <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
