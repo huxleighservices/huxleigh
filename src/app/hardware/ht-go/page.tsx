@@ -46,6 +46,18 @@ export default function HtGoPage() {
         </div>
       </section>
 
+      <section className="py-16">
+        <div className="container flex justify-center">
+            <Image
+              src="https://preview.redd.it/ht-go-flyer-v0-5yin7bvlh4jg1.png?width=1080&crop=smart&auto=webp&s=e93de15a43b15eadaf10a8136692b3f40699227c"
+              alt="HT-Go Flyer"
+              width={1080}
+              height={1350}
+              className="rounded-lg shadow-2xl max-w-full h-auto md:max-w-2xl"
+            />
+        </div>
+      </section>
+
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="text-center mb-12">
