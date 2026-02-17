@@ -51,20 +51,14 @@ const team = [
     {
         name: 'David Zimmerman',
         role: 'Founder & President',
-        imageUrl: 'https://picsum.photos/seed/david/400/400',
-        imageHint: 'professional man'
     },
     {
         name: 'Patrick McCollum',
         role: 'Director of Client Relations',
-        imageUrl: 'https://picsum.photos/seed/patrick/400/400',
-        imageHint: 'professional man'
     },
     {
         name: 'Austin Perry',
         role: 'Account Manager',
-        imageUrl: 'https://picsum.photos/seed/austin/400/400',
-        imageHint: 'professional man'
     }
 ];
 
@@ -186,15 +180,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {team.map((member) => (
-              <div key={member.name} className="text-center flex flex-col items-center">
-                <Image
-                  src={member.imageUrl}
-                  alt={member.name}
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4 object-cover"
-                  data-ai-hint={member.imageHint}
-                />
+              <div key={member.name} className="glassmorphism p-6 rounded-lg text-center border">
                 <h3 className="text-xl font-bold">{member.name}</h3>
                 <p className="text-muted-foreground">{member.role}</p>
               </div>
