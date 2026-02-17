@@ -1,12 +1,13 @@
-
 'use client';
 
 import { useState } from 'react';
-import { Rocket, ShieldCheck, DollarSign, BookOpen, Users, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu, Wrench, LifeBuoy } from 'lucide-react';
+import { Rocket, ShieldCheck, DollarSign, BookOpen, Users, Phone, Mail, PhoneCall, MessagesSquare, FileQuestion, BrainCircuit, Cpu, Wrench, LifeBuoy, Download } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 
 const businessFeatures = [
   {
@@ -65,6 +66,15 @@ export default function TrainerPage() {
             </p>
           </div>
         </div>
+      </section>
+
+      <section className="py-8 text-center">
+        <Button asChild size="lg" className="bg-primary text-primary-foreground font-bold shadow-[0_0_15px_5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_25px_10px_hsl(var(--primary)/0.4)] transition-shadow">
+          <Link href="https://drive.google.com/uc?export=download&id=1fhLWSh5Lyu4-Nx-pBEcAjD7AFVYKc6Qi" target="_blank">
+            <Download className="mr-2 h-5 w-5" />
+            Download Referral Info/Quick Fact Sheet
+          </Link>
+        </Button>
       </section>
 
       <section className="py-8 border-b">
