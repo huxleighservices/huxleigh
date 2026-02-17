@@ -30,7 +30,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'storage.googleapis.com',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
     ],
   },
   webpack: (config) => {

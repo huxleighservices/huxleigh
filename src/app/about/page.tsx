@@ -47,6 +47,38 @@ const differentiators = [
   },
 ];
 
+const team = [
+    {
+        name: 'David Zimmerman',
+        role: 'Founder & President',
+        imageUrl: 'https://picsum.photos/seed/david/400/400',
+        imageHint: 'professional man'
+    },
+    {
+        name: 'Patrick McCollum',
+        role: 'Director of Client Relations',
+        imageUrl: 'https://picsum.photos/seed/patrick/400/400',
+        imageHint: 'professional man'
+    },
+    {
+        name: 'Austin Perry',
+        role: 'Account Manager',
+        imageUrl: 'https://picsum.photos/seed/austin/400/400',
+        imageHint: 'professional man'
+    }
+];
+
+const partners = [
+    {
+        name: 'Ken Harris',
+        role: 'Liaison -- Stratavue',
+    },
+    {
+        name: 'Gabe Crozier',
+        role: 'Software Specialist -- Swishy Solutions LLC',
+    }
+]
+
 export default function AboutPage() {
   return (
     <div className="bg-background">
@@ -146,6 +178,46 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <section className="py-16 md:py-24 bg-secondary/30 border-y">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">Meet the Team</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {team.map((member) => (
+              <div key={member.name} className="text-center flex flex-col items-center">
+                <Image
+                  src={member.imageUrl}
+                  alt={member.name}
+                  width={150}
+                  height={150}
+                  className="rounded-full mx-auto mb-4 object-cover"
+                  data-ai-hint={member.imageHint}
+                />
+                <h3 className="text-xl font-bold">{member.name}</h3>
+                <p className="text-muted-foreground">{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+       <section className="py-16 md:py-24">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Partners</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {partners.map((partner) => (
+                <div key={partner.name} className="glassmorphism p-6 rounded-lg text-center border">
+                    <h3 className="text-xl font-bold">{partner.name}</h3>
+                    <p className="text-primary font-semibold">{partner.role}</p>
+                </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
