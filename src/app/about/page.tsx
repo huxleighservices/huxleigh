@@ -75,7 +75,7 @@ const partners = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-background">
+    <div className="bg-white">
       <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center text-center text-white">
         <Image
           src="https://images.unsplash.com/photo-1622542390045-e812a83e59d1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fGNvbXB1dGVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D"
@@ -95,7 +95,7 @@ export default function AboutPage() {
 
       <section className="py-16 md:py-24">
         <div className="container grid md:grid-cols-2 gap-12">
-          <div className="glassmorphism p-8 rounded-lg border">
+          <div className="p-8 rounded-lg border">
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 bg-primary/10 rounded-full">
                 <Target className="h-8 w-8 text-primary" />
@@ -107,7 +107,7 @@ export default function AboutPage() {
               that align with our values.
             </p>
           </div>
-          <div className="glassmorphism p-8 rounded-lg border">
+          <div className="p-8 rounded-lg border">
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 bg-primary/10 rounded-full">
                 <Eye className="h-8 w-8 text-primary" />
@@ -180,7 +180,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {team.map((member) => (
-              <div key={member.name} className="glassmorphism p-6 rounded-lg text-center border">
+              <div key={member.name} className="p-6 rounded-lg text-center border">
                 <h3 className="text-xl font-bold">{member.name}</h3>
                 <p className="text-muted-foreground">{member.role}</p>
               </div>
@@ -195,7 +195,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {partners.map((partner) => (
-                <div key={partner.name} className="glassmorphism p-6 rounded-lg text-center border">
+                <div key={partner.name} className="p-6 rounded-lg text-center border">
                     <h3 className="text-xl font-bold">{partner.name}</h3>
                     <p className="text-primary font-semibold">{partner.role}</p>
                 </div>

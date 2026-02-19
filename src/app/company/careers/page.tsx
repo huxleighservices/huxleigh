@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 export default function CareersPage() {
   return (
-    <div className="bg-background text-foreground">
-      <section className="py-16 md:py-24 text-center glassmorphism border-b">
+    <div className="bg-white text-foreground">
+      <section className="py-16 md:py-24 text-center border-b">
         <div className="container">
           <h1 className="text-5xl md:text-7xl font-bold text-primary tracking-wider font-headline">
             Join Us

@@ -4,7 +4,7 @@ import { CreditCard } from 'lucide-react';
 export default function PurchasePage() {
   return (
     <>
-      <section className="glassmorphism border-b py-16 md:py-24">
+      <section className="border-b py-16 md:py-24">
         <div className="container text-center">
           <CreditCard className="h-16 w-16 text-primary mb-6 mx-auto" />
           <h1 className="font-headline text-4xl font-bold md:text-6xl">

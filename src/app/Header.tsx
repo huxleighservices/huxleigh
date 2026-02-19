@@ -60,11 +60,11 @@ export default function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-stone-700 bg-stone-800/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 w-full border-b bg-white">
       <div className="container flex h-20 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center">
-            <Logo className="h-10 w-auto" />
+            <Logo className="h-10 w-auto invert" />
           </Link>
         </div>
 
@@ -74,9 +74,9 @@ export default function Header() {
               <DropdownMenu key={link.label}>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    variant="ghost"
+                    variant="outline"
                      className={cn(
-                      'flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-4 font-semibold text-white/90 shadow-sm transition-colors hover:bg-white/20',
+                      'flex items-center gap-1 font-semibold',
                        pathname.startsWith(
                         `/${link.label.toLowerCase().replace(' ', '-')}`
                       ) ||
@@ -84,15 +84,15 @@ export default function Header() {
                           (pathname === '/about' ||
                             pathname === '/company/news' ||
                             pathname === '/company/careers'))
-                        ? 'bg-white/20 text-white'
-                        : 'text-white/80'
+                        ? 'bg-accent text-accent-foreground'
+                        : ''
                     )}
                   >
                     {link.label}
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 glassmorphism">
+                <DropdownMenuContent className="w-56">
                   <ul className="grid gap-3 p-4">
                     {link.children.map((child) => (
                       <ListItem
@@ -107,15 +107,15 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-               <Button asChild variant="ghost" className="rounded-full border border-white/20 bg-white/10 px-4 text-white/90 shadow-sm transition-colors hover:bg-white/20">
+               <Button asChild variant="outline">
                   <Link
                     key={link.href}
                     href={link.href!}
                     className={cn(
-                      'font-semibold transition-colors',
+                      'font-semibold',
                       pathname === link.href
-                        ? 'text-white'
-                        : 'text-white/80'
+                        ? 'bg-accent text-accent-foreground'
+                        : ''
                     )}
                   >
                     {link.label}
@@ -133,7 +133,7 @@ export default function Header() {
                 <span className="sr-only">Open Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="pr-0 glassmorphism">
+            <SheetContent side="left" className="pr-0 bg-white">
               <SheetHeader>
                   <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
                   <SheetDescription className="sr-only">A list of links to navigate the website.</SheetDescription>
@@ -145,7 +145,7 @@ export default function Header() {
                     className="flex items-center space-x-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Logo className="h-6 w-auto" />
+                    <Logo className="h-6 w-auto invert" />
                   </Link>
                 </div>
                 <nav className="flex flex-col gap-4 py-4 pr-6">

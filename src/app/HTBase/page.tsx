@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -53,7 +54,7 @@ export default function TrainerPage() {
       <section className="border-b py-16 md:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-cyan-400 to-blue-600 animate-gradient-move opacity-80 blur-3xl"></div>
         <div className="container flex flex-col items-center justify-center relative z-10">
-          <div className="bg-black/50 p-8 md:p-12 rounded-2xl border flex flex-col items-center">
+          <div className="bg-background/80 backdrop-blur-sm p-8 md:p-12 rounded-2xl border flex flex-col items-center">
             <Image
               src="https://preview.redd.it/htbase-gradients-v0-65kk0u62cu7g1.png?width=1080&crop=smart&auto=webp&s=5a43fb34ccdf7532874f95fe72354d8384668dcc"
               alt="HTBase Logo"
@@ -61,7 +62,7 @@ export default function TrainerPage() {
               height={100}
               priority
             />
-            <p className="mt-4 max-w-3xl mx-auto text-lg text-white">
+            <p className="mt-4 max-w-3xl mx-auto text-lg">
               The smartest, most AI-infused ERP for modern sales teams.
             </p>
           </div>
@@ -125,7 +126,7 @@ export default function TrainerPage() {
             </div>
           </section>
 
-          <section className="py-16 md:py-24 glassmorphism border-y">
+          <section className="py-16 md:py-24 border-y">
             <div className="container">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <motion.div
@@ -239,7 +240,7 @@ export default function TrainerPage() {
             </div>
           </section>
 
-          <section className="py-16 md:py-24 glassmorphism border-y">
+          <section className="py-16 md:py-24 border-y">
             <div className="container">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <motion.div

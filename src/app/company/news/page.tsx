@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -22,8 +23,8 @@ export default function NewsPage() {
   );
 
   return (
-    <div>
-      <section className="glassmorphism border-b py-16 md:py-24">
+    <div className="bg-white">
+      <section className="border-b py-16 md:py-24">
         <div className="container text-center">
           <h1 className="font-headline text-4xl font-bold md:text-6xl">
             Company News
@@ -46,7 +47,7 @@ export default function NewsPage() {
             <CarouselContent>
               {sortedNews.map((item, index) => (
                 <CarouselItem key={index}>
-                  <Card className="h-full glassmorphism transition-all hover:shadow-xl hover:border-primary/20">
+                  <Card className="h-full border transition-all hover:shadow-xl hover:border-primary/20">
                     <CardHeader>
                       <div className="flex items-center gap-4 mb-4">
                         <div className="p-3 bg-primary/10 rounded-full">

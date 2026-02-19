@@ -1,3 +1,4 @@
+
 'use client';
 import { PunchForm } from './PunchForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,7 +11,7 @@ export default function TimePunchPage() {
       <p className="text-muted-foreground max-w-md">
         Select your punch type, add any notes, and submit. Your record will be emailed to administration.
       </p>
-      <Card className="max-w-md glassmorphism">
+      <Card className="max-w-md border">
         <CardHeader>
             <CardTitle>New Time Punch</CardTitle>
         </CardHeader>

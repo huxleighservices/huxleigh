@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -83,7 +84,7 @@ export default function ResourcesPage() {
         <NewHyperlinkDialog />
       </div>
 
-      <Card className="glassmorphism">
+      <Card className="border">
         <CardHeader>
           <div className="flex items-center gap-4">
             <BookOpen className="h-8 w-8 text-primary" />
@@ -139,7 +140,7 @@ export default function ResourcesPage() {
                         <MoreVertical className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="glassmorphism">
+                    <DropdownMenuContent align="end" className="">
                       <DropdownMenuItem
                         onClick={() => handleDelete(link.id)}
                         className="text-destructive focus:bg-destructive/10 focus:text-destructive"

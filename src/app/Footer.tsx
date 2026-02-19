@@ -1,0 +1,89 @@
+
+import Link from 'next/link';
+import Logo from '@/components/Logo';
+import { navLinks, socialLinks } from '@/lib/data';
+
+export default function Footer() {
+  return (
+    <footer className="border-t bg-gray-50">
+      <div className="container">
+        <div className="grid grid-cols-1 gap-8 py-12 md:grid-cols-12">
+          <div className="flex flex-col items-start col-span-12 md:col-span-3">
+            <Link href="/" className="flex items-center">
+              <Logo className="h-10 w-auto invert" />
+            </Link>
+            <p className="mt-4 text-gray-500">
+              Powerful AI Software for Powerful People.
+            </p>
+          </div>
+          <div className="col-span-12 md:col-span-9 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {navLinks
+              .filter((link) => link.children)
+              .map((link) => (
+                <div key={link.label}>
+                  <h3 className="font-semibold tracking-wider text-gray-900">
+                    {link.label}
+                  </h3>
+                  <ul className="mt-4 space-y-2">
+                    {link.children!.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          href={child.href}
+                          className="text-gray-500 hover:text-gray-900"
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+            <div>
+              <h3 className="font-semibold tracking-wider text-gray-900">
+                Connect
+              </h3>
+              <ul className="mt-4 space-y-2">
+                <li>
+                  <a
+                    href="tel:412-339-0597"
+                    className="text-gray-500 hover:text-gray-900"
+                  >
+                    412-339-0597
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:service@huxleigh.com"
+                    className="text-gray-500 hover:text-gray-900"
+                  >
+                    service@huxleigh.com
+                  </a>
+                </li>
+              </ul>
+              <div className="mt-4 flex space-x-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-gray-900"
+                  >
+                    <social.icon className="h-6 w-6" />
+                    <span className="sr-only">{social.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-between border-t py-6 sm:flex-row">
+          <p className="text-sm text-gray-400">
+            &copy; {new Date().getFullYear()} Huxleigh LLC. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

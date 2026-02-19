@@ -1,3 +1,4 @@
+
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -10,7 +11,7 @@ export default function PurchaseSuccessPage({
 }) {
   return (
     <div className="container py-24 flex items-center justify-center">
-      <Card className="w-full max-w-lg text-center glassmorphism">
+      <Card className="w-full max-w-lg text-center border">
         <CardHeader>
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 mb-4">
             <CheckCircle className="h-10 w-10 text-green-600" />

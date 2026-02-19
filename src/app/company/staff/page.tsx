@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -70,7 +71,7 @@ export default function StaffPage() {
     <div className="space-y-6">
       <h1 className="text-3xl font-bold font-headline">My Info</h1>
 
-      <Card className="max-w-2xl glassmorphism">
+      <Card className="max-w-2xl border">
         <CardHeader>
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16">
