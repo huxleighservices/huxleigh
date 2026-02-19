@@ -6,13 +6,24 @@ import { Button } from '@/components/ui/button';
 export default function Home() {
   return (
     <div className="bg-white">
-      <section className="relative h-[calc(100vh-5rem)] w-full overflow-hidden">
+       <section className="py-16 bg-white">
+            <div className="container flex justify-center">
+                <Image
+                    src="/huxleigh-icon.png"
+                    alt="Huxleigh Icon"
+                    width={400}
+                    height={100}
+                    priority
+                />
+            </div>
+        </section>
+      <section className="relative w-full overflow-hidden bg-white">
         <video
           src="https://packaged-media.redd.it/054xs6gmqhkg1/pb/m2-res_1080p.mp4?m=DASHPlaylist.mpd&v=1&e=1771542000&s=4833037e33f62ef2d45a6cc433aac8b4e53e6922"
           autoPlay
           muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-contain"
+          playsInline={false}
+          className="w-full h-auto object-contain"
         />
       </section>
 

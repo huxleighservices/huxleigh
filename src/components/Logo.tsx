@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
@@ -8,8 +9,8 @@ type LogoProps = {
 export default function Logo({ className }: LogoProps) {
   return (
     <Image
-      src="/logo.png"
-      alt="Huxleigh Logo"
+      src="/huxleigh-icon.png"
+      alt="Huxleigh Icon"
       width={125}
       height={25}
       className={cn(className)}

@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -63,7 +64,7 @@ export default function Header() {
       <div className="container flex h-20 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center">
-            <Logo className="h-10 w-auto invert" />
+            <Logo className="h-10 w-auto" />
           </Link>
         </div>
 
@@ -144,7 +145,7 @@ export default function Header() {
                     className="flex items-center space-x-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Logo className="h-6 w-auto invert" />
+                    <Logo className="h-6 w-auto" />
                   </Link>
                 </div>
                 <nav className="flex flex-col gap-4 py-4 pr-6">
