@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 export default function Home() {
   return (
     <div className="bg-white">
-       <section className="py-16 bg-white">
+       <section className="py-6 bg-white">
             <div className="container flex justify-center">
                 <Image
                     src="/huxleigh-icon.png"
@@ -59,7 +59,7 @@ export default function Home() {
                 alt="Stratavue Logo"
                 width={200}
                 height={60}
-                className="mb-4 h-16 object-contain invert"
+                className="mb-4 h-16 object-contain"
               />
               <p className="text-muted-foreground mb-6 flex-grow">
                 The premiere AI-assisted music marketing suite for artists and labels.
