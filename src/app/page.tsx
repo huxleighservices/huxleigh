@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button';
 export default function Home() {
   return (
     <div className="bg-white">
-      <section className="relative h-[calc(100vh-5rem)] w-full overflow-hidden">
+      <section className="relative h-[calc(100vh-5rem)] w-full overflow-hidden bg-black">
         <video
           src="https://packaged-media.redd.it/054xs6gmqhkg1/pb/m2-res_1080p.mp4?m=DASHPlaylist.mpd&v=1&e=1771542000&s=4833037e33f62ef2d45a6cc433aac8b4e53e6922"
           autoPlay
           muted
           playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full h-full object-contain"
         />
         <div className="absolute inset-0 bg-black/30" />
       </section>
