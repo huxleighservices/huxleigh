@@ -10,7 +10,6 @@ export default function Home() {
         <video
           src="https://packaged-media.redd.it/054xs6gmqhkg1/pb/m2-res_1080p.mp4?m=DASHPlaylist.mpd&v=1&e=1771542000&s=4833037e33f62ef2d45a6cc433aac8b4e53e6922"
           autoPlay
-          loop
           muted
           playsInline
           className="absolute top-0 left-0 w-full h-full object-cover"
