@@ -108,7 +108,7 @@ export default function StratavuePage() {
             width={400}
             height={100}
             priority
-            className="drop-shadow-[0_5px_15px_rgba(139,92,246,0.4)] invert"
+            className="drop-shadow-[0_5px_15px_rgba(139,92,246,0.4)]"
           />
           <p className="mt-4 text-lg text-violet-300 text-center max-w-md">
             Reach New Heights with the Premiere AI-Assisted Music Marketing

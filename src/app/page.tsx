@@ -59,7 +59,7 @@ export default function Home() {
                 alt="Stratavue Logo"
                 width={200}
                 height={60}
-                className="mb-4 h-16 object-contain"
+                className="mb-4 h-16 object-contain invert"
               />
               <p className="text-muted-foreground mb-6 flex-grow">
                 The premiere AI-assisted music marketing suite for artists and labels.
