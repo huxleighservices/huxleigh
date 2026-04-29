@@ -60,7 +60,7 @@ export default function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-xl">
       <div className="container flex h-20 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center">
@@ -133,7 +133,7 @@ export default function Header() {
                 <span className="sr-only">Open Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="pr-0 bg-white">
+            <SheetContent side="left" className="pr-0 bg-[#070710]/95 backdrop-blur-xl border-r border-white/10">
               <SheetHeader>
                   <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
                   <SheetDescription className="sr-only">A list of links to navigate the website.</SheetDescription>
@@ -152,7 +152,7 @@ export default function Header() {
                   <Accordion
                     type="multiple"
                     className="w-full"
-                    defaultValue={['Company', 'Software', 'Hardware']}
+                    defaultValue={['Company', 'Products']}
                   >
                     {navLinks.map((link) =>
                       link.children ? (

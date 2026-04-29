@@ -7,19 +7,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
-      {
-        protocol: 'https',
-        hostname: 'delture.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'stratavue.app',
-      },
-      {
-        protocol: 'https',
-        hostname: 'packaged-media.redd.it',
-      },
-      {
+{
         protocol: 'https',
         hostname: 'preview.redd.it',
       },

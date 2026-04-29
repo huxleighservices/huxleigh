@@ -2,17 +2,11 @@
 import {
   Linkedin,
   BrainCircuit,
-  Share2,
   TrendingUp,
   type LucideIcon,
   Cpu,
-  Bot,
   ScanSearch,
   Instagram,
-  FolderSync,
-  Layers,
-  Briefcase,
-  UserPlus,
   Award,
   HardDrive,
 } from 'lucide-react';
@@ -45,32 +39,17 @@ export const navLinks = [
     ],
   },
   {
-    label: 'Software',
+    label: 'Products',
     children: [
       {
-        label: 'Delture',
-        href: '/marketing-products/delture',
-        description: 'AI-powered social media management for Greek Life.',
-      },
-      {
-        label: 'Stratavue',
-        href: '/marketing-products/stratavue',
-        description: 'The premiere AI-assisted music marketing suite.',
-      },
-       {
-        label: 'HTBase',
+        label: 'HT-Base',
         href: '/HTBase',
         description: 'AI-assisted sales training and onboarding software.',
       },
-    ],
-  },
-  {
-    label: 'Hardware',
-    children: [
       {
-        label: 'HT-Go',
-        href: '/hardware/ht-go',
-        description: 'Portable AI-powered sales training hardware.',
+        label: 'Project Go',
+        href: '/hardware/project-go',
+        description: 'Portable AI-powered smart assistant for professionals on-the-go.',
       },
     ],
   },
@@ -303,10 +282,10 @@ type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
-    title: 'R&D Team Makes Strides in Hardware for HTBase and HT-Go',
+    title: 'R&D Team Makes Strides in Hardware for HTBase and Project Go',
     date: '2025-12-15',
     content:
-      'Our Research & Development team is making significant progress on hardware integrations for our HTBase software ecosystem. This includes exciting advancements for the upcoming HT-Go device, which will bring our powerful AI training tools into a dedicated, portable form factor. These developments are set to further revolutionize on-the-go sales and service training.',
+      'Our Research & Development team is making significant progress on hardware integrations for our HTBase software ecosystem. This includes exciting advancements for the upcoming Project Go device, which will bring our powerful AI training tools into a dedicated, portable form factor. These developments are set to further revolutionize on-the-go sales and service training.',
     icon: HardDrive,
   },
   {
@@ -315,34 +294,6 @@ export const newsItems: NewsItem[] = [
     content:
       'HTBase is now ready to be launched into university sales programs after successful testing of its new education-focused format.',
     icon: Award,
-  },
-  {
-    title: 'Delture Places 4th in OWU Pitch Competition',
-    date: '2025-10-25',
-    content:
-      "The Delture team pitched their business at Ohio Wesleyan University's USEC program and placed as a finalist in 4th place.",
-    icon: Award,
-  },
-  {
-    title: 'File storage is live on all Huxleigh Marketing Products.',
-    date: '2025-09-22',
-    content:
-      'Delture Social Suite & Stratavue, two marketing software products, now support local file storage to further streamline user productivity, organization, and workflow.',
-    icon: FolderSync,
-  },
-  {
-    title: 'Camp/AI/gn arrives at Delture Social Suite.',
-    date: '2025-09-18',
-    content:
-      'Delture Social Suite, the AI-backed Greek Life marketing app, has finally received integration with Huxleigh Camp/AI/gn technology. Now, users with select subscriptions can access top-notch AI tools to help them with their marketing journeys.',
-    icon: Bot,
-  },
-  {
-    title: 'Stratavue expands to four membership tiers.',
-    date: '2025-09-15',
-    content:
-      "Stratavue, the AI-backed marketing software for musicians & record labels, has expanded membership tiers from three to four. Now, memberships range from the bare minimum (Sound Check) to large enterprise (Standing 'O').",
-    icon: Layers,
   },
 ];
 
