@@ -23,7 +23,7 @@ const redHatDisplay = Red_Hat_Display({
 export const metadata: Metadata = {
   title: 'Huxleigh',
   description:
-    'Huxleigh is a premier software conglomerate specializing in AI-software services and white-label distribution.',
+    'Huxleigh is an operational technology studio that builds software products and deploys custom technical workflows for operationally complex industries.',
   icons: {
     icon: '/huxleigh-icon.png',
   },

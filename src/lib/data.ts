@@ -9,17 +9,41 @@ import {
   Instagram,
   Award,
   HardDrive,
+  Database,
+  Workflow,
+  RefreshCcw,
+  Wifi,
 } from 'lucide-react';
 
 export const navLinks = [
   { href: '/', label: 'Home' },
+  {
+    label: 'Products',
+    children: [
+      {
+        label: 'HT-Base',
+        href: '/HTBase',
+        description: 'AI-assisted smart ERP for operationally complex teams.',
+      },
+      {
+        label: 'Project Go',
+        href: '/hardware/project-go',
+        description: 'Portable AI-powered smart assistant for professionals on-the-go.',
+      },
+    ],
+  },
+  {
+    href: '/services',
+    label: 'Services',
+    description: 'Custom systems, workflow automation, and technical contracting.',
+  },
   {
     label: 'Company',
     children: [
       {
         label: 'About',
         href: '/about',
-        description: 'Our mission, values, and the team behind our success.',
+        description: 'Our mission, values, and the team behind our work.',
       },
       {
         label: 'News',
@@ -29,7 +53,7 @@ export const navLinks = [
       {
         label: 'Careers',
         href: '/company/careers',
-        description: 'Join our team and help shape the future of AI.',
+        description: 'Join our team and help build operational infrastructure.',
       },
       {
         label: 'My Huxleigh',
@@ -38,22 +62,45 @@ export const navLinks = [
       },
     ],
   },
-  {
-    label: 'Products',
-    children: [
-      {
-        label: 'HT-Base',
-        href: '/HTBase',
-        description: 'AI-assisted sales training and onboarding software.',
-      },
-      {
-        label: 'Project Go',
-        href: '/hardware/project-go',
-        description: 'Portable AI-powered smart assistant for professionals on-the-go.',
-      },
-    ],
-  },
   { href: '/contact', label: 'Contact' },
+];
+
+type ServiceOffering = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  tags: string[];
+};
+
+export const servicesOfferings: ServiceOffering[] = [
+  {
+    icon: Database,
+    title: 'Custom ERP & CRM Development',
+    description:
+      'We design and build business management systems tailored to your operational model — not the other way around. From inventory and order management to client pipelines and reporting.',
+    tags: ['ERP', 'CRM', 'Business Logic', 'Custom Dashboards'],
+  },
+  {
+    icon: Workflow,
+    title: 'Workflow Automation',
+    description:
+      'Eliminate manual handoffs and repetitive processes. We identify friction points in your operation and build automated workflows that run reliably without human intervention.',
+    tags: ['Process Automation', 'API Integration', 'Triggers & Rules', 'Reporting'],
+  },
+  {
+    icon: RefreshCcw,
+    title: 'Legacy System Modernization',
+    description:
+      'Got a system that still runs the business but nobody can touch? We assess, document, and modernize legacy platforms — migrating data, rebuilding logic, and preserving institutional knowledge.',
+    tags: ['Migration', 'API Wrapping', 'Data Transformation', 'Risk Reduction'],
+  },
+  {
+    icon: Wifi,
+    title: 'Physical-to-Digital Integration',
+    description:
+      'Bridge the gap between on-the-ground operations and digital infrastructure. From warehouse and logistics systems to field operations and barcode/RFID workflows.',
+    tags: ['IoT', 'Logistics', 'Field Ops', 'Warehousing', 'Hardware Integration'],
+  },
 ];
 
 export const socialLinks = [

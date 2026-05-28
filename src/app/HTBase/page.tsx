@@ -126,6 +126,14 @@ export default function HTBasePage() {
         <div className="absolute inset-0 grid-overlay" />
 
         <div className="container flex flex-col items-center relative z-10">
+          <Link
+            href="/"
+            className="mb-8 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/8 hover:border-white/20 transition-all duration-200 group"
+          >
+            <span className="text-xs text-stone-500 font-semibold tracking-widest uppercase">A</span>
+            <span className="text-xs text-stone-300 font-semibold tracking-widest uppercase group-hover:text-white transition-colors">Huxleigh</span>
+            <span className="text-xs text-stone-500 font-semibold tracking-widest uppercase">Product</span>
+          </Link>
           <div className="animate-float mb-10">
             <Image
               src="https://preview.redd.it/htbase-gradients-v0-65kk0u62cu7g1.png?width=1080&crop=smart&auto=webp&s=5a43fb34ccdf7532874f95fe72354d8384668dcc"
