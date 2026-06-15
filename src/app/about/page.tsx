@@ -40,7 +40,7 @@ const differentiators = [
 const team = [
   { name: 'David Zimmerman', role: 'Founder & President' },
   { name: 'Patrick McCollum', role: 'Director of Client Relations' },
-  { name: 'Austin Perry', role: 'Account Manager' },
+  { name: 'Anthony Bogna', role: 'Director of Business Development' },
 ];
 
 const partners = [
