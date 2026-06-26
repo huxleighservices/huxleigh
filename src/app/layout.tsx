@@ -24,9 +24,6 @@ export const metadata: Metadata = {
   title: 'Huxleigh',
   description:
     'Huxleigh is an operational technology studio that builds software products and deploys custom technical workflows for operationally complex industries.',
-  icons: {
-    icon: '/IconH.png',
-  },
 };
 
 export default function RootLayout({
