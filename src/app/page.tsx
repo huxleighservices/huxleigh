@@ -25,7 +25,7 @@ export default function Home() {
         <div className="relative z-10 container flex flex-col items-center text-center py-32">
           <div className="animate-float">
             <Image
-              src="/huxleigh-icon.png"
+              src="/Huxleigh logo icon 2026.png"
               alt="Huxleigh"
               width={280}
               height={70}
