@@ -1,4 +1,5 @@
 
+import Image from 'next/image';
 import {
   Users,
   Lightbulb,
@@ -38,9 +39,9 @@ const differentiators = [
 ];
 
 const team = [
-  { name: 'David Zimmerman', role: 'Founder & President' },
-  { name: 'Patrick McCollum', role: 'Director of Client Relations' },
-  { name: 'Anthony Bogna', role: 'Director of Business Development' },
+  { name: 'David Zimmerman', role: 'Founder & President', image: '/David TR photo.png' },
+  { name: 'Patrick McCollum', role: 'Director of Client Relations', image: '/Patrick tr photo.png' },
+  { name: 'Anthony Bogna', role: 'Director of Business Development', image: '/Tony tr photo.png' },
 ];
 
 const partners = [
@@ -151,12 +152,24 @@ export default function AboutPage() {
           <div className="text-center max-w-3xl mx-auto mb-12">
             <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm mb-3">The People</p>
             <h2 className="text-3xl md:text-4xl font-bold font-headline">Meet the Team</h2>
+            <div className="mt-4 mx-auto w-16 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {team.map((member) => (
-              <div key={member.name} className="glass rounded-2xl p-6 text-center hover:border-white/20 hover:shadow-[0_0_30px_rgba(34,211,238,0.06)] transition-all duration-300">
-                <h3 className="text-xl font-bold">{member.name}</h3>
-                <p className="text-muted-foreground mt-1">{member.role}</p>
+              <div key={member.name} className="glass rounded-2xl p-8 text-center hover:border-cyan-500/40 hover:shadow-[0_0_40px_rgba(34,211,238,0.12)] transition-all duration-300 flex flex-col items-center group">
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-300 scale-110" />
+                  <div className="relative w-32 h-32 rounded-full overflow-hidden ring-2 ring-cyan-500/40 ring-offset-2 ring-offset-background group-hover:ring-cyan-400/70 transition-all duration-300">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-white">{member.name}</h3>
+                <p className="text-cyan-400 font-medium mt-1 text-sm">{member.role}</p>
               </div>
             ))}
           </div>
@@ -169,6 +182,7 @@ export default function AboutPage() {
           <div className="text-center max-w-3xl mx-auto mb-12">
             <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm mb-3">Collaborators</p>
             <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Partners</h2>
+            <div className="mt-4 mx-auto w-16 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {partners.map((partner) => (
