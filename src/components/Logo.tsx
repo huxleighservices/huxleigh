@@ -9,7 +9,7 @@ type LogoProps = {
 export default function Logo({ className }: LogoProps) {
   return (
     <Image
-      src="/huxleigh-icon.png"
+      src="/Huxleigh logo icon 2026.png"
       alt="Huxleigh Icon"
       width={125}
       height={25}
