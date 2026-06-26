@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     'Huxleigh is an operational technology studio that builds software products and deploys custom technical workflows for operationally complex industries.',
   icons: {
-    icon: '/huxleigh-icon.png',
+    icon: '/IconH.png',
   },
 };
 
